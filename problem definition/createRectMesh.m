@@ -1,13 +1,43 @@
-function [ feMesh ] = createRectMesh( xVal, yVal, basisOrder )
-% creates a quadrilateralation of [xVal(1),xVal(end)] x [yVal(1),yVal(end)]
+function [ feMesh ] = createRectMesh(basisOrder, nX, nY, uniformMesh)
+% creates a quadrilateralation of nX by nY elements (or 2x2 patches for order = 1)
 % note that an element is defined by 9 nodes if we consider Q2, the 
-% midpoints are added in this script in case basisOrder = 'Q2P1'
-nX = (length(xVal) - 1); % number of elements in x dir
-nY = (length(yVal) - 1); % number of elements in y dir
+% midpoints are added, also in the case of 'Q1P0' for stabilisation
 
-if strcmp(basisOrder, 'Q2P1')
+% if only basisOrder is given, ask user for input
+if nargin == 1
+	if basisOrder == 1
+		sizeQuery = 'Number of 2x2 patches in each direction';
+	elseif basisOrder == 2
+		sizeQuery = 'Number of elements in each direction';
+	end
+	% nr of elements/patches in each direction (for Q1P0 defines the 2x2 patches)
+	nX = default(sizeQuery, 2^5);
+	nX = ceil(nX/2)*2; % make sure nX is even for nonuniform mesh
+	nY = nX; 
+end
+
+if nargin < 4
+	uniformMesh = default({'Which mesh spacing to use', 'Uniform',...
+	 'Non-uniform'}, 2, {'', 'more nodes at the boundary'});
+end
+
+if uniformMesh == 1
+	xVal = linspace(0, 1, nX + 1);
+elseif uniformMesh == 2
+	xVal = linspace(0,1,nX/2 + 1).^2; % more nodes at boundary
+	xVal = [xVal - 1, 1 - xVal(end-1:-1:1)];
+
+	% make sure box is 1x1 (size scales the effective Re!)
+	xVal = 1/2 + xVal/2;
+end
+
+yVal = xVal;
+
+
+if basisOrder == 2
 
 	% interpolate to ensure affine equivalence (add midpoints)
+
 	temp = xVal;
 	xVal(1:2:2*nX + 1) = xVal;
 	xVal(2:2:2*nX) = (temp(2:end) + temp(1:end-1))/2;
@@ -76,7 +106,7 @@ if strcmp(basisOrder, 'Q2P1')
 
 	% store sizes
 	problemSize = [nX,nY,(2*nX+1),(2*nY+1)]; % nr elements in x,y dir, nr of nodes
-elseif strcmp(basisOrder, 'Q1P0')
+elseif basisOrder == 1
 
 	% interpolate to allow stabilisation over 2x2 element patches 5.3.2 Silvester
 	tempX = xVal;

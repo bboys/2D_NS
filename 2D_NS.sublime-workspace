@@ -1,0 +1,1131 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"is",
+				"isempty"
+			],
+			[
+				"nr",
+				"nrOptions"
+			],
+			[
+				"spri",
+				"sprintTable"
+			],
+			[
+				"print",
+				"printTable"
+			],
+			[
+				"col",
+				"colWidth"
+			],
+			[
+				"spr",
+				"sprintTable"
+			],
+			[
+				"time",
+				"timeSolveStokes"
+			],
+			[
+				"prin",
+				"printTop"
+			],
+			[
+				"pri",
+				"printBottom"
+			],
+			[
+				"hor",
+				"horPadding"
+			],
+			[
+				"te",
+				"textWidth"
+			],
+			[
+				"input",
+				"inputSize"
+			],
+			[
+				"out",
+				"output"
+			],
+			[
+				"lid",
+				"lidVel"
+			],
+			[
+				"uni",
+				"uniformMesh"
+			],
+			[
+				"size",
+				"sizeQuery"
+			],
+			[
+				"vert",
+				"vertChar"
+			],
+			[
+				"line",
+				"lineText"
+			],
+			[
+				"last",
+				"lastChar"
+			],
+			[
+				"in",
+				"inputText"
+			],
+			[
+				"bas",
+				"basisOrder"
+			],
+			[
+				"basis",
+				"basisOrder"
+			],
+			[
+				"fpr",
+				"fprintf"
+			],
+			[
+				"def",
+				"defInput"
+			],
+			[
+				"user",
+				"userInp"
+			],
+			[
+				"max",
+				"maxIt"
+			],
+			[
+				"er",
+				"errorEstOld"
+			],
+			[
+				"free",
+				"freeSol"
+			],
+			[
+				"ref",
+				"refSolStokes"
+			],
+			[
+				"refSol",
+				"refSolStokes"
+			],
+			[
+				"pro",
+				"problemSize"
+			],
+			[
+				"local",
+				"localNonLinx"
+			],
+			[
+				"error",
+				"errorEst"
+			],
+			[
+				"fixed",
+				"fixedSol"
+			],
+			[
+				"fix",
+				"fixedSol"
+			],
+			[
+				"Af",
+				"Afree"
+			],
+			[
+				"rhs",
+				"rhsVec"
+			],
+			[
+				"fre",
+				"freeSol"
+			],
+			[
+				"h",
+				"hYList"
+			],
+			[
+				"begin",
+				"begin{abstract}	latex-document"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "utils/default.m",
+			"settings":
+			{
+				"buffer_size": 2739,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "utils/announce.m",
+			"settings":
+			{
+				"buffer_size": 1965,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "test problems/navierStokesLidDrivenCavitySteady.m",
+			"settings":
+			{
+				"buffer_size": 3962,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "problem definition/createRectBasis.m",
+			"settings":
+			{
+				"buffer_size": 741,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "problem definition/createRectMesh.m",
+			"settings":
+			{
+				"buffer_size": 6389,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "solvers/nonLinSolve.m",
+			"settings":
+			{
+				"buffer_size": 2948,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "Packages/User/Matlab.sublime-build",
+	"command_palette":
+	{
+		"height": 400.0,
+		"selected_items":
+		[
+			[
+				"plot",
+				"Build: With plot"
+			],
+			[
+				"polt",
+				"Build: With plot"
+			],
+			[
+				"thrm",
+				"Themr: List themes"
+			],
+			[
+				"toggle",
+				"View: Toggle Menu"
+			],
+			[
+				"thmr",
+				"Themr: List themes"
+			],
+			[
+				"schmr",
+				"Schemr: List all schemes"
+			],
+			[
+				"settings",
+				"Preferences: Settings - User"
+			],
+			[
+				"shcmr",
+				"Schemr: List all schemes"
+			],
+			[
+				"",
+				"Schemr: List all schemes"
+			],
+			[
+				"themr",
+				"Themr: Toggle Theme Settings"
+			],
+			[
+				"m",
+				"View: Toggle Menu"
+			],
+			[
+				"men",
+				"View: Toggle Menu"
+			],
+			[
+				"matla",
+				"Set Syntax: MATLAB"
+			],
+			[
+				"them",
+				"Themr: List themes"
+			],
+			[
+				"buidl",
+				"Build: With plot"
+			],
+			[
+				"mat",
+				"Set Syntax: MATLAB"
+			],
+			[
+				"build",
+				"Build: With plot"
+			],
+			[
+				"key",
+				"Preferences: Key Bindings - Default"
+			],
+			[
+				"sy",
+				"Set Syntax: MATLAB"
+			],
+			[
+				"matl",
+				"Set Syntax: MATLAB"
+			],
+			[
+				"matlab",
+				"Set Syntax: MATLAB"
+			],
+			[
+				"pack",
+				"Package Control: Remove Package"
+			],
+			[
+				"latexing",
+				"Preferences: LaTeXing Settings - Default (Extended)"
+			],
+			[
+				"settngs",
+				"Preferences: LaTeXing Settings - Default"
+			],
+			[
+				"schemr",
+				"Schemr: List all schemes"
+			],
+			[
+				"settigns",
+				"Preferences: Settings - User"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			],
+			[
+				"removepack",
+				"Package Control: Remove Package"
+			],
+			[
+				"listpacka",
+				"Package Control: List Packages"
+			],
+			[
+				"SETINGUSER",
+				"Preferences: Settings - User"
+			],
+			[
+				"viemen",
+				"View: Toggle Menu"
+			],
+			[
+				"setings",
+				"Preferences: Settings - User"
+			],
+			[
+				"shc",
+				"Schemr: List favorite schemes"
+			],
+			[
+				"schemer",
+				"Schemr: List all schemes"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"schmrlis",
+				"Schemr: List all schemes"
+			],
+			[
+				"menu",
+				"View: Toggle Menu"
+			],
+			[
+				"wrap",
+				"Word Wrap: Toggle"
+			],
+			[
+				"latexingsetingdef",
+				"Preferences: LaTeXing Settings - Default"
+			],
+			[
+				"latexingsettings",
+				"Preferences: LaTeXing Settings - User"
+			],
+			[
+				"togglemen",
+				"View: Toggle Menu"
+			],
+			[
+				"latexingroot",
+				"Snippet: LaTeXing Option Root File"
+			],
+			[
+				"viewmenu",
+				"View: Toggle Menu"
+			],
+			[
+				"keys",
+				"Preferences: Key Bindings - User"
+			],
+			[
+				"optionroot",
+				"Snippet: LaTeXing Option Root File"
+			],
+			[
+				"latexin",
+				"LaTeXing: Lookup TeX Symbol"
+			],
+			[
+				"che",
+				"LaTeXing: Check System"
+			],
+			[
+				"quickbuild",
+				"Build: Choose Quick Build"
+			],
+			[
+				"quick",
+				"Build: Primary Quick Build"
+			],
+			[
+				"latexingsettinguser",
+				"Preferences: LaTeXing Settings - User"
+			],
+			[
+				"latexingsys",
+				"LaTeXing: Check System"
+			],
+			[
+				"latexsyste",
+				"LaTeXing: Check System"
+			],
+			[
+				"latexingsettingsuser",
+				"Preferences: LaTeXing Settings - User"
+			],
+			[
+				"latexingsystem",
+				"LaTeXing: Check System"
+			],
+			[
+				"latecheck",
+				"LaTeXing: Check System"
+			],
+			[
+				"latxinsyste",
+				"LaTeXing: Check System"
+			],
+			[
+				"latexinguser",
+				"Preferences: LaTeXing Settings - User"
+			],
+			[
+				"latexuser",
+				"Preferences: LaTeXing Settings - User (Extended)"
+			],
+			[
+				"vie",
+				"View: Toggle Menu"
+			],
+			[
+				"packalist",
+				"Package Control: List Packages"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"packagremov",
+				"Package Control: Remove Package"
+			],
+			[
+				"packagcontrol lis",
+				"Package Control: List Packages"
+			],
+			[
+				"latextool",
+				"LaTeXTools: Reconfigure and migrate settings"
+			],
+			[
+				"settinguser",
+				"Preferences: Settings - User"
+			],
+			[
+				"sytmatl",
+				"Set Syntax: MATLAB"
+			],
+			[
+				"view",
+				"View: Toggle Menu"
+			],
+			[
+				"schml",
+				"Schemr: List all schemes"
+			],
+			[
+				"themrli",
+				"Themr: List themes"
+			],
+			[
+				"thm",
+				"Themr: List themes"
+			],
+			[
+				"schmrli",
+				"Schemr: List all schemes"
+			],
+			[
+				"settinuser",
+				"Preferences: Settings - User"
+			],
+			[
+				"isntall",
+				"Package Control: Install Package"
+			],
+			[
+				"instl",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 424.0
+	},
+	"console":
+	{
+		"height": 139.0,
+		"history":
+		[
+			"ls",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": false,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": true,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/E/Dropbox/University/My_solvers/2dNS",
+		"/E/Dropbox/University/My_solvers/2dNS/plotting tools",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition",
+		"/E/Dropbox/University/My_solvers/2dNS/solvers",
+		"/E/Dropbox/University/My_solvers/2dNS/test problems",
+		"/E/Dropbox/University/My_solvers/2dNS/utils"
+	],
+	"file_history":
+	[
+		"/E/Dropbox/University/My_solvers/2dNS/solvers/nonLinSolveOld.m",
+		"/E/Dropbox/University/My_solvers/2dNS/solvers/nonLinSolve.m",
+		"/E/Dropbox/University/My_solvers/2dNS/utils/printTable.m",
+		"/E/Dropbox/University/My_solvers/2dNS/utils/printTableSep.m",
+		"/E/Dropbox/University/My_solvers/2dNS/todoList",
+		"/E/Dropbox/University/My_solvers/2dNS/solvers/matrixSolve.m",
+		"/E/Dropbox/University/My_solvers/2dNS/addToPath.m",
+		"/E/Program Files/MATLAB/R2013a/bin/gotoUni.m",
+		"/E/Dropbox/University/My_solvers/2dNS/utils/iterAnnounce.m",
+		"/E/Dropbox/University/My_solvers/2dNS/plotting tools/plotSol.m",
+		"/E/Dropbox/University/My_solvers/2dNS/utils/default.m",
+		"/E/ifiss3.3/ifiss3.3/navier_flow/it_nstokes.m",
+		"/E/ifiss3.3/ifiss3.3/navier_flow/it_solve_navier.m",
+		"/E/ifiss3.3/ifiss3.3/default.m",
+		"/E/ifiss3.3/ifiss3.3/navier_flow/fpsetup_q2p1.m",
+		"/E/ifiss3.3/ifiss3.3/navier_flow/newton_q1.m",
+		"/E/Dropbox/University/My_solvers/2dNS/createRectMesh.m",
+		"/E/Dropbox/University/My_solvers/2dNS/referenceSols.mat",
+		"/E/Dropbox/University/My_solvers/2dNS/mainTest.m",
+		"/E/Dropbox/University/My_solvers/2dNS/navierStokesLidDrivenCavitySteady.m",
+		"/E/Dropbox/University/My_solvers/2dNS/plotSol.m",
+		"/E/Dropbox/University/My_solvers/2dNS/matrixSolve.m",
+		"/E/Dropbox/University/My_solvers/2dNS/newtonSolve.m",
+		"/E/Dropbox/University/My_solvers/2dNS/nonLinearAssembly1Standard.m",
+		"/E/Dropbox/University/My_solvers/2dNS/interpolantQ2.m",
+		"/E/KKT/KKTDirect0.5/kktsolve.m",
+		"/E/ilupackV2.4_GNU32_MUMPS/ilupackV2.4_GNU32_MUMPS/makefile",
+		"/E/KKT/KKTDirect0.5/README",
+		"/E/KKT/KKTDirect0.5/kktsolve_mex.cpp",
+		"/E/KKT/KKTDirect0.5/Makefile",
+		"/E/KKT/KKTDirect0.5/stokes.c",
+		"/E/lamg/lamg-2.2.1/examples/lamg_example.m",
+		"/E/lamg/lamg-2.2.1/lamg/main/+amg/+solve/ProcessorSolve.m",
+		"/E/lamg/lamg-2.2.1/lamg/main/+amg/+setup/CoarseningStrategyAgg.m",
+		"/E/lamg/lamg-2.2.1/make.m",
+		"/E/Dropbox/University/My_solvers/2dNS/nonLinearAssembly1.m",
+		"/E/Dropbox/University/My_solvers/2dNS/nonLinearAssembly2Standard.m",
+		"/E/Dropbox/University/My_solvers/2dNS/nonLinearAssembly2.m",
+		"/E/Dropbox/University/My_solvers/2dNS/calcVorticity.m",
+		"/E/Dropbox/University/My_solvers/2dNS/massPAssembly.m",
+		"/E/Dropbox/University/My_solvers/2dNS/laplaceAssemblyStandard.m",
+		"/E/Documents/NS_Re1000.txt",
+		"/E/Dropbox/University/My_solvers/2dNS/laplaceAssembly.m",
+		"/E/Dropbox/University/My_solvers/2dNS/diffusionAssembly.m",
+		"/E/Dropbox/University/My_solvers/2dNS/createBasisQ2P1.m",
+		"/E/Dropbox/University/My_solvers/2dNS/uimagesc.m",
+		"/E/Dropbox/University/My_solvers/2dNS/stokesPoiseuilleFlow.m",
+		"/E/Dropbox/University/My_solvers/2dNS/createBasisQ1P0.m",
+		"/E/Dropbox/University/My_solvers/2dNS/stokesLidDrivenCavity.m",
+		"/E/Dropbox/University/My_solvers/2dNS/diffusionAssemblyStandard.m",
+		"/E/Dropbox/University/My_solvers/2dNS/localMatricesQ2P1.mat",
+		"/home/s1895044/Dropbox/University/My_solvers/2dNS/massPAssembly.m",
+		"/home/s1895044/Dropbox/University/My_solvers/2dNS/massAssembly.m",
+		"/home/s1895044/Dropbox/University/My_solvers/2dNS/nonLinearAssembly2.m",
+		"/home/s1895044/Dropbox/University/My_solvers/2dNS/diffusionAssembly.m",
+		"/home/s1895044/Dropbox/University/My_solvers/2dNS/nonLinearAssembly1.m",
+		"/home/s1895044/Dropbox/University/My_solvers/2dNS/stokesPoiseuilleFlow.m",
+		"/home/s1895044/Dropbox/University/My_solvers/2dNS/.subl124.tmp",
+		"/home/s1895044/Dropbox/University/My_solvers/2dNS/forcingFunc.m",
+		"/home/s1895044/Dropbox/University/My_solvers/2dNS/dirichletFunc.m",
+		"/home/s1895044/Dropbox/University/My_solvers/2dNS/createRectMesh.m",
+		"/home/s1895044/Dropbox/University/My_solvers/2dNS/createBasisQ2P1.m",
+		"/home/s1895044/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/s1895044/Dropbox/University/My_solvers/2dNS/boundaryFunc.m",
+		"/home/s1895044/Dropbox/University/My_solvers/2dNS/nonLinearAssembly2Standard.m",
+		"/home/s1895044/Dropbox/University/My_solvers/2dNS/nonLinearAssembly1Standard.m",
+		"/home/s1895044/.config/sublime-text-3/Packages/User/Matlab.sublime-settings",
+		"/home/s1895044/.config/sublime-text-3/Packages/User/LaTeXing.sublime-settings",
+		"/C/Users/Ronald R/AppData/Roaming/Sublime Text 3/Packages/User/Matlab.sublime-build",
+		"/E/Dropbox/University/My_solvers/2dNS/.subld06.tmp",
+		"/C/Users/Ronald R/AppData/Roaming/Sublime Text 3/Packages/User/Matlab.sublime-settings",
+		"/C/Users/Ronald R/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
+		"/C/Users/Ronald R/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/E/Dropbox/University/My_solvers/2D_NS/2D_NS.sublime-project",
+		"/E/Dropbox/University/My_solvers/2D_AFEM/compute_mass.m",
+		"/E/Dropbox/University/Master_thesis/preliminaries.tex",
+		"/E/Dropbox/University/Random_Matlab/Riddle.tex",
+		"/C/Users/Ronald R/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/Ronald R/AppData/Roaming/Sublime Text 3/Packages/LaTeXing/LaTeXing.sublime-settings",
+		"/C/Users/Ronald R/AppData/Roaming/Sublime Text 3/Packages/User/LaTeXing.sublime-settings",
+		"/C/Users/Ronald R/AppData/Roaming/Sublime Text 3/Packages/LaTeXing/Default.sublime-keymap",
+		"/E/Dropbox/University/Master_thesis/master-thesis.sublime-project",
+		"/C/Users/Ronald R/AppData/Roaming/Sublime Text 3/Packages/LaTeXing/LaTeX.sublime-build",
+		"/E/Dropbox/University/Master_thesis/preliminaries.aux",
+		"/E/Dropbox/University/Master_thesis/largeeddy.aux",
+		"/E/Dropbox/University/Master_thesis/turbulence.fls",
+		"/E/Dropbox/University/Master_thesis/turbulence.aux",
+		"/E/Dropbox/University/Master_thesis/turbulence.log",
+		"/E/Dropbox/University/Master_thesis/turbulence.fdb_latexmk",
+		"/E/Dropbox/University/Master_thesis/turbulence.tex.backup",
+		"/E/Dropbox/University/Master_thesis/test.aux",
+		"/E/Dropbox/University/Master_thesis/turbulence.tex",
+		"/E/Dropbox/University/Master_thesis/largeeddy.tex",
+		"/E/Dropbox/University/Master_thesis/introduction.tex",
+		"/E/Dropbox/University/Master_thesis/ns_mathematics.tex",
+		"/home/s1895044/Dropbox/University/Master_thesis/Master_main.tex",
+		"/home/s1895044/Dropbox/University/Master_thesis/Master_thesis.aux",
+		"/home/s1895044/Dropbox/University/Master_thesis/introduction.aux",
+		"/home/s1895044/Dropbox/University/Master_thesis/introduction.tex",
+		"/home/s1895044/Dropbox/University/Master_thesis/master-thesis.sublime-project",
+		"/home/s1895044/Dropbox/University/Master_thesis/Master_main.synctex.gz",
+		"/home/s1895044/Dropbox/University/Master_thesis/Project_Master_thesis.sublime-project",
+		"/home/s1895044/Dropbox/University/Master_thesis/Other/Besprekingen.odt",
+		"/home/s1895044/Dropbox/University/Master_thesis/Literature/[O._A_Ladyzhenskaia]_The_mathematical_theory_of_vi(BookZZ.org).djvu",
+		"/home/s1895044/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
+		"/home/s1895044/Dropbox/University/Master_thesis/master_thesis.kilepr",
+		"/home/s1895044/Dropbox/University/Master_thesis/preliminaries.aux",
+		"/home/s1895044/.config/sublime-text-3/Packages/LaTeXing/LaTeXing.sublime-settings",
+		"/home/s1895044/.config/sublime-text-3/Packages/Default/Default (Linux).sublime-keymap",
+		"/home/s1895044/.config/sublime-text-3/Packages/LaTeXing/Default.sublime-keymap",
+		"/home/s1895044/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
+		"/home/s1895044/.config/sublime-text-3/Packages/LaTeXing/Default (Linux).sublime-keymap",
+		"/home/s1895044/Dropbox/University/Master_thesis/Literature/H. Tennekes, J. L. Lumley A first course in turbulence  1972.djvu",
+		"/home/s1895044/Dropbox/University/Master_thesis/Literature/[Layton_ref_21]Elliptic_regularity",
+		"/home/s1895044/Dropbox/University/Master_thesis/Literature/[Uriel_Frisch]_Turbulence,_the_legacy_of_A.N._Kolm(BookZZ.org).djvu",
+		"/home/s1895044/Dropbox/University/Master_thesis/introduction.fdb_latexmk",
+		"/home/s1895044/.config/sublime-text-3/Packages/User/Default.sublime-keymap",
+		"/home/s1895044/.config/sublime-text-3/Packages/LaTeXing/LaTeX.sublime-build",
+		"/home/s1895044/.config/sublime-text-3/Packages/User/LaTeX.sublime-build",
+		"/home/s1895044/.config/sublime-text-3/Packages/LaTeXTools/LaTeXTools.default-settings"
+	],
+	"find":
+	{
+		"height": 38.0
+	},
+	"find_in_files":
+	{
+		"height": 164.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"convList",
+			"method",
+			"timeNonLinSolve",
+			"timeSolveStokes",
+			"timeAssembly",
+			"horPad",
+			"fprintf",
+			"x",
+			"basisOrder",
+			"newtonSolve",
+			"basisOrder",
+			"massP",
+			"K1",
+			"K2te",
+			"K1t",
+			"1",
+			"streamline(reshape(feMesh.node(1,:), nY, nX),...\n% 	reshape(feMesh.node(2,:), nY, nX),...\n% 	reshape(solVec(1:nrNodes), nY, nX),...\n% 	reshape(solVec((nrNodes + 1):2*nrNodes), nY, nX),-0.95,-0.95);",
+			".*",
+			")/",
+			"*",
+			"u1",
+			"9",
+			"M",
+			"m",
+			"M",
+			"m",
+			"M",
+			"m",
+			"M",
+			"m",
+			"M",
+			"3Didx2",
+			"N1",
+			"product",
+			"pNode",
+			"m",
+			"M",
+			"m",
+			"M",
+			"z",
+			"y",
+			"x",
+			"size",
+			"M",
+			"m",
+			"M",
+			"build",
+			"ctrl+b",
+			"\\",
+			"localS",
+			"1",
+			"lambda2",
+			"lambda1",
+			"1",
+			"spell",
+			"true",
+			"assumptions",
+			"o",
+			"te",
+			"Te",
+			"te",
+			"Te",
+			"te",
+			"Te",
+			"te",
+			"Te",
+			"te",
+			"Te",
+			"te",
+			"Te",
+			"te",
+			"Te",
+			"te",
+			"Te",
+			"te",
+			"Te",
+			"te",
+			"Te",
+			"te",
+			"Te",
+			"te",
+			"Te",
+			"te",
+			"Te",
+			"te",
+			"8",
+			"line",
+			"ine",
+			"c",
+			"font",
+			"8",
+			"okular",
+			"ref",
+			"mcdonough2004",
+			"latexmk",
+			"pdflate"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"nonLinSolve",
+			"MIJNMATRIX"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "utils/default.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2739,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								478,
+								468
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "utils/announce.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1965,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								563,
+								563
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/Matlab/Matlab.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "test problems/navierStokesLidDrivenCavitySteady.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3962,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								138,
+								138
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 3,
+					"file": "problem definition/createRectBasis.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 741,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								63,
+								63
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "problem definition/createRectMesh.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6389,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								844,
+								844
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "solvers/nonLinSolve.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2948,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2338,
+								2338
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 160.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 58.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 148.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "2D_NS.sublime-project",
+	"replace":
+	{
+		"height": 72.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"pre",
+				"preliminaries.tex"
+			],
+			[
+				"large",
+				"largeeddy.tex"
+			],
+			[
+				"tubl",
+				"turbulence.tex"
+			],
+			[
+				"mastpor",
+				"master-thesis.sublime-project"
+			],
+			[
+				"introdtex",
+				"introduction.tex"
+			],
+			[
+				"subli",
+				"master-thesis.sublime-project"
+			],
+			[
+				"masterthesis",
+				"Project_Master_thesis.sublime-project"
+			],
+			[
+				"proje",
+				"Project_Master_thesis.sublime-project"
+			],
+			[
+				"ma",
+				"Master_main.tex"
+			],
+			[
+				"int",
+				"introduction.tex"
+			],
+			[
+				"mast",
+				"Master_main.tex"
+			],
+			[
+				"intro",
+				"introduction.tex"
+			],
+			[
+				"intordutex",
+				"introduction.tex"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 400.0,
+		"selected_items":
+		[
+		],
+		"width": 400.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 234.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

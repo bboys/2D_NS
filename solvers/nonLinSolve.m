@@ -1,5 +1,7 @@
-function [solVec] = newtonSolve(feMesh, globalMatrix, localMatrix, solVec ,...
+function [solVec] = nonLinSolve(feMesh, globalMatrix, localMatrix, solVec ,...
 	typesNodes, Re, tol, maxIt)
+% hybrid method using both picard and newton (alternating)
+
 
 nrNodes = feMesh.problemSize(3)*feMesh.problemSize(4);
 nrElts = feMesh.problemSize(1)*feMesh.problemSize(2);
@@ -14,21 +16,28 @@ fixedPressure = typesNodes.fixedPressure;
 stepsD = 2; % nr of diverging picard steps before breaking
 stepsC = 3; % nr of converging picard steps before switching to newton 
 errorEst = zeros(maxIt + 1,1);
-errorEst(1) = Inf;
+deltaSol = 0;
 iter = 0;
-method = 1; % 1 = newton, 0 = picard
+method = 'picard'; % 1 = newton, 0 = picard (start)
 convList = ones(maxIt + 1, 1); % if 0, then errotEst(iter) < errorEst(iter + 1)
-% start with newton 
+initPicard = 3;
+% start with picard 
 % if 1 step divergence > switch to picard
 % if picard diverges for stepsD steps then break
 % if picard converges for stepsC steps, then switch to newton again
 
+colWidth = [4, 10, 10, 8];
+printTableSep(colWidth); % print horizontal separator
+printTable({'i', 'residual', 'update', 'method'},...
+ 	repmat({'string'}, 1, 4), colWidth);
+printTableSep(colWidth);
 
-while errorEst(iter + 1) > tol
+
+while iter <= maxIt
 	nonLin2 = nonLinearAssembly2(feMesh, localMatrix.nonlin, solVec);
 
 	% construct matrix
-	if method == 1
+	if strcmp(method, 'newton')
 		% newton
 		nonLin1 = nonLinearAssembly1(feMesh, localMatrix.nonlin, solVec);
 		velMatrix = nonLin1 + nonLin2 + 1/Re*globalMatrix.D;
@@ -50,43 +59,41 @@ while errorEst(iter + 1) > tol
 	% the rhs
 	rhsVec = [-momentumRes; contRes];
 
-	% solve the updates
-	deltaSol = matrixSolve(A(freeSol, freeSol),...
-		rhsVec(freeSol),0);
-
-	% update solution
-	solVec(freeSol) = solVec(freeSol) + deltaSol;
-	
-	% increase counter & check maxit
-	iter = iter + 1;
-
+	% error of current solution
 	errorEst(iter + 1) = norm(rhsVec(freeSol));
-	if (errorEst(iter) < errorEst(iter + 1))
+	if (iter > 0) & (errorEst(iter) < errorEst(iter + 1))
 		convList(iter + 1) = 0;
 		% method is diverging (newton)
-		method = 0;
+		method = 'picard';
 	end
 
-	
-	if (method == 0) & (all(convList(max(1, iter - (stepsC - 2)):iter + 1)))
-		% picard is converging 3 steps, so switch to newton
-		method = 1;
+	if strcmp(method, 'picard') & (all(convList(...
+		max(1, iter - (stepsC - 2)):iter + 1))) & (iter > initPicard - 1)
+		% picard is converging stepsC steps, so switch to newton
+		method = 'newton';
 	end
 
-	% check if maxIt is reached
-	if ((iter + 1 > maxIt) & (errorEst(iter + 1) > tol)) |...
+	% print convergence info
+	printTable({iter, errorEst(iter + 1), norm(deltaSol), method},...
+	 	{'%d', '%4.2e', '%4.2e', 'string'},colWidth);
+
+	% check if tol is reached or stepsD steps of divergence
+	if (errorEst(iter + 1) < tol) |...
 		(all(~convList(max(1, iter - (stepsD - 1)):iter + 1)))
-		% (convList(iter) == 0 & convList(iter + 1) == 0)
-		fprintf(['Iteration stopped without reaching tolerance of %2.1e', ...
-			', stopped after %3.0f iterations with a residual of %2.1e \n'],...
-			[tol,iter,errorEst(iter + 1)])
 		break
 	end
-	
-	% print convergence info
-	fprintf('%2.0f, residual of equations %4.3e, norm of update %4.3e, %d\n',...
-		[iter, norm(rhsVec(freeSol)), norm(deltaSol), method])
 
+	% while statement is useless .. but this is easier
+	if iter <= maxIt
+		% solve the updates
+		deltaSol = matrixSolve(A(freeSol, freeSol),...
+			rhsVec(freeSol),0);
+
+		% update solution
+		solVec(freeSol) = solVec(freeSol) + deltaSol;
+	end
+
+	iter = iter + 1;
 end
-
+printTableSep(colWidth);
 end
