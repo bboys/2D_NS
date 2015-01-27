@@ -1,4 +1,4 @@
-todo
+# Todo
 - stokes solver
 -- preconditioned MINRES
 -- multigrid (algebraisch / geometrisch)
@@ -8,11 +8,11 @@ todo
 - inexact newton solver
 - quadrature
 
-problemen
+## Problemen
 - keuze van volgorde pressure basis functions (P1)
 
 
-verbeteringen
+## Verbeteringen
 - replace integration (symbolic) by linear operation (MV)(arbitrair Q{k+1}P{k})
 - gebruik symmetrieen van de reference element/ basis functies
 - nonlin1 is voor 2e term, nonlin2 voor 1e term? omdraaien?
