@@ -46,16 +46,6 @@ yVal = yVal(:);
 xDif = xVal(2:end) - xVal(1:end-1);
 yDif = yVal(2:end) - yVal(1:end-1);
 if basisOrder >= 2
-
-	% create an array that gives the surface area per element
-	areaList = bsxfun(@times, yDif, xDif');
-	areaList = areaList(:);
-
-	% size per element
-	hXList = repmat(xDif(:)',nY,1); hXList = hXList(:);
-	hYList = repmat(yDif(:),nX,1);
-
-
 	% interpolate to ensure affine equivalence (add basisOrder - 1 points
 	% between each two points)
 
@@ -65,65 +55,17 @@ if basisOrder >= 2
 	xVal = bsxfun(@plus, xVal(1:end-1), temp)';
 	xVal = [xVal(:); tempEndp];
 
-
 	temp = bsxfun(@times,[0:basisOrder - 1] , yDif(:)/basisOrder);
 	tempEndp = yVal(end);
 
 	yVal = bsxfun(@plus, yVal(1:end-1), temp)';
 	yVal = [yVal(:); tempEndp];
 
-
-	% create an array such that the ith column gives the coordinates of the ith
-	% node. nodes are numbered from bottom to top, left to right.
-	[X,Y] = meshgrid(xVal,yVal);
-	nodeList = [X(:)';Y(:)'];
-
-	% create array that links elements to nodes, that is, the ith column gives
-	% the (order+1)^2 node indices which define the ith element. elements are numbered
-	% similar to the nodes, nodes within elements as well.
-	elementList = zeros((basisOrder + 1)^2,nX*nY);
-	tempRange = bsxfun(@plus,([1:nX]' - 1)*nY, [1:nY]);
-
-	tempOut = bsxfun(@plus,(basisOrder + basisOrder^2*nY)*([1:nX]' - 1) + 1,...
-		basisOrder*[0:nY-1]);
-	elementList(1,tempRange(:)) = tempOut(:);
-
-	elementList([2:basisOrder + 1],:) = bsxfun(@plus, [1:basisOrder]', elementList(1,:));
-
-	for i = 2:basisOrder + 1;
-		elementList((i-1)*(basisOrder + 1) + 1:i*(basisOrder + 1),:) =...
-			elementList((i-2)*(basisOrder + 1) + 1:(i-1)*(basisOrder + 1),:) +...
-			basisOrder*nY + 1;
-	end
-
-	% create array such that the ith column gives the node indices of the ith 
-	% edge.
-	edge = [1:basisOrder*nY];
-	edge1 = [edge; edge + 1]; % left
-	edge = [(basisOrder*nY + 1):(basisOrder*nY + 1):(basisOrder*nY+1)*(basisOrder*nX)];
-	edge2 = [edge; edge + (basisOrder*nY + 1)]; % top
-	edge = [(basisOrder*nY + 1)*(basisOrder*nX + 1):-1:((basisOrder*nY + 1)*basisOrder*nX + basisOrder)]; 
-	edge3 = [edge; edge - 1]; % right
-	edge = [((basisOrder*nY + 1)*basisOrder*nX + 1):(-(basisOrder*nY + 1)):(basisOrder*nY+basisOrder)];
-	edge4 = [edge; edge - (basisOrder*nY + 1)]; % bottom
-
-	% types of boundary conditions (see page 43, Segal)
-	% 1 : dirichlet, u = g1 on gamma1 
-	% 2 : normal velocity u_n = g2, sigma_nt = g3 = 0, on gamma2
-	% 3 : tangential velocity u_t = g4, sigma_nn = g5 = 0, on gamma3
-	% 4 : sigma_nt = 0 = sigma_nn, on gamma4
-
-	boundary.gamma1 = [edge1];
-	boundary.gamma2 = [edge2];
-	boundary.gamma3 = [edge3];
-	boundary.gamma4 = [edge4];
-
 	% no stabilisation needed
 	stabC = sparse(nrPBasisF*nX*nY, nrPBasisF*nX*nY);
 
-	% store sizes
-	problemSize = [nX,nY,(basisOrder*nX+1),(basisOrder*nY+1)]; % nr elements in x,y dir, nr of nodes
 elseif basisOrder == 1
+	patchSize = bsxfun(@times, yDif, xDif');
 
 	% interpolate to allow stabilisation over 2x2 element patches 5.3.2 Silvester
 	tempX = xVal;
@@ -133,6 +75,9 @@ elseif basisOrder == 1
 	tempY = yVal;
 	yVal(1:2:2*nY + 1) = yVal;
 	yVal(2:2:2*nY) = (tempY(2:end) + tempY(1:end-1))/2;
+	
+	xDif = xVal(2:end) - xVal(1:end-1);
+	yDif = yVal(2:end) - yVal(1:end-1);
 
 	nX = nX*2;
 	nY = nY*2;
@@ -143,72 +88,66 @@ elseif basisOrder == 1
 				-1 2 -1 0; 
 				0 -1 2 -1; 
 				-1 0 -1 2];
-	patchDXDY = bsxfun(@times, yDif, xDif')/4;
-	patchDXDY = patchDXDY(:); % hx * hy per patch
-	stabC = sparse(1:nX*nY/4, 1:nX*nY/4, patchDXDY);
+
+	stabC = sparse(1:nX*nY/4, 1:nX*nY/4, patchSize(:)/4);
 	stabC = beta*kron(stabC, stabPatch);
-
-
-
-	% create an array such that the ith column gives the coordinates of the ith
-	% node. nodes are numbered from bottom to top, left to right.
-	[X,Y] = meshgrid(xVal,yVal);
-	nodeList = [X(:)';Y(:)'];
-
-	% create array that links elements to nodes, that is, the ith column gives
-	% the 9 node indices which define the ith element. elements are numbered
-	% similar to the nodes, nodes within elements as well.
-	elementList = zeros(4,nX*nY);
-	tempRange = bsxfun(@plus,([1:nX]' - 1)*nY, [1:nY]);
-	tempOut = bsxfun(@plus,(1 + nY)*([1:nX]' - 1) + 1, [0:nY-1]);
-	elementList(1,tempRange(:)) = tempOut(:);
-
-	% avoid loops with bsxfun
-	% for i = 1:nX
-	%	elementList(1,(i - 1)*nY + [1:nY]) = (2 + 4*nY)*(i - 1) + 1 + 2*[0:nY-1];
-	% end
-
-	elementList(2,:) = elementList(1,:) + 1;
-	elementList([3,4],:) = elementList([1,2],:) + nY + 1;
-
-	% create array such that the ith column gives the node indices of the ith 
-	% edge.
-	edge = [1:nY];
-	edge1 = [edge; edge + 1]; % left
-	edge = [(nY + 1):(nY + 1):(nY+1)*(nX)];
-	edge2 = [edge; edge + (nY + 1)]; % top
-	edge = [(nY + 1)*(nX + 1):-1:((nY + 1)*nX + 2)]; 
-	edge3 = [edge; edge - 1]; % right
-	edge = [((nY + 1)*nX + 1):(-(nY + 1)):(nY+2)];
-	edge4 = [edge; edge - (nY + 1)]; % bottom
-
-	% types of boundary conditions (see page 43, Segal)
-	% 1 : dirichlet, u = g1 on gamma1 
-	% 2 : normal velocity u_n = g2, sigma_nt = g3 = 0, on gamma2
-	% 3 : tangential velocity u_t = g4, sigma_nn = g5 = 0, on gamma3
-	% 4 : sigma_nt = 0 = sigma_nn, on gamma4
-
-	boundary.gamma1 = [edge1];
-	boundary.gamma2 = [edge2];
-	boundary.gamma3 = [edge3];
-	boundary.gamma4 = [edge4];
-
-	% create an array that gives the surface area per element
-	xDif = xVal(2:end) - xVal(1:end-1);
-	yDif = yVal(2:end) - yVal(1:end-1);
-	
-	areaList = bsxfun(@times, yDif, xDif');
-	areaList = areaList(:);
-
-
-	% size per element
-	hXList = repmat(xDif(:)',nY,1); hXList = hXList(:);
-	hYList = repmat(yDif(:),nX,1);
-
-
-	% store sizes
-	problemSize = [nX,nY,(nX+1),(nY+1)]; % nr elements in x,y dir, nr of nodes
 end
+
+% create an array that gives the surface area per element
+areaList = bsxfun(@times, yDif, xDif');
+areaList = areaList(:);
+
+% create an array such that the ith column gives the coordinates of the ith
+% node. nodes are numbered from bottom to top, left to right.
+[X,Y] = meshgrid(xVal,yVal);
+nodeList = [X(:)';Y(:)'];
+
+% size per element
+hXList = repmat(xDif(:)',nY,1); hXList = hXList(:);
+hYList = repmat(yDif(:),nX,1);
+
+% create array that links elements to nodes, that is, the ith column gives
+% the (order+1)^2 node indices which define the ith element. elements are numbered
+% similar to the nodes, nodes within elements as well.
+elementList = zeros((basisOrder + 1)^2,nX*nY);
+tempRange = bsxfun(@plus,([1:nX]' - 1)*nY, [1:nY]);
+
+tempOut = bsxfun(@plus,(basisOrder + basisOrder^2*nY)*([1:nX]' - 1) + 1,...
+	basisOrder*[0:nY-1]);
+elementList(1,tempRange(:)) = tempOut(:);
+
+elementList([2:basisOrder + 1],:) = bsxfun(@plus, [1:basisOrder]', elementList(1,:));
+
+for i = 2:basisOrder + 1;
+	elementList((i-1)*(basisOrder + 1) + 1:i*(basisOrder + 1),:) =...
+		elementList((i-2)*(basisOrder + 1) + 1:(i-1)*(basisOrder + 1),:) +...
+		basisOrder*nY + 1;
+end
+
+% create array such that the ith column gives the node indices of the ith 
+% edge.
+edge = [1:basisOrder*nY];
+edge1 = [edge; edge + 1]; % left
+edge = [(basisOrder*nY + 1):(basisOrder*nY + 1):(basisOrder*nY+1)*(basisOrder*nX)];
+edge2 = [edge; edge + (basisOrder*nY + 1)]; % top
+edge = [(basisOrder*nY + 1)*(basisOrder*nX + 1):-1:((basisOrder*nY + 1)*basisOrder*nX + 2)]; 
+edge3 = [edge; edge - 1]; % right
+edge = [((basisOrder*nY + 1)*basisOrder*nX + 1):(-(basisOrder*nY + 1)):(basisOrder*nY + 2)];
+edge4 = [edge; edge - (basisOrder*nY + 1)]; % bottom
+
+% types of boundary conditions (see page 43, Segal)
+% 1 : dirichlet, u = g1 on gamma1 
+% 2 : normal velocity u_n = g2, sigma_nt = g3 = 0, on gamma2
+% 3 : tangential velocity u_t = g4, sigma_nn = g5 = 0, on gamma3
+% 4 : sigma_nt = 0 = sigma_nn, on gamma4
+
+boundary.gamma1 = [edge1];
+boundary.gamma2 = [edge2];
+boundary.gamma3 = [edge3];
+boundary.gamma4 = [edge4];
+
+% store sizes
+problemSize = [nX,nY,(basisOrder*nX+1),(basisOrder*nY+1)]; % nr elements in x,y dir, nr of nodes
 
 feMesh = struct('node',nodeList,'elt',elementList,'boundary',boundary,...
     'area',areaList,'problemSize',problemSize,'eltSize',[hXList';hYList'],...
@@ -216,4 +155,3 @@ feMesh = struct('node',nodeList,'elt',elementList,'boundary',boundary,...
     ,'meshType', 'quad');
 
 end
-

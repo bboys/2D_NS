@@ -189,7 +189,7 @@ elseif basisOrder == 1
 
 	% size per element
 	hXList = repmat(xDif,nY,1); hXList = hXList(:);
-	hYList = repmat(yDif,1,nX)';
+	hYList = repmat(yDif,nX, 1);
 
 	% store sizes
 	problemSize = [nX,nY,(nX+1),(nY+1)]; % nr elements in x,y dir, nr of nodes

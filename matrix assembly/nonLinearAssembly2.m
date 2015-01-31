@@ -20,8 +20,6 @@ J = [J1; J1 + nrNodes];
 
 K = zeros(nrVBasisFS*nrElts,1);
 
-% bsxfun could be usefull here !!!!
-
 for r = 1:nrVBasisF
         localNonLinx = reshape(localNonLin.x(:,:,r),nrVBasisFS,1);
         localNonLiny = reshape(localNonLin.y(:,:,r),nrVBasisFS,1);

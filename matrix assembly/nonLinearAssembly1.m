@@ -23,7 +23,6 @@ K2 = zeros(nrVBasisFS*nrElts,1);
 K3 = zeros(nrVBasisFS*nrElts,1);
 K4 = zeros(nrVBasisFS*nrElts,1);
 
-% bsxfun could be usefull here !!!!
 
 for r = 1:nrVBasisF
 	localNonLinx = reshape(localNonLin.x(:,r,:),nrVBasisF,nrVBasisF);
