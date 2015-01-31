@@ -4,12 +4,108 @@
 		"selected_items":
 		[
 			[
-				"is",
-				"isempty"
+				"nr",
+				"nrElt"
 			],
 			[
-				"nr",
-				"nrOptions"
+				"nrP",
+				"nrPBasisF"
+			],
+			[
+				"bas",
+				"basisOrder"
+			],
+			[
+				"temp",
+				"tempEndp"
+			],
+			[
+				"pro",
+				"polyProduct"
+			],
+			[
+				"change",
+				"changeBasis"
+			],
+			[
+				"local",
+				"localMatrix"
+			],
+			[
+				"pmass",
+				"pMass1D"
+			],
+			[
+				"pMas",
+				"pMass1D"
+			],
+			[
+				"pma",
+				"pMass1Dvec"
+			],
+			[
+				"lam",
+				"lambda"
+			],
+			[
+				"vMas",
+				"vMass1D"
+			],
+			[
+				"loc",
+				"localMass"
+			],
+			[
+				"matrix",
+				"matrix1D"
+			],
+			[
+				"loca",
+				"localSize"
+			],
+			[
+				"matr",
+				"matrix1D"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"poly",
+				"polyProduct"
+			],
+			[
+				"mass",
+				"mass1D"
+			],
+			[
+				"bassi",
+				"basisStr"
+			],
+			[
+				"so",
+				"solVec"
+			],
+			[
+				"else",
+				"elseif	elseif"
+			],
+			[
+				"legen",
+				"legendStr"
+			],
+			[
+				"lege",
+				"legendStr"
+			],
+			[
+				"stok",
+				"stokesSol"
+			],
+			[
+				"is",
+				"isempty"
 			],
 			[
 				"spri",
@@ -84,10 +180,6 @@
 				"inputText"
 			],
 			[
-				"bas",
-				"basisOrder"
-			],
-			[
 				"basis",
 				"basisOrder"
 			],
@@ -122,14 +214,6 @@
 			[
 				"refSol",
 				"refSolStokes"
-			],
-			[
-				"pro",
-				"problemSize"
-			],
-			[
-				"local",
-				"localNonLinx"
 			],
 			[
 				"error",
@@ -168,26 +252,10 @@
 	"buffers":
 	[
 		{
-			"file": "utils/default.m",
-			"settings":
-			{
-				"buffer_size": 2739,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "utils/announce.m",
-			"settings":
-			{
-				"buffer_size": 1965,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "test problems/navierStokesLidDrivenCavitySteady.m",
 			"settings":
 			{
-				"buffer_size": 3962,
+				"buffer_size": 3272,
 				"line_ending": "Windows"
 			}
 		},
@@ -195,7 +263,39 @@
 			"file": "problem definition/createRectBasis.m",
 			"settings":
 			{
-				"buffer_size": 741,
+				"buffer_size": 463,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "matrix assembly/vmassAssembly.m",
+			"settings":
+			{
+				"buffer_size": 802,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "matrix assembly/pmassAssembly.m",
+			"settings":
+			{
+				"buffer_size": 777,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "matrix assembly/PdivVAssembly.m",
+			"settings":
+			{
+				"buffer_size": 979,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "todoList",
+			"settings":
+			{
+				"buffer_size": 492,
 				"line_ending": "Windows"
 			}
 		},
@@ -203,15 +303,15 @@
 			"file": "problem definition/createRectMesh.m",
 			"settings":
 			{
-				"buffer_size": 6389,
+				"buffer_size": 7191,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "solvers/nonLinSolve.m",
+			"file": "problem definition/createRectBasisCR.m",
 			"settings":
 			{
-				"buffer_size": 2948,
+				"buffer_size": 5626,
 				"line_ending": "Windows"
 			}
 		}
@@ -223,6 +323,14 @@
 		"selected_items":
 		[
 			[
+				"toggle",
+				"View: Toggle Minimap"
+			],
+			[
+				"men",
+				"View: Toggle Menu"
+			],
+			[
 				"plot",
 				"Build: With plot"
 			],
@@ -233,10 +341,6 @@
 			[
 				"thrm",
 				"Themr: List themes"
-			],
-			[
-				"toggle",
-				"View: Toggle Menu"
 			],
 			[
 				"thmr",
@@ -264,10 +368,6 @@
 			],
 			[
 				"m",
-				"View: Toggle Menu"
-			],
-			[
-				"men",
 				"View: Toggle Menu"
 			],
 			[
@@ -533,37 +633,110 @@
 	"distraction_free":
 	{
 		"menu_visible": false,
-		"show_minimap": false,
+		"show_minimap": true,
 		"show_open_files": false,
 		"show_tabs": false,
-		"side_bar_visible": true,
+		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
 	"expanded_folders":
 	[
 		"/E/Dropbox/University/My_solvers/2dNS",
-		"/E/Dropbox/University/My_solvers/2dNS/plotting tools",
+		"/E/Dropbox/University/My_solvers/2dNS/matrix assembly",
 		"/E/Dropbox/University/My_solvers/2dNS/problem definition",
-		"/E/Dropbox/University/My_solvers/2dNS/solvers",
 		"/E/Dropbox/University/My_solvers/2dNS/test problems",
+		"/E/Dropbox/University/My_solvers/2dNS/unused (old) files",
 		"/E/Dropbox/University/My_solvers/2dNS/utils"
 	],
 	"file_history":
 	[
-		"/E/Dropbox/University/My_solvers/2dNS/solvers/nonLinSolveOld.m",
+		"/E/Dropbox/University/My_solvers/2dNS/test problems/mainTest.m",
+		"/E/Dropbox/University/My_solvers/2dNS/unused (old) files/PdivVAssembly_oldstructure.m",
+		"/E/Program Files/MATLAB/R2013a/bin/ZgotoLast.m",
+		"/E/Dropbox/University/My_solvers/2dNS/matrix assembly/PdivVAssembly.m",
+		"/E/Dropbox/University/My_solvers/2dNS/utils/default.m",
+		"/E/Dropbox/University/My_solvers/2dNS/utils/announce.m",
+		"/E/Dropbox/University/My_solvers/2dNS/matrix assembly/diffusionAssembly.m",
+		"/E/Dropbox/University/My_solvers/2dNS/matrix assembly/pmassAssebly",
+		"/E/Dropbox/University/My_solvers/2dNS/test problems/stokesPoiseuilleFlow.m",
+		"/E/Dropbox/University/My_solvers/2dNS/unused (old) files/massAssemblyStandard.m",
+		"/E/Dropbox/University/My_solvers/2dNS/addToPath.m",
+		"/E/Dropbox/University/My_solvers/2dNS/plotting tools/plotMesh.m",
+		"/E/Dropbox/University/My_solvers/2dNS/matrix assembly/laplaceAssembly.m",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/createRectBasis.m",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/createRectMeshOld.m",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/createRectMesh.m",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/createBasisQ1P0.m",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/createBasisQ2P1.m",
 		"/E/Dropbox/University/My_solvers/2dNS/solvers/nonLinSolve.m",
+		"/E/Dropbox/University/My_solvers/2dNS/test problems/navierStokesLidDrivenCavitySteady.m",
+		"/E/Dropbox/University/My_solvers/2dNS/unused (old) files/nonLinSolveOld.m",
+		"/E/Dropbox/University/My_solvers/2dNS/unused (old) files/massPAssemblyStandard.m",
+		"/E/Dropbox/University/My_solvers/2dNS/matrix assembly/massPAssembly.m",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/createRectBasisNew.m",
+		"/E/Dropbox/University/My_solvers/2dNS/utils/superkron.m",
+		"/E/Program Files/MATLAB/R2013a/toolbox/matlab/ops/kron.m",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package 2d/displayMesh.m",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/createRectBasisNew.",
+		"/E/ifiss3.3/ifiss3.3/solvers/it_solve.m",
+		"/E/ifiss3.3/ifiss3.3/stokes_flow/stokes_q2q1.m",
+		"/E/ifiss3.3/ifiss3.3/stokes_flow/box_stokes.m",
+		"/E/ifiss3.3/ifiss3.3/stokes_flow/xsolve_stokes.m",
+		"/E/ifiss3.3/ifiss3.3/default.m",
+		"/E/Dropbox/University/My_solvers/2dNS/plotting tools/plotSol.m",
+		"/E/ifiss3.3/ifiss3.3/solvers/idrs_r.m",
+		"/E/ifiss3.3/ifiss3.3/graphs/square_flowmovie.m",
+		"/E/ifiss3.3/ifiss3.3/grids/square_domain.m",
+		"/E/ifiss3.3/ifiss3.3/grids/square_domain_x.m",
+		"/E/ifiss3.3/ifiss3.3/stokes_minres/itsolve_stokes.m",
+		"/E/ifiss3.3/ifiss3.3/pde_control/schur_amg.m",
+		"/E/Dropbox/University/My_solvers/2dNS/solvers/matrixSolve.m",
+		"/E/ifiss3.3/ifiss3.3/diffusion/quad_diff.m",
+		"/E/ifiss3.3/ifiss3.3/diffusion/gausspoints_twod.m",
+		"/E/ifiss3.3/ifiss3.3/diffusion/qshape.m",
+		"/E/ifiss3.3/ifiss3.3/diffusion/gausspoints_oned.m",
+		"/E/Dropbox/University/My_solvers/2dNS/plotting tools/cavityCenterPlot.m",
+		"/E/ifiss3.3/ifiss3.3/diffusion/femq1_diff.m",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package 2d/fixmesh.m",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package 2d/centroid_mesh.m",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package 2d/mesh2d_to_xml.m",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package 2d/meshpoly.m",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package 2d/meshfaces.m",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package 2d/mesh2d.m",
+		"/E/Dropbox/University/My_solvers/2dNS/plotting tools/.subl6e9.tmp",
+		"/E/Dropbox/University/My_solvers/2dNS/plotting tools/.subl30a.tmp",
+		"/E/Dropbox/University/My_solvers/2dNS/.subl823.tmp",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/.subl944.tmp",
+		"/E/Dropbox/University/My_solvers/2dNS/dirichletFunc.m",
+		"/E/ifiss3.3/ifiss3.3/stokes_flow/test_problems/stokes_testproblem.m",
+		"/E/ifiss3.3/ifiss3.3/stokes_flow/specific_flow.m",
+		"/E/ifiss3.3/ifiss3.3/stokes_flow/test_problems/regcavity_flow.m",
+		"/E/ifiss3.3/ifiss3.3/stokes_flow/test_problems/leakycavity_flow.m",
+		"/E/ifiss3.3/ifiss3.3/stokes_flow/test_problems/tightcavity_flow.m",
+		"/E/ifiss3.3/ifiss3.3/ifiss.m",
+		"/E/ifiss3.3/ifiss3.3/graphs/wwwplotobs.m",
+		"/E/ifiss3.3/ifiss3.3/graphs/solplot.m",
+		"/E/Dropbox/University/My_solvers/2dNS/plotting tools/cavityCenterPlot.m/",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package 2d/smoothmesh.m",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package/meshfaces.m",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package/mesh2d_to_xml.m",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package/smoothmesh.m",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package/displayMesh.m",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package/mydelaunayn.m",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package/refine.m",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package/mesh2d.m",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package/triarea.m",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package/findedge.m",
+		"/E/Program Files/MATLAB/R2013a/bin/ZgotoUni.m",
+		"/E/Program Files/MATLAB/R2013a/bin/ZgotoLast",
+		"/E/Dropbox/University/My_solvers/2dNS/solvers/nonLinSolveOld.m",
 		"/E/Dropbox/University/My_solvers/2dNS/utils/printTable.m",
 		"/E/Dropbox/University/My_solvers/2dNS/utils/printTableSep.m",
 		"/E/Dropbox/University/My_solvers/2dNS/todoList",
-		"/E/Dropbox/University/My_solvers/2dNS/solvers/matrixSolve.m",
-		"/E/Dropbox/University/My_solvers/2dNS/addToPath.m",
 		"/E/Program Files/MATLAB/R2013a/bin/gotoUni.m",
 		"/E/Dropbox/University/My_solvers/2dNS/utils/iterAnnounce.m",
-		"/E/Dropbox/University/My_solvers/2dNS/plotting tools/plotSol.m",
-		"/E/Dropbox/University/My_solvers/2dNS/utils/default.m",
 		"/E/ifiss3.3/ifiss3.3/navier_flow/it_nstokes.m",
 		"/E/ifiss3.3/ifiss3.3/navier_flow/it_solve_navier.m",
-		"/E/ifiss3.3/ifiss3.3/default.m",
 		"/E/ifiss3.3/ifiss3.3/navier_flow/fpsetup_q2p1.m",
 		"/E/ifiss3.3/ifiss3.3/navier_flow/newton_q1.m",
 		"/E/Dropbox/University/My_solvers/2dNS/createRectMesh.m",
@@ -604,72 +777,7 @@
 		"/home/s1895044/Dropbox/University/My_solvers/2dNS/massPAssembly.m",
 		"/home/s1895044/Dropbox/University/My_solvers/2dNS/massAssembly.m",
 		"/home/s1895044/Dropbox/University/My_solvers/2dNS/nonLinearAssembly2.m",
-		"/home/s1895044/Dropbox/University/My_solvers/2dNS/diffusionAssembly.m",
-		"/home/s1895044/Dropbox/University/My_solvers/2dNS/nonLinearAssembly1.m",
-		"/home/s1895044/Dropbox/University/My_solvers/2dNS/stokesPoiseuilleFlow.m",
-		"/home/s1895044/Dropbox/University/My_solvers/2dNS/.subl124.tmp",
-		"/home/s1895044/Dropbox/University/My_solvers/2dNS/forcingFunc.m",
-		"/home/s1895044/Dropbox/University/My_solvers/2dNS/dirichletFunc.m",
-		"/home/s1895044/Dropbox/University/My_solvers/2dNS/createRectMesh.m",
-		"/home/s1895044/Dropbox/University/My_solvers/2dNS/createBasisQ2P1.m",
-		"/home/s1895044/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
-		"/home/s1895044/Dropbox/University/My_solvers/2dNS/boundaryFunc.m",
-		"/home/s1895044/Dropbox/University/My_solvers/2dNS/nonLinearAssembly2Standard.m",
-		"/home/s1895044/Dropbox/University/My_solvers/2dNS/nonLinearAssembly1Standard.m",
-		"/home/s1895044/.config/sublime-text-3/Packages/User/Matlab.sublime-settings",
-		"/home/s1895044/.config/sublime-text-3/Packages/User/LaTeXing.sublime-settings",
-		"/C/Users/Ronald R/AppData/Roaming/Sublime Text 3/Packages/User/Matlab.sublime-build",
-		"/E/Dropbox/University/My_solvers/2dNS/.subld06.tmp",
-		"/C/Users/Ronald R/AppData/Roaming/Sublime Text 3/Packages/User/Matlab.sublime-settings",
-		"/C/Users/Ronald R/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
-		"/C/Users/Ronald R/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
-		"/E/Dropbox/University/My_solvers/2D_NS/2D_NS.sublime-project",
-		"/E/Dropbox/University/My_solvers/2D_AFEM/compute_mass.m",
-		"/E/Dropbox/University/Master_thesis/preliminaries.tex",
-		"/E/Dropbox/University/Random_Matlab/Riddle.tex",
-		"/C/Users/Ronald R/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
-		"/C/Users/Ronald R/AppData/Roaming/Sublime Text 3/Packages/LaTeXing/LaTeXing.sublime-settings",
-		"/C/Users/Ronald R/AppData/Roaming/Sublime Text 3/Packages/User/LaTeXing.sublime-settings",
-		"/C/Users/Ronald R/AppData/Roaming/Sublime Text 3/Packages/LaTeXing/Default.sublime-keymap",
-		"/E/Dropbox/University/Master_thesis/master-thesis.sublime-project",
-		"/C/Users/Ronald R/AppData/Roaming/Sublime Text 3/Packages/LaTeXing/LaTeX.sublime-build",
-		"/E/Dropbox/University/Master_thesis/preliminaries.aux",
-		"/E/Dropbox/University/Master_thesis/largeeddy.aux",
-		"/E/Dropbox/University/Master_thesis/turbulence.fls",
-		"/E/Dropbox/University/Master_thesis/turbulence.aux",
-		"/E/Dropbox/University/Master_thesis/turbulence.log",
-		"/E/Dropbox/University/Master_thesis/turbulence.fdb_latexmk",
-		"/E/Dropbox/University/Master_thesis/turbulence.tex.backup",
-		"/E/Dropbox/University/Master_thesis/test.aux",
-		"/E/Dropbox/University/Master_thesis/turbulence.tex",
-		"/E/Dropbox/University/Master_thesis/largeeddy.tex",
-		"/E/Dropbox/University/Master_thesis/introduction.tex",
-		"/E/Dropbox/University/Master_thesis/ns_mathematics.tex",
-		"/home/s1895044/Dropbox/University/Master_thesis/Master_main.tex",
-		"/home/s1895044/Dropbox/University/Master_thesis/Master_thesis.aux",
-		"/home/s1895044/Dropbox/University/Master_thesis/introduction.aux",
-		"/home/s1895044/Dropbox/University/Master_thesis/introduction.tex",
-		"/home/s1895044/Dropbox/University/Master_thesis/master-thesis.sublime-project",
-		"/home/s1895044/Dropbox/University/Master_thesis/Master_main.synctex.gz",
-		"/home/s1895044/Dropbox/University/Master_thesis/Project_Master_thesis.sublime-project",
-		"/home/s1895044/Dropbox/University/Master_thesis/Other/Besprekingen.odt",
-		"/home/s1895044/Dropbox/University/Master_thesis/Literature/[O._A_Ladyzhenskaia]_The_mathematical_theory_of_vi(BookZZ.org).djvu",
-		"/home/s1895044/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
-		"/home/s1895044/Dropbox/University/Master_thesis/master_thesis.kilepr",
-		"/home/s1895044/Dropbox/University/Master_thesis/preliminaries.aux",
-		"/home/s1895044/.config/sublime-text-3/Packages/LaTeXing/LaTeXing.sublime-settings",
-		"/home/s1895044/.config/sublime-text-3/Packages/Default/Default (Linux).sublime-keymap",
-		"/home/s1895044/.config/sublime-text-3/Packages/LaTeXing/Default.sublime-keymap",
-		"/home/s1895044/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
-		"/home/s1895044/.config/sublime-text-3/Packages/LaTeXing/Default (Linux).sublime-keymap",
-		"/home/s1895044/Dropbox/University/Master_thesis/Literature/H. Tennekes, J. L. Lumley A first course in turbulence  1972.djvu",
-		"/home/s1895044/Dropbox/University/Master_thesis/Literature/[Layton_ref_21]Elliptic_regularity",
-		"/home/s1895044/Dropbox/University/Master_thesis/Literature/[Uriel_Frisch]_Turbulence,_the_legacy_of_A.N._Kolm(BookZZ.org).djvu",
-		"/home/s1895044/Dropbox/University/Master_thesis/introduction.fdb_latexmk",
-		"/home/s1895044/.config/sublime-text-3/Packages/User/Default.sublime-keymap",
-		"/home/s1895044/.config/sublime-text-3/Packages/LaTeXing/LaTeX.sublime-build",
-		"/home/s1895044/.config/sublime-text-3/Packages/User/LaTeX.sublime-build",
-		"/home/s1895044/.config/sublime-text-3/Packages/LaTeXTools/LaTeXTools.default-settings"
+		"/home/s1895044/Dropbox/University/My_solvers/2dNS/diffusionAssembly.m"
 	],
 	"find":
 	{
@@ -688,6 +796,21 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"I1",
+			"nrPNodes",
+			"I",
+			"massAssembly",
+			"xVal",
+			"x",
+			"lambdax",
+			"lambda",
+			"localMatrix.pressure",
+			"localMatrix.mass",
+			"mass",
+			"massP",
+			"massPA",
+			"localPMass",
+			"figure",
 			"convList",
 			"method",
 			"timeNonLinSolve",
@@ -791,6 +914,11 @@
 		"regex": false,
 		"replace_history":
 		[
+			"vmassAssembly",
+			"localMatrix.pdivv",
+			"localMatrix.vmass",
+			"PdivV",
+			"localPdivV",
 			"nonLinSolve",
 			"MIJNMATRIX"
 		],
@@ -803,24 +931,108 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 4,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "utils/default.m",
+					"file": "test problems/navierStokesLidDrivenCavitySteady.m",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2739,
+						"buffer_size": 3272,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								478,
-								468
+								115,
+								115
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "problem definition/createRectBasis.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 463,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								345,
+								345
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.tmLanguage"
+						},
+						"translation.x": 103.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "matrix assembly/vmassAssembly.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 802,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								591,
+								591
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "matrix assembly/pmassAssembly.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 777,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								389,
+								389
 							]
 						],
 						"settings":
@@ -835,25 +1047,24 @@
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "utils/announce.m",
+					"buffer": 4,
+					"file": "matrix assembly/PdivVAssembly.m",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1965,
+						"buffer_size": 979,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								563,
-								563
+								428,
+								428
 							]
 						],
 						"settings":
 						{
-							"auto_name": "",
 							"syntax": "Packages/Matlab/Matlab.tmLanguage"
 						},
 						"translation.x": 0.0,
@@ -864,89 +1075,25 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "test problems/navierStokesLidDrivenCavitySteady.m",
+					"buffer": 5,
+					"file": "todoList",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3962,
+						"buffer_size": 492,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								138,
-								138
+								188,
+								188
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Matlab/Matlab.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 2,
-			"sheets":
-			[
-				{
-					"buffer": 3,
-					"file": "problem definition/createRectBasis.m",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 741,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								63,
-								63
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Matlab/Matlab.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "problem definition/createRectMesh.m",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6389,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								844,
-								844
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Matlab/Matlab.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -954,22 +1101,58 @@
 					},
 					"stack_index": 4,
 					"type": "text"
-				},
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
 				{
-					"buffer": 5,
-					"file": "solvers/nonLinSolve.m",
+					"buffer": 6,
+					"file": "problem definition/createRectMesh.m",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2948,
+						"buffer_size": 7191,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2338,
-								2338
+								1251,
+								1251
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/Matlab/Matlab.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 55.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "problem definition/createRectBasisCR.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5626,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								292,
+								233
 							]
 						],
 						"settings":
@@ -978,10 +1161,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 160.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 7,
 					"type": "text"
 				}
 			]
@@ -1027,7 +1210,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 148.0
+		"height": 150.0
 	},
 	"output.find_results":
 	{
@@ -1115,7 +1298,7 @@
 		],
 		"width": 400.0
 	},
-	"selected_group": 0,
+	"selected_group": 1,
 	"settings":
 	{
 	},

@@ -2,7 +2,7 @@
 basisOrder = 'Q1P0';
 [ localMatrix ] = createRectBasis(basisOrder );
 
-nrPBasisF = size(localMatrix.pressure.x,1);
+nrPBasisF = size(localMatrix.pdivv.x,1);
 
 
 % create mesh
@@ -18,10 +18,10 @@ fprintf('%7.0d elements and %7.0d nodes \n',[nrElts,nrNodes])
 
 
 % assemble matrices
-% M = massAssembly( feMesh, localMatrix.mass); % mass matrix
+% M = vmassAssembly( feMesh, localMatrix.vmass); % mass matrix
 % D = diffusionAssembly( feMesh, localMatrix.stiff); % diffusive matrix
 D = laplaceAssembly( feMesh, localMatrix.stiff); % alternative (not using Sij)
-L = massPAssembly( feMesh, localMatrix.pressure); % "pressure mass" matrix
+L = PdivVAssembly( feMesh, localMatrix.pdivv); % "pressure mass" matrix
 
 
 

@@ -6,6 +6,8 @@ nY = feMesh.problemSize(4);
 nrNodes = nX*nY; % velocity nodes
 nrElts = feMesh.problemSize(1)*feMesh.problemSize(2);
 
+% maybe use "griddata"
+
 figure
 % velocity field plot
 % plotSteps =  ceil([nX/32 nY/32]);

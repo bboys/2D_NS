@@ -1,13 +1,14 @@
 % system 
 % 	N(u) * u - L' * p + 1/Re * D * u = 0
 % 							   L * u = 0
+
 cd('../') % go up one level
 addToPath();
 
 
 clear all
 close all
-clc
+% clc
 
 
 lidVel = 1; % velocity of moving lid
@@ -17,10 +18,11 @@ announce(sprintf(['Finite element implementation of the steady Navier Stokes equ
 
 % create local matrices
 [ localMatrix, basisOrder ] = createRectBasis();
-nrPBasisF = size(localMatrix.pressure.x,1);
+nrPBasisF = size(localMatrix.pdivv.x,1);
 
 % create mesh 
 feMesh = createRectMesh(basisOrder);
+
 
 Re = default('Reynolds number', 1000); % reynolds number
 
@@ -39,11 +41,10 @@ announce(['Problemsize: ', sprintf('%d elements and %d nodes',...
 
 tic;
 % assemble matrices
-% M = massAssembly( feMesh, localMatrix.mass); % mass matrix
-L = massPAssembly( feMesh, localMatrix.pressure); % "pressure mass" matrix
+% M = vmassAssembly( feMesh, localMatrix.vmass); % mass matrix
+globalMatrix.L = PdivVAssembly( feMesh, localMatrix.pdivv); % "pressure mass" matrix
 % D = diffusionAssembly( feMesh, localMatrix.stiff); % diffusive matrix
-D = laplaceAssembly( feMesh, localMatrix.stiff); % alternative (not using Sij)
-globalMatrix = struct('D', D, 'L', L);
+globalMatrix.D = laplaceAssembly( feMesh, localMatrix.stiff); % alternative (not using Sij)
 time.assembly = toc;
 
 % determine free nodes (interior)
@@ -64,7 +65,7 @@ freePressure = setdiff(1:nrPBasisF*nrElts, fixedPressure);
 freeSol = [freeVel, 2*nrNodes + freePressure]; % include pressure DOF
 fixedSol = [fixedVel', 2*nrNodes + fixedPressure];
 
-typesNodes = struct('freeVel', freeVel, 'freePressure', freePressure,...
+nodeType = struct('freeVel', freeVel, 'freePressure', freePressure,...
 	'freeSol', freeSol, 'fixedVel', fixedVel, 'fixedPressure', fixedPressure);
 
 % fill in the boundary conditions
@@ -74,10 +75,14 @@ solVec(lidNodes) = lidVel;
 
 tic;
 % solve corresponding stokes problem as initial guess
-M = [D, -L'; -L -feMesh.stabC];
+M = [globalMatrix.D, -globalMatrix.L'; -globalMatrix.L -feMesh.stabC];
 rhsVec = -M(:, fixedVel)*solVec(fixedVel);
 solVec(freeSol) = matrixSolve(M(freeSol, freeSol), rhsVec(freeSol),1);
+
 time.stokes = toc;
+
+%  clear some variables
+clear -regexp ^free ^fixed homDNodes lidNodes
 
 announce(sprintf(['Corresponding Stokes problem solved in %4.2f seconds. ',...
  'Starting nonlinear solve...'],...
@@ -87,43 +92,16 @@ stokesSol = solVec;
 
 tic;
 % solve nonlinear equation
-solVec = nonLinSolve(feMesh, globalMatrix, localMatrix, solVec, typesNodes,...
+solVec = nonLinSolve(feMesh, globalMatrix, localMatrix, solVec, nodeType,...
 	Re, tol, maxIt);
 time.nonlin = toc;
 
-announce(sprintf(['Nonlinear problem solved in %4.2f seconds. ',...
- 'Plotting results...'],...
-	time.nonlin), 1, 1, [0.5 0 0 ])
+announce(sprintf(['Nonlinear problem solved in %4.2f seconds. '],...
+	time.nonlin), 1, 1, [0.5 0 0])
 
-% plot stuff
-% plotData = default();
+plotYN = default({'Plot centerline u velocity', 'Yes', 'No'}, 1);
+announce('', 0, 1)
 
-solArray = reshape(solVec(1:nrNodes),feMesh.problemSize(4),feMesh.problemSize(3));
-centerSol = solArray(:,round(feMesh.problemSize(3)/2));
-
-stokesArray = reshape(stokesSol(1:nrNodes),feMesh.problemSize(4),feMesh.problemSize(3));
-centerStokes = stokesArray(:,round(feMesh.problemSize(3)/2));
-
-% plotSol(feMesh, solVec, ['Re = ',num2str(Re)]);
-
-yPoints = feMesh.node(2,1:feMesh.problemSize(4));
-
-figure 
-plot(yPoints,centerSol/lidVel,'r')
-hold on
-plot(yPoints,centerStokes/lidVel,'k')
-
-% reference solution
-load referenceSols
-refSolStokes(:,2) = -refSolStokes(:,2)*2 + 1;
-
-plot(refSolYVal, refSol400, 'rx' )
-plot(1/2 + comsolNSRe1000(:,1)/2,  comsolNSRe1000(:,2), 'r+' )
-
-plot(1/2 + comsolCavityNSRe1(:,1)/2, comsolCavityNSRe1(:,2), 'kx')
-
-title(['Centerline velocity, Re = ',num2str(Re)])
-legend('NS','Stokes', 'Ghia 400 NS', 'Comsol NS 1000', 'Stokes Comsol')
-
-hold off
-% grid on
+if plotYN == 1
+	cavityCenterPlot(solVec, feMesh, stokesSol, Re, lidVel)
+end

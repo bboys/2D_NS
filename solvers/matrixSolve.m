@@ -1,6 +1,10 @@
 function [x] = matrixSolve(A, b, symm)
+
+% solve stokes system (upper left block is symmetric)
 if symm
 	x = A\b;
+
+	
 % 	using ILUPack
 	% options = AMGinit(A);
 
@@ -13,7 +17,9 @@ if symm
 	% toc
 
 	% PREC=AMGdelete(PREC);
+
 else
+	% solve system arrising from nonlinear solve (upper left block is unsymmetric)
 	x = A\b;
 end
 end

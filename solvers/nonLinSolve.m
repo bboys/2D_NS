@@ -5,7 +5,7 @@ function [solVec] = nonLinSolve(feMesh, globalMatrix, localMatrix, solVec ,...
 
 nrNodes = feMesh.problemSize(3)*feMesh.problemSize(4);
 nrElts = feMesh.problemSize(1)*feMesh.problemSize(2);
-nrPBasisF = size(localMatrix.pressure.x,1);
+nrPBasisF = size(localMatrix.pdivv.x,1);
 
 freeSol = typesNodes.freeSol;
 freePressure = typesNodes.freePressure;

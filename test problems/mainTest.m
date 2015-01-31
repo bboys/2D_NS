@@ -2,7 +2,7 @@ basisOrder = 'Q1P0';
 Re = 50; % reynolds number
 
 [ localMatrix ] = createRectBasis(basisOrder );
-nrPBasisF = size(localMatrix.pressure.x,1);
+nrPBasisF = size(localMatrix.pdivv.x,1);
 
 
 % create mesh
@@ -25,10 +25,10 @@ fprintf('%7.0d elements and %7.0d nodes \n',[nrElts,nrNodes])
 velocity = zeros(2*nrNodes,1); % should match bdy conditions
 
 % assemble matrices
-M = massAssembly( feMesh, localMatrix.mass); % mass matrix
+M = vmassAssembly( feMesh, localMatrix.vmass); % mass matrix
 DS = diffusionAssembly( feMesh, localMatrix.stiff); % diffusive matrix
 D = laplaceAssembly( feMesh, localMatrix.stiff);
-L = massPAssembly( feMesh, localMatrix.pressure); % "pressure mass" matrix
+L = PdivVssembly( feMesh, localMatrix.pdivv); % "pressure mass" matrix
 globalMatrix = struct('M',M,'D',D,'L',L);
 
 % determine boundaries

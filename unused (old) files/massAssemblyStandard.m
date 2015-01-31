@@ -1,4 +1,4 @@
-function [ M ] = massAssembly( feMesh, localMass)
+function [ M ] = vmassAssemblyStandard( feMesh, localMass)
 % outputs the mass matrix based on feMesh for Q2 elements (biquadratic).
 % basic implementation = slow (needs improvement).
 nrNodes = feMesh.problemSize(3)*feMesh.problemSize(4);

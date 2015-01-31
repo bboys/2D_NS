@@ -1,4 +1,4 @@
-function [ L ] = massPAssemblyStandard( feMesh, localPMass)
+function [ L ] = PdivVAssemblyStandard( feMesh, localPdivV)
 % outputs the " pressire mass" matrix relating the pressure (P1) and velocity 
 % (Q2) unknowns
 % basic implementation = slow (needs improvement).
@@ -9,9 +9,9 @@ for elt = 1:nrPNodes
         localNodes = feMesh.elt(:,elt);
         pNodes = elt + [0,nrPNodes,2*nrPNodes]; % pressure node (3x)
         L(pNodes,localNodes) = ...
-         feMesh.area(elt)*localPMass.x/feMesh.eltSize(1,elt);
+         feMesh.area(elt)*localPdivV.x/feMesh.eltSize(1,elt);
         L(pNodes,localNodes + nrNodes) = ...
-         feMesh.area(elt)*localPMass.y/feMesh.eltSize(2,elt);
+         feMesh.area(elt)*localPdivV.y/feMesh.eltSize(2,elt);
         % this simple representation works only with affine interpolation
         % equivalent quadrilateralations (definition of mesh).
 end

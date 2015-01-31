@@ -63,7 +63,8 @@ while lastChar < nrChar
 	% 	repmat(' ',1 , horPadding), vertChar, '\n'])
 	fprintf([vertChar, repmat(' ',1 , horPadding)])
 	cprintf(txtColor, lineText)
-	fprintf([repmat(' ',1 , horPadding), vertChar, '\n'])
+	fprintf(repmat(' ',1 , horPadding))
+	cprintf([0 0 0], [vertChar, '\n'])
 
 end
 fprintf(repmat([vertChar, repmat(' ',1 , 2*horPadding + textWidth),vertChar,...

@@ -10,7 +10,7 @@ function output = default(query, defInput, comments)
 horChar = '.';
 horPad = 2;
 textWidth = 70 - 2 - 2*horPad;
-hlColor = [0.5 0 0];
+hlColor = [0.5 0 0]; % color of highlighted text
 
 fprintf(['.', repmat(' ', 1, horPad)])
 if strcmp(class(query), 'char')
@@ -27,16 +27,18 @@ if strcmp(class(query), 'char')
 	printedChar = printedChar + size(temp,2);
 
 	% request input
-	userInp = input('');
+	userInp = input('', 's'); % request input string
 
-	if isempty(userInp) | ~strcmp(class(userInp), 'double')
+	if isempty(userInp) 
 		output = defInput;
 	else
-		printedChar = printedChar + size(sprintf('%d', userInp), 2);
-		output = userInp;
+		printedChar = printedChar + size(userInp, 2);
+		output = str2num(userInp);  % convert to number/double
 	end
 
+	% prevent large precision numbers to be printed
 	temp = sprintf('%d', output);
+
 	if size(temp,2) > 5
 		temp = sprintf('%2.1e', output);
 	end
@@ -45,7 +47,8 @@ if strcmp(class(query), 'char')
 	fprintf([repmat('\b', 1, 1 + printedChar), ': ',...
 		repmat(horChar, 1, textWidth - size(query,2) - inputSize - 3),...
 		 ' '])% ,temp])
-	cprintf(hlColor, temp)
+	cprintf(hlColor, [temp, '0']) % weird bug
+	fprintf('\b')
 
 elseif strcmp(class(query), 'cell')
 	printedChar = 0; % keep track of nr of printed chars such that they can be removed
@@ -88,7 +91,7 @@ elseif strcmp(class(query), 'cell')
 		output = defInput;
 	else
 		% check if userInp is in options
-		if isempty(find([1:nrOptions] == userInp))
+		if isempty(find([1:nrOptions] == userInp(1)))
 			userInp = defInput;
 		end
 
@@ -103,7 +106,8 @@ elseif strcmp(class(query), 'cell')
 	cprintf(hlColor, query{output + 1})
 
 end
-fprintf([repmat(' ', 1, horPad), '.', '\n'])
+fprintf(repmat(' ', 1, horPad))
+cprintf([0 0 0], '.\n')
 
 end
 
