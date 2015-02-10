@@ -4,8 +4,52 @@
 		"selected_items":
 		[
 			[
+				"image",
+				"image2"
+			],
+			[
+				"min",
+				"minidrstabns"
+			],
+			[
+				"size",
+				"sizeString"
+			],
+			[
+				"mini",
+				"minidrstabs"
+			],
+			[
+				"minidr",
+				"minidrs"
+			],
+			[
+				"res",
+				"resminres"
+			],
+			[
+				"fre",
+				"freePressure"
+			],
+			[
+				"free",
+				"freePressure"
+			],
+			[
+				"phi",
+				"phitest"
+			],
+			[
+				"P",
+				"Parray"
+			],
+			[
+				"node",
+				"nodeFuncT"
+			],
+			[
 				"nr",
-				"nrElt"
+				"nrOfPolys"
 			],
 			[
 				"nrP",
@@ -160,10 +204,6 @@
 				"uniformMesh"
 			],
 			[
-				"size",
-				"sizeQuery"
-			],
-			[
 				"vert",
 				"vertChar"
 			],
@@ -204,10 +244,6 @@
 				"errorEstOld"
 			],
 			[
-				"free",
-				"freeSol"
-			],
-			[
 				"ref",
 				"refSolStokes"
 			],
@@ -236,10 +272,6 @@
 				"rhsVec"
 			],
 			[
-				"fre",
-				"freeSol"
-			],
-			[
 				"h",
 				"hYList"
 			],
@@ -255,57 +287,31 @@
 			"file": "test problems/navierStokesLidDrivenCavitySteady.m",
 			"settings":
 			{
-				"buffer_size": 3272,
+				"buffer_size": 3273,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "problem definition/createRectBasis.m",
+			"file": "solvers/matrixSolve.m",
 			"settings":
 			{
-				"buffer_size": 463,
+				"buffer_size": 482,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "unused (old) files/createBasisQ1P0.m",
+			"settings":
+			{
+				"buffer_size": 2580,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "Package Control Messages\n========================\n\nPackage Control:\n---------------\n\n  Version 3.0 Release Notes\n  \n  \n  **** Windows Sublime Text 3 Users ****\n  \n  Due to a bug in Package Control 2.0, Windows ST3 users will need to open the\n  Sublime Text console (ctrl+`) and execute the following Python to properly\n  upgrade. All other users may ignore this part of the message.\n  \n  Make sure NOT to copy the leading two spaces, or an \"unexpected indent\" error\n  will occur.\n  \n  import urllib.request,os; pr='Preferences.sublime-settings'; ip='ignored_packages'; n='Package Control'; s=sublime.load_settings(pr); ig=s.get(ip); ig.append(n); s.set(ip,ig); sublime.save_settings('Preferences.sublime-settings'); pf=n+'.sublime-package'; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by=urllib.request.urlopen('https://packagecontrol.io/'+pf.replace(' ','%20')).read(); open(os.path.join(sublime.installed_packages_path(),pf),'wb').write(by); ig.remove(n); s.set(ip,ig); sublime.save_settings(pr); print('Package Control: 3.0.0 upgrade successful!')\n  \n  ********\n  \n  \n  Package Control 3.0 adds a bunch of polish, improving the Sublime Text\n  experience for users and package developers:\n  \n   - improved upgrades of themes, color schemes and syntaxes\n   - dependency support\n   - SSL for Linux\n   - new secondary Windows HTTP backend\n   - patches for Python in Sublime Text 2 on Windows\n   - commands to easily remove channels and repositories\n   - an events API for packages\n   - improved documentation\n  \n  \n  As of July 2014, I now work for myself. This has allowed me to spend more time\n  working on open source software, including Package Control. If you appreciate\n  the work I've done, please consider a small donation. If even 5% of regular\n  users donated the price of a coffee or beer, that would cover quite a bit of\n  my development time! See https://packagecontrol.io/about for options.\n  \n  \n  Some recent Package Control stats:\n  \n   - every weekday over 1M JSON requests hit the channel server\n   - in December, the channel server will transmit 4TB+ of compressed JSON\n   - users have installed, upgraded or removed 85M+ packages since late 2011\n  \n  \n  Read more about the release at:\n  \n  https://packagecontrol.io/news#2014-12-23-Package_Control_30_Released\n  \n",
+			"file": "solveAxbTest.m",
 			"settings":
 			{
-				"buffer_size": 2331,
-				"line_ending": "Windows",
-				"name": "Package Control Messages",
-				"scratch": true
-			}
-		},
-		{
-			"file": "matrix assembly/vmassAssembly.m",
-			"settings":
-			{
-				"buffer_size": 802,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "matrix assembly/pmassAssembly.m",
-			"settings":
-			{
-				"buffer_size": 777,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "matrix assembly/PdivVAssembly.m",
-			"settings":
-			{
-				"buffer_size": 979,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "todoList",
-			"settings":
-			{
-				"buffer_size": 492,
+				"buffer_size": 7453,
 				"line_ending": "Windows"
 			}
 		},
@@ -313,15 +319,7 @@
 			"file": "problem definition/createRectMesh.m",
 			"settings":
 			{
-				"buffer_size": 7191,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "problem definition/createRectBasisCR.m",
-			"settings":
-			{
-				"buffer_size": 5626,
+				"buffer_size": 5166,
 				"line_ending": "Windows"
 			}
 		}
@@ -329,9 +327,33 @@
 	"build_system": "Packages/User/Matlab.sublime-build",
 	"command_palette":
 	{
-		"height": 400.0,
+		"height": 98.0,
 		"selected_items":
 		[
+			[
+				"INSTALL",
+				"Package Control: Install Package"
+			],
+			[
+				"PACK",
+				"Preferences: Browse Packages"
+			],
+			[
+				"plot",
+				"Build: With plot"
+			],
+			[
+				"settin",
+				"Preferences: Settings - User"
+			],
+			[
+				"settings",
+				"Preferences: Settings - Default"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
 			[
 				"toggle",
 				"View: Toggle Minimap"
@@ -339,10 +361,6 @@
 			[
 				"men",
 				"View: Toggle Menu"
-			],
-			[
-				"plot",
-				"Build: With plot"
 			],
 			[
 				"polt",
@@ -359,10 +377,6 @@
 			[
 				"schmr",
 				"Schemr: List all schemes"
-			],
-			[
-				"settings",
-				"Preferences: Settings - User"
 			],
 			[
 				"shcmr",
@@ -573,10 +587,6 @@
 				"Package Control: List Packages"
 			],
 			[
-				"instal",
-				"Package Control: Install Package"
-			],
-			[
 				"packagremov",
 				"Package Control: Remove Package"
 			],
@@ -629,7 +639,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 424.0
+		"width": 457.0
 	},
 	"console":
 	{
@@ -651,34 +661,59 @@
 	},
 	"expanded_folders":
 	[
-		"/E/Dropbox/University/My_solvers/2dNS",
-		"/E/Dropbox/University/My_solvers/2dNS/matrix assembly",
-		"/E/Dropbox/University/My_solvers/2dNS/problem definition",
-		"/E/Dropbox/University/My_solvers/2dNS/test problems",
-		"/E/Dropbox/University/My_solvers/2dNS/unused (old) files",
-		"/E/Dropbox/University/My_solvers/2dNS/utils"
+		"/home/s1895044/Dropbox/University/My_solvers/2dNS"
 	],
 	"file_history":
 	[
+		"/home/ronald/Dropbox/University/Random_Fortran/testing.m",
+		"/home/ronald/Dropbox/University/Random_Fortran/minresqlp_mex_f90_ver27/minresqlp_mexx.F",
+		"/home/ronald/Dropbox/University/Random_Fortran/minresqlp_mex_f90_ver27/minresqlpMexModule.f90",
+		"/home/ronald/Dropbox/University/Random_Fortran/matmult.F",
+		"/home/ronald/Dropbox/University/Random_Fortran/matrixMultiply.c",
+		"/home/ronald/Dropbox/University/Random_Fortran/compileRun.m",
+		"/E/Program Files/MATLAB/R2013a/bin/ZgotoUni.m",
+		"/E/Dropbox/University/Random_Fortran/mexopts.bat",
+		"/E/Documents/mtlbtemp/timestwo.F",
+		"/E/Program Files/MATLAB/R2013a/toolbox/matlab/general/mex_helper.m",
+		"/E/Program Files/MATLAB/R2013a/extern/examples/mex/yprimefg.F",
+		"/E/Documents/mtlbtemp/yprime.c",
+		"/E/Program Files/MATLAB/R2013a/extern/examples/mex/mexlockf.F",
+		"/E/Program Files/MATLAB/R2013a/extern/examples/mex/yprimef.F",
+		"/E/Dropbox/University/My_solvers/2dNS/Readme.md",
+		"/C/Users/Ronald R/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/Ronald R/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/Ronald R/AppData/Roaming/Sublime Text 3/Packages/LaTeXing/LaTeXing.sublime-settings",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package 2d/smoothmesh.m",
+		"/E/Dropbox/University/My_solvers/2dNS/utils/default.m",
+		"/E/Dropbox/University/CenC2014/Image Processing playing/Smoother.m",
+		"/E/Dropbox/University/NumWis2/HW3/Matlab_Files/LowRank.m",
+		"/E/Dropbox/University/CenC2014/Image Processing playing/Gui.m",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/createRectBasisCR.m",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/createRectBasis.m",
+		"/E/Dropbox/University/My_solvers/2dNS/solvers/matrixSolve.m",
+		"/E/Dropbox/University/My_solvers/2dNS/solvers/nonLinSolve.m",
 		"/E/Dropbox/University/My_solvers/2dNS/test problems/mainTest.m",
+		"/E/Dropbox/University/My_solvers/2dNS/test problems/stokesPoiseuilleFlow.m",
+		"/E/Dropbox/University/My_solvers/2dNS/unused (old) files/createRectMeshOld.m",
+		"/E/Dropbox/University/My_solvers/2dNS/matrix assembly/vmassAssembly.m",
+		"/E/Dropbox/University/My_solvers/2dNS/matrix assembly/nonLinearAssembly2.m",
+		"/E/Dropbox/University/My_solvers/2dNS/matrix assembly/nonLinearAssembly1.m",
+		"/E/Dropbox/University/My_solvers/2dNS/matrix assembly/pmassAssembly.m",
+		"/E/Dropbox/University/My_solvers/2dNS/matrix assembly/PdivVAssembly.m",
+		"/E/Dropbox/University/My_solvers/2dNS/todoList",
 		"/E/Dropbox/University/My_solvers/2dNS/unused (old) files/PdivVAssembly_oldstructure.m",
 		"/E/Program Files/MATLAB/R2013a/bin/ZgotoLast.m",
-		"/E/Dropbox/University/My_solvers/2dNS/matrix assembly/PdivVAssembly.m",
-		"/E/Dropbox/University/My_solvers/2dNS/utils/default.m",
 		"/E/Dropbox/University/My_solvers/2dNS/utils/announce.m",
 		"/E/Dropbox/University/My_solvers/2dNS/matrix assembly/diffusionAssembly.m",
 		"/E/Dropbox/University/My_solvers/2dNS/matrix assembly/pmassAssebly",
-		"/E/Dropbox/University/My_solvers/2dNS/test problems/stokesPoiseuilleFlow.m",
 		"/E/Dropbox/University/My_solvers/2dNS/unused (old) files/massAssemblyStandard.m",
 		"/E/Dropbox/University/My_solvers/2dNS/addToPath.m",
 		"/E/Dropbox/University/My_solvers/2dNS/plotting tools/plotMesh.m",
 		"/E/Dropbox/University/My_solvers/2dNS/matrix assembly/laplaceAssembly.m",
-		"/E/Dropbox/University/My_solvers/2dNS/problem definition/createRectBasis.m",
 		"/E/Dropbox/University/My_solvers/2dNS/problem definition/createRectMeshOld.m",
 		"/E/Dropbox/University/My_solvers/2dNS/problem definition/createRectMesh.m",
 		"/E/Dropbox/University/My_solvers/2dNS/problem definition/createBasisQ1P0.m",
 		"/E/Dropbox/University/My_solvers/2dNS/problem definition/createBasisQ2P1.m",
-		"/E/Dropbox/University/My_solvers/2dNS/solvers/nonLinSolve.m",
 		"/E/Dropbox/University/My_solvers/2dNS/test problems/navierStokesLidDrivenCavitySteady.m",
 		"/E/Dropbox/University/My_solvers/2dNS/unused (old) files/nonLinSolveOld.m",
 		"/E/Dropbox/University/My_solvers/2dNS/unused (old) files/massPAssemblyStandard.m",
@@ -700,7 +735,6 @@
 		"/E/ifiss3.3/ifiss3.3/grids/square_domain_x.m",
 		"/E/ifiss3.3/ifiss3.3/stokes_minres/itsolve_stokes.m",
 		"/E/ifiss3.3/ifiss3.3/pde_control/schur_amg.m",
-		"/E/Dropbox/University/My_solvers/2dNS/solvers/matrixSolve.m",
 		"/E/ifiss3.3/ifiss3.3/diffusion/quad_diff.m",
 		"/E/ifiss3.3/ifiss3.3/diffusion/gausspoints_twod.m",
 		"/E/ifiss3.3/ifiss3.3/diffusion/qshape.m",
@@ -727,7 +761,6 @@
 		"/E/ifiss3.3/ifiss3.3/graphs/wwwplotobs.m",
 		"/E/ifiss3.3/ifiss3.3/graphs/solplot.m",
 		"/E/Dropbox/University/My_solvers/2dNS/plotting tools/cavityCenterPlot.m/",
-		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package 2d/smoothmesh.m",
 		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package/meshfaces.m",
 		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package/mesh2d_to_xml.m",
 		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package/smoothmesh.m",
@@ -737,12 +770,10 @@
 		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package/mesh2d.m",
 		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package/triarea.m",
 		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package/findedge.m",
-		"/E/Program Files/MATLAB/R2013a/bin/ZgotoUni.m",
 		"/E/Program Files/MATLAB/R2013a/bin/ZgotoLast",
 		"/E/Dropbox/University/My_solvers/2dNS/solvers/nonLinSolveOld.m",
 		"/E/Dropbox/University/My_solvers/2dNS/utils/printTable.m",
 		"/E/Dropbox/University/My_solvers/2dNS/utils/printTableSep.m",
-		"/E/Dropbox/University/My_solvers/2dNS/todoList",
 		"/E/Program Files/MATLAB/R2013a/bin/gotoUni.m",
 		"/E/Dropbox/University/My_solvers/2dNS/utils/iterAnnounce.m",
 		"/E/ifiss3.3/ifiss3.3/navier_flow/it_nstokes.m",
@@ -761,37 +792,11 @@
 		"/E/KKT/KKTDirect0.5/kktsolve.m",
 		"/E/ilupackV2.4_GNU32_MUMPS/ilupackV2.4_GNU32_MUMPS/makefile",
 		"/E/KKT/KKTDirect0.5/README",
-		"/E/KKT/KKTDirect0.5/kktsolve_mex.cpp",
-		"/E/KKT/KKTDirect0.5/Makefile",
-		"/E/KKT/KKTDirect0.5/stokes.c",
-		"/E/lamg/lamg-2.2.1/examples/lamg_example.m",
-		"/E/lamg/lamg-2.2.1/lamg/main/+amg/+solve/ProcessorSolve.m",
-		"/E/lamg/lamg-2.2.1/lamg/main/+amg/+setup/CoarseningStrategyAgg.m",
-		"/E/lamg/lamg-2.2.1/make.m",
-		"/E/Dropbox/University/My_solvers/2dNS/nonLinearAssembly1.m",
-		"/E/Dropbox/University/My_solvers/2dNS/nonLinearAssembly2Standard.m",
-		"/E/Dropbox/University/My_solvers/2dNS/nonLinearAssembly2.m",
-		"/E/Dropbox/University/My_solvers/2dNS/calcVorticity.m",
-		"/E/Dropbox/University/My_solvers/2dNS/massPAssembly.m",
-		"/E/Dropbox/University/My_solvers/2dNS/laplaceAssemblyStandard.m",
-		"/E/Documents/NS_Re1000.txt",
-		"/E/Dropbox/University/My_solvers/2dNS/laplaceAssembly.m",
-		"/E/Dropbox/University/My_solvers/2dNS/diffusionAssembly.m",
-		"/E/Dropbox/University/My_solvers/2dNS/createBasisQ2P1.m",
-		"/E/Dropbox/University/My_solvers/2dNS/uimagesc.m",
-		"/E/Dropbox/University/My_solvers/2dNS/stokesPoiseuilleFlow.m",
-		"/E/Dropbox/University/My_solvers/2dNS/createBasisQ1P0.m",
-		"/E/Dropbox/University/My_solvers/2dNS/stokesLidDrivenCavity.m",
-		"/E/Dropbox/University/My_solvers/2dNS/diffusionAssemblyStandard.m",
-		"/E/Dropbox/University/My_solvers/2dNS/localMatricesQ2P1.mat",
-		"/home/s1895044/Dropbox/University/My_solvers/2dNS/massPAssembly.m",
-		"/home/s1895044/Dropbox/University/My_solvers/2dNS/massAssembly.m",
-		"/home/s1895044/Dropbox/University/My_solvers/2dNS/nonLinearAssembly2.m",
-		"/home/s1895044/Dropbox/University/My_solvers/2dNS/diffusionAssembly.m"
+		"/E/KKT/KKTDirect0.5/kktsolve_mex.cpp"
 	],
 	"find":
 	{
-		"height": 38.0
+		"height": 27.0
 	},
 	"find_in_files":
 	{
@@ -806,6 +811,23 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"2",
+			"5",
+			"1",
+			"fortran",
+			"default",
+			"display_ori",
+			"handles.display_final",
+			"< tol",
+			"= 1",
+			"flag",
+			"zeros",
+			"res(end)",
+			"MV",
+			"sol",
+			"time",
+			"(,",
+			"M",
 			"I1",
 			"nrPNodes",
 			"I",
@@ -924,6 +946,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"sol2",
 			"vmassAssembly",
 			"localMatrix.pdivv",
 			"localMatrix.vmass",
@@ -941,7 +964,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -950,15 +973,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3272,
+						"buffer_size": 3273,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								115,
-								115
+								2862,
+								2862
 							]
 						],
 						"settings":
@@ -966,32 +989,63 @@
 							"syntax": "Packages/Matlab/Matlab.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1071.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "problem definition/createRectBasis.m",
+					"file": "solvers/matrixSolve.m",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 463,
+						"buffer_size": 482,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								345,
-								345
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Matlab/Matlab.tmLanguage"
+							"syntax": "Packages/Matlab/Matlab.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "unused (old) files/createBasisQ1P0.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2580,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								342,
+								342
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1001,109 +1055,26 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2331,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2331,
-								2331
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"word_wrap": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
 					"buffer": 3,
-					"file": "matrix assembly/vmassAssembly.m",
+					"file": "solveAxbTest.m",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 802,
+						"buffer_size": 7453,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								591,
-								591
+								10,
+								10
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Matlab/Matlab.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "matrix assembly/pmassAssembly.m",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 777,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								389,
-								389
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Matlab/Matlab.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "matrix assembly/PdivVAssembly.m",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 979,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								428,
-								428
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Matlab/Matlab.tmLanguage"
+							"syntax": "Packages/Matlab/Matlab.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1113,54 +1084,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "todoList",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 492,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								188,
-								188
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
-				{
-					"buffer": 7,
+					"buffer": 4,
 					"file": "problem definition/createRectMesh.m",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7191,
+						"buffer_size": 5166,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								301,
-								317
+								582,
+								582
 							]
 						],
 						"settings":
@@ -1170,39 +1107,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 55.0,
+						"translation.y": 200.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "problem definition/createRectBasisCR.m",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5626,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								292,
-								233
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Matlab/Matlab.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
+					"stack_index": 4,
 					"type": "text"
 				}
 			]
@@ -1210,7 +1118,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 26.0
+		"height": 27.0
 	},
 	"input":
 	{
@@ -1225,18 +1133,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.5,
 			1.0
 		],
 		"rows":
@@ -1257,7 +1158,7 @@
 	"project": "2D_NS.sublime-project",
 	"replace":
 	{
-		"height": 72.0
+		"height": 50.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1336,7 +1237,7 @@
 		],
 		"width": 400.0
 	},
-	"selected_group": 1,
+	"selected_group": 0,
 	"settings":
 	{
 	},

@@ -7,7 +7,7 @@ function [ feMesh ] = createRectMesh(basisOrder, nX, nY, uniformMesh)
 nrPBasisF = 1/2*(basisOrder)*(basisOrder + 1); % dim(P_k-1)
 
 % if only basisOrder is given, ask user for input
-if nargin == 1
+if nargin < 3
 	if basisOrder == 1
 		sizeQuery = 'Number of 2x2 patches in each direction';
 	else

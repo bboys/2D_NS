@@ -6,8 +6,8 @@ cd('../') % go up one level
 addToPath();
 
 
-clear all
-close all
+% clear all
+% close all
 % clc
 
 
@@ -23,14 +23,13 @@ nrPBasisF = size(localMatrix.pdivv.x,1);
 % create mesh 
 feMesh = createRectMesh(basisOrder);
 
-
 Re = default('Reynolds number', 1000); % reynolds number
 
 nrElts = feMesh.problemSize(1)*feMesh.problemSize(2);
 nrNodes = feMesh.problemSize(3)*feMesh.problemSize(4);
 
 % parameters for newton iteration
-tol = default('Tolerance for nonlin iteration', 1e-12); 
+tol = default('Tolerance for nonlin iteration', 1e-8); 
 maxIt = default('Maximum number of nonlin iterations', 15);
 
 
@@ -78,7 +77,6 @@ tic;
 M = [globalMatrix.D, -globalMatrix.L'; -globalMatrix.L -feMesh.stabC];
 rhsVec = -M(:, fixedVel)*solVec(fixedVel);
 solVec(freeSol) = matrixSolve(M(freeSol, freeSol), rhsVec(freeSol),1);
-
 time.stokes = toc;
 
 %  clear some variables

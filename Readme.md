@@ -1,5 +1,6 @@
 Todo
--
+- MEX: sparse MV in Fortran
+- MEX: minres Fortran code schrijven (preconditioned)
 - stokes solver
 -- preconditioned MINRES
 -- multigrid (algebraisch / geometrisch)

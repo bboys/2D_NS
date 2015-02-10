@@ -5,13 +5,21 @@ function [ localMatrix ] = createRectBasisCR(basisOrder)
 nrVBasisF = (basisOrder + 1)^2; % dim(Q_k)
 nrPBasisF = 1/2*(basisOrder)*(basisOrder + 1); % dim(P_k-1)
 
+
 % define reference element
 points = linspace(0, 1, basisOrder + 1); % different choise?
+
 phi = zeros(basisOrder + 1, basisOrder + 1); % each row contains coeff basisF
+nodeFunc = [ones(1, basisOrder + 1); -points]; 
 for i = 1:basisOrder + 1
-	nodalVal = zeros(1, 1 + basisOrder);
-	nodalVal(i) = 1;
-	phi(i, :) = polyfit(points, nodalVal, basisOrder);
+	phi(i, :) = multiPolyProduct(nodeFunc(:,[1:i-1,i+1:basisOrder + 1]));
+	phi(i, :) = phi(i, :)/polyval(phi(i, :), points(i));
+
+	% % display  basis
+	% x = linspace(0,1,200);
+	% plot(x,polyval(phi(i, :), x))
+	% hold on
+	% pause
 end
 
 % local velocity mass matrix
@@ -163,6 +171,15 @@ for coef = 1:deg1 + 1
 	P = P + p1(coef)*[zeros(coef - 1, 1); p2; zeros(deg1 - coef + 1, 1)];
 end
 
+
+end
+
+function [P] = multiPolyProduct(Parray)
+% performs the product of any collection of polynomials
+P = Parray(:, 1);
+for i = 2:size(Parray, 2)
+	P = polyProduct(P, Parray(:, i));
+end
 
 end
 
