@@ -46,7 +46,7 @@ while iter <= maxIt
 		velMatrix =  nonLin2 + 1/Re*globalMatrix.D;
 	end
 	A = [velMatrix, -globalMatrix.L'; -globalMatrix.L, ...
-		-feMesh.stabC];
+		-globalMatrix.stabC];
 
 	% calculate residuals
 	momentumRes = nonLin2*solVec(1:2*nrNodes) -...
@@ -54,7 +54,7 @@ while iter <= maxIt
 		1/Re*globalMatrix.D*solVec(1:2*nrNodes);
 
 	contRes = - globalMatrix.L*solVec(1:2*nrNodes) -...
-		feMesh.stabC*solVec(2*nrNodes + 1:end);
+		globalMatrix.stabC*solVec(2*nrNodes + 1:end);
 
 	% the rhs
 	rhsVec = [-momentumRes; contRes];

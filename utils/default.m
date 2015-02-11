@@ -1,4 +1,4 @@
-function output = default(query, defInput, comments)
+function output = default(query, defInput, comments, outputType)
 % if query is class char
 % outputs user input or default value 'defInput' (for parameter input)
 
@@ -11,6 +11,11 @@ horChar = '.';
 horPad = 2;
 textWidth = 70 - 2 - 2*horPad;
 hlColor = [0.5 0 0]; % color of highlighted text
+
+% allow output to be user string
+if nargin < 4
+	outputType = 'int';
+end
 
 fprintf(['.', repmat(' ', 1, horPad)])
 if strcmp(class(query), 'char')
@@ -31,16 +36,20 @@ if strcmp(class(query), 'char')
 
 	if isempty(userInp) 
 		output = defInput;
-	else
+	elseif strcmp(outputType, 'int') == 1
 		printedChar = printedChar + size(userInp, 2);
 		output = str2num(userInp);  % convert to number/double
+	else
+		printedChar = printedChar + size(userInp, 2);
+		output = userInp;		
 	end
 
-	% prevent large precision numbers to be printed
-	temp = sprintf('%d', output);
-
-	if size(temp,2) > 5
-		temp = sprintf('%2.1e', output);
+	if strcmp(outputType, 'int') == 1
+		% prevent large precision numbers to be printed
+		temp = sprintf('%d', output);
+		if size(temp,2) > 5
+			temp = sprintf('%2.1e', output);
+		end
 	end
 
 	inputSize = size(temp, 2);

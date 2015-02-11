@@ -16,4 +16,5 @@ addpath(genpath([homePath,'/plotting tools']));
 addpath(genpath([homePath,'/problem definition']));	
 addpath(genpath([homePath,'/solvers']));	
 addpath(genpath([homePath,'/test problems']));
+addpath(genpath([homePath,'/user input']));		
 addpath(genpath([homePath,'/utils']));		

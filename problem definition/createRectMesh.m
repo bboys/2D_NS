@@ -4,30 +4,15 @@ function [ feMesh ] = createRectMesh(basisOrder, nX, nY, uniformMesh)
 % midpoints are added, also in the case of 'Q1P0' for stabilisation
 % assuming Crouzeix-Raviart quadrilaterals (number of pressure basisF)
 
+
 nrPBasisF = 1/2*(basisOrder)*(basisOrder + 1); % dim(P_k-1)
 
-% if only basisOrder is given, ask user for input
-if nargin < 3
-	if basisOrder == 1
-		sizeQuery = 'Number of 2x2 patches in each direction';
-	else
-		sizeQuery = 'Number of elements in each direction';
-	end
-	% nr of elements/patches in each direction (for Q1P0 defines the 2x2 patches)
-	nX = default(sizeQuery, 2^5);
-	nX = ceil(nX/2)*2; % make sure nX is even for nonuniform mesh
-	nY = nX; 
-end
-
-if nargin < 4
-	uniformMesh = default({'Which mesh spacing to use', 'Uniform',...
-	 'Non-uniform'}, 2, {'', 'more nodes at the boundary'});
-end
-
 if uniformMesh == 1
+	meshType = 'quad, uniform';
 	xVal = linspace(0, 1, nX + 1);
 	yVal = linspace(0, 1, nY + 1);
 elseif uniformMesh == 2
+	meshType = 'quad, non uniform';
 	xVal = linspace(0,1,nX/2 + 1).^2; % more nodes at boundary
 	xVal = [xVal - 1, 1 - xVal(end-1:-1:1)];
 
@@ -60,10 +45,6 @@ if basisOrder >= 2
 
 	yVal = bsxfun(@plus, yVal(1:end-1), temp)';
 	yVal = [yVal(:); tempEndp];
-
-	% no stabilisation needed
-	stabC = sparse(nrPBasisF*nX*nY, nrPBasisF*nX*nY);
-
 elseif basisOrder == 1
 	patchSize = bsxfun(@times, yDif, xDif');
 
@@ -81,16 +62,6 @@ elseif basisOrder == 1
 
 	nX = nX*2;
 	nY = nY*2;
-
-	% create stabilisation matrix stabC
-	beta = 1/4;
-	stabPatch = [2 -1 0 -1;
-				-1 2 -1 0; 
-				0 -1 2 -1; 
-				-1 0 -1 2];
-
-	stabC = sparse(1:nX*nY/4, 1:nX*nY/4, patchSize(:)/4);
-	stabC = beta*kron(stabC, stabPatch);
 end
 
 % create an array that gives the surface area per element
@@ -136,22 +107,22 @@ edge = [((basisOrder*nY + 1)*basisOrder*nX + 1):(-(basisOrder*nY + 1)):(basisOrd
 edge4 = [edge; edge - (basisOrder*nY + 1)]; % bottom
 
 % types of boundary conditions (see page 43, Segal)
-% 1 : dirichlet, u = g1 on gamma1 
-% 2 : normal velocity u_n = g2, sigma_nt = g3 = 0, on gamma2
-% 3 : tangential velocity u_t = g4, sigma_nn = g5 = 0, on gamma3
-% 4 : sigma_nt = 0 = sigma_nn, on gamma4
+% 1 : dirichlet, u = g1,
+% 2 : normal velocity u_n = g2, sigma_nt = g3 = 0, 
+% 3 : tangential velocity u_t = g4, sigma_nn = g5 = 0, 
+% 4 : sigma_nt = 0 = sigma_nn 
 
-boundary.gamma1 = [edge1];
-boundary.gamma2 = [edge2];
-boundary.gamma3 = [edge3];
-boundary.gamma4 = [edge4];
+boundary(1).edges = [edge1];
+boundary(2).edges = [edge2];
+boundary(3).edges = [edge3];
+boundary(4).edges = [edge4];
 
 % store sizes
 problemSize = [nX,nY,(basisOrder*nX+1),(basisOrder*nY+1)]; % nr elements in x,y dir, nr of nodes
 
 feMesh = struct('node',nodeList,'elt',elementList,'boundary',boundary,...
     'area',areaList,'problemSize',problemSize,'eltSize',[hXList';hYList'],...
-    'gridX',xVal,'gridY',yVal, 'stabC', stabC, 'basisOrder', basisOrder...
-    ,'meshType', 'quad');
+    'gridX',xVal,'gridY',yVal, 'basisOrder', basisOrder...
+    ,'meshType', meshType);
 
 end

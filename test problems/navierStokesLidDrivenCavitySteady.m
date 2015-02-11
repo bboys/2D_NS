@@ -5,23 +5,18 @@
 cd('../') % go up one level
 addToPath();
 
-
-% clear all
-% close all
-% clc
-
-
 lidVel = 1; % velocity of moving lid
 announce(sprintf(['Finite element implementation of the steady Navier Stokes equations',... 
 	' for the lid-driven cavity problem on a [0,1]^2 box with a lid velocity of %d.',...
 	' Please enter parameters.'], lidVel), 1, 1)
 
 % create local matrices
-[ localMatrix, basisOrder ] = createRectBasis();
+[ localMatrix, basisOrder ] = createBasis();
 nrPBasisF = size(localMatrix.pdivv.x,1);
 
 % create mesh 
-feMesh = createRectMesh(basisOrder);
+feMesh = createMesh(basisOrder);
+globalMatrix.stabC = createStabC(feMesh, localMatrix);
 
 Re = default('Reynolds number', 1000); % reynolds number
 
@@ -32,55 +27,40 @@ nrNodes = feMesh.problemSize(3)*feMesh.problemSize(4);
 tol = default('Tolerance for nonlin iteration', 1e-8); 
 maxIt = default('Maximum number of nonlin iterations', 15);
 
-
 announce(['Problemsize: ', sprintf('%d elements and %d nodes',...
 	[nrElts,nrNodes]),'. Assembling global matrices...'], 1, 0)
 
-
-
 tic;
 % assemble matrices
-% M = vmassAssembly( feMesh, localMatrix.vmass); % mass matrix
 globalMatrix.L = PdivVAssembly( feMesh, localMatrix.pdivv); % "pressure mass" matrix
 % D = diffusionAssembly( feMesh, localMatrix.stiff); % diffusive matrix
 globalMatrix.D = laplaceAssembly( feMesh, localMatrix.stiff); % alternative (not using Sij)
 time.assembly = toc;
 
-% determine free nodes (interior)
-% lidNodes = unique(feMesh.boundary.gamma2(:)); % requires regularisation
-lidNodes = feMesh.boundary.gamma2(:, 2:end-1);
-lidNodes = unique(lidNodes(:));
+% apply bdy conditions
+basisType = 'Crouzeix-Raviart';
 
-% homogeneous Dirichlet Nodes
-homDNodes = unique([feMesh.boundary.gamma1(:);feMesh.boundary.gamma3(:);...
-	feMesh.boundary.gamma4(:)]);
+% define bdys
+feMesh.boundary(1).type = 1;
+feMesh.boundary(1).func = [0; 0];
+feMesh.boundary(3).type = 1;
+feMesh.boundary(3).func = [0; 0];
+feMesh.boundary(4).type = 1;
+feMesh.boundary(4).func = [0; 0];
 
-fixedVel = [lidNodes; lidNodes + nrNodes; homDNodes; homDNodes + nrNodes;];
-freeVel = setdiff(1:2*nrNodes, fixedVel);
+feMesh.boundary(2).type = 1;
+feMesh.boundary(2).func = str2func('@(x,y) cavityLidDirichlet(x,y)');
 
-fixedPressure = [1];
-freePressure = setdiff(1:nrPBasisF*nrElts, fixedPressure);
-
-freeSol = [freeVel, 2*nrNodes + freePressure]; % include pressure DOF
-fixedSol = [fixedVel', 2*nrNodes + fixedPressure];
-
-nodeType = struct('freeVel', freeVel, 'freePressure', freePressure,...
-	'freeSol', freeSol, 'fixedVel', fixedVel, 'fixedPressure', fixedPressure);
-
-% fill in the boundary conditions
-solVec = zeros(2*nrNodes + nrPBasisF*nrElts,1);
-% solVec(lidNodes) = lidVel*(1 - feMesh.node(1, lidNodes).^4); % regularised
-solVec(lidNodes) = lidVel;
+% apply bdy conditions
+[nodeType, solVec] = applyBdyCond(feMesh, basisType);
 
 tic;
 % solve corresponding stokes problem as initial guess
-M = [globalMatrix.D, -globalMatrix.L'; -globalMatrix.L -feMesh.stabC];
-rhsVec = -M(:, fixedVel)*solVec(fixedVel);
-solVec(freeSol) = matrixSolve(M(freeSol, freeSol), rhsVec(freeSol),1);
+M = [globalMatrix.D, -globalMatrix.L'; -globalMatrix.L -globalMatrix.stabC];
+rhsVec = -M(:, nodeType.fixedVel)*solVec(nodeType.fixedVel);
+solVec(nodeType.freeSol) = matrixSolve(M(nodeType.freeSol,...
+	nodeType.freeSol), rhsVec(nodeType.freeSol),1);
 time.stokes = toc;
-
-%  clear some variables
-clear -regexp ^free ^fixed homDNodes lidNodes
 
 announce(sprintf(['Corresponding Stokes problem solved in %4.2f seconds. ',...
  'Starting nonlinear solve...'],...

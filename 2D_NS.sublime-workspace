@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"bd",
+				"bdyPart"
+			],
+			[
 				"image",
 				"image2"
 			],
@@ -292,34 +296,34 @@
 			}
 		},
 		{
-			"file": "solvers/matrixSolve.m",
+			"file": "solvers/nonLinSolve.m",
 			"settings":
 			{
-				"buffer_size": 482,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "unused (old) files/createBasisQ1P0.m",
-			"settings":
-			{
-				"buffer_size": 2580,
+				"buffer_size": 2957,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "solveAxbTest.m",
+			"file": "problem definition/applyBdyCond.m",
 			"settings":
 			{
-				"buffer_size": 7453,
+				"buffer_size": 1648,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "problem definition/createRectMesh.m",
+			"file": "problem definition/createStabC.m",
 			"settings":
 			{
-				"buffer_size": 5166,
+				"buffer_size": 819,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "user input/enterBdyCond.m",
+			"settings":
+			{
+				"buffer_size": 241,
 				"line_ending": "Windows"
 			}
 		}
@@ -327,9 +331,17 @@
 	"build_system": "Packages/User/Matlab.sublime-build",
 	"command_palette":
 	{
-		"height": 98.0,
+		"height": 400.0,
 		"selected_items":
 		[
+			[
+				"plot",
+				"Build: With plot"
+			],
+			[
+				"settings",
+				"Preferences: Settings - Default"
+			],
 			[
 				"INSTALL",
 				"Package Control: Install Package"
@@ -339,16 +351,8 @@
 				"Preferences: Browse Packages"
 			],
 			[
-				"plot",
-				"Build: With plot"
-			],
-			[
 				"settin",
 				"Preferences: Settings - User"
-			],
-			[
-				"settings",
-				"Preferences: Settings - Default"
 			],
 			[
 				"instal",
@@ -639,7 +643,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 457.0
+		"width": 424.0
 	},
 	"console":
 	{
@@ -661,10 +665,33 @@
 	},
 	"expanded_folders":
 	[
-		"/home/s1895044/Dropbox/University/My_solvers/2dNS"
+		"/E/Dropbox/University/My_solvers/2dNS",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition",
+		"/E/Dropbox/University/My_solvers/2dNS/solvers",
+		"/E/Dropbox/University/My_solvers/2dNS/test problems",
+		"/E/Dropbox/University/My_solvers/2dNS/user input"
 	],
 	"file_history":
 	[
+		"/E/lamg/lamg-2.2.1/lin-solve/Solvers.m",
+		"/E/lamg/lamg-2.2.1/make.m",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/createRectMesh.m",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/createRectBasisCR.m",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/createStabC.m",
+		"/E/Dropbox/University/My_solvers/2dNS/test problems/solveAxbTest.m",
+		"/E/Dropbox/University/My_solvers/2dNS/user input/createMesh.m",
+		"/E/Dropbox/University/My_solvers/2dNS/user input/createBasis.m",
+		"/E/Dropbox/University/My_solvers/2dNS/user input/createMesh",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/createBasis.m",
+		"/E/Dropbox/University/My_solvers/2dNS/addToPath.m",
+		"/E/Dropbox/University/My_solvers/2dNS/unused (old) files/createBasisQ1P0.m",
+		"/E/Dropbox/University/My_solvers/2dNS/solvers/matrixSolve.m",
+		"/E/Dropbox/University/My_solvers/2dNS/solvers/nonLinSolve.m",
+		"/E/Dropbox/University/My_solvers/2dNS/solveAxbTest.m",
+		"/E/Dropbox/University/My_solvers/2dNS/plotting tools/cavityCenterPlot.m",
+		"/C/Users/Ronald R/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/home/s1895044/Dropbox/University/My_solvers/2dNS/problem definition/createRectMesh.m",
+		"/home/s1895044/Dropbox/University/My_solvers/2dNS/mainF.m",
 		"/home/ronald/Dropbox/University/Random_Fortran/testing.m",
 		"/home/ronald/Dropbox/University/Random_Fortran/minresqlp_mex_f90_ver27/minresqlp_mexx.F",
 		"/home/ronald/Dropbox/University/Random_Fortran/minresqlp_mex_f90_ver27/minresqlpMexModule.f90",
@@ -680,7 +707,6 @@
 		"/E/Program Files/MATLAB/R2013a/extern/examples/mex/mexlockf.F",
 		"/E/Program Files/MATLAB/R2013a/extern/examples/mex/yprimef.F",
 		"/E/Dropbox/University/My_solvers/2dNS/Readme.md",
-		"/C/Users/Ronald R/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
 		"/C/Users/Ronald R/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/C/Users/Ronald R/AppData/Roaming/Sublime Text 3/Packages/LaTeXing/LaTeXing.sublime-settings",
 		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package 2d/smoothmesh.m",
@@ -688,10 +714,7 @@
 		"/E/Dropbox/University/CenC2014/Image Processing playing/Smoother.m",
 		"/E/Dropbox/University/NumWis2/HW3/Matlab_Files/LowRank.m",
 		"/E/Dropbox/University/CenC2014/Image Processing playing/Gui.m",
-		"/E/Dropbox/University/My_solvers/2dNS/problem definition/createRectBasisCR.m",
 		"/E/Dropbox/University/My_solvers/2dNS/problem definition/createRectBasis.m",
-		"/E/Dropbox/University/My_solvers/2dNS/solvers/matrixSolve.m",
-		"/E/Dropbox/University/My_solvers/2dNS/solvers/nonLinSolve.m",
 		"/E/Dropbox/University/My_solvers/2dNS/test problems/mainTest.m",
 		"/E/Dropbox/University/My_solvers/2dNS/test problems/stokesPoiseuilleFlow.m",
 		"/E/Dropbox/University/My_solvers/2dNS/unused (old) files/createRectMeshOld.m",
@@ -707,11 +730,9 @@
 		"/E/Dropbox/University/My_solvers/2dNS/matrix assembly/diffusionAssembly.m",
 		"/E/Dropbox/University/My_solvers/2dNS/matrix assembly/pmassAssebly",
 		"/E/Dropbox/University/My_solvers/2dNS/unused (old) files/massAssemblyStandard.m",
-		"/E/Dropbox/University/My_solvers/2dNS/addToPath.m",
 		"/E/Dropbox/University/My_solvers/2dNS/plotting tools/plotMesh.m",
 		"/E/Dropbox/University/My_solvers/2dNS/matrix assembly/laplaceAssembly.m",
 		"/E/Dropbox/University/My_solvers/2dNS/problem definition/createRectMeshOld.m",
-		"/E/Dropbox/University/My_solvers/2dNS/problem definition/createRectMesh.m",
 		"/E/Dropbox/University/My_solvers/2dNS/problem definition/createBasisQ1P0.m",
 		"/E/Dropbox/University/My_solvers/2dNS/problem definition/createBasisQ2P1.m",
 		"/E/Dropbox/University/My_solvers/2dNS/test problems/navierStokesLidDrivenCavitySteady.m",
@@ -739,7 +760,6 @@
 		"/E/ifiss3.3/ifiss3.3/diffusion/gausspoints_twod.m",
 		"/E/ifiss3.3/ifiss3.3/diffusion/qshape.m",
 		"/E/ifiss3.3/ifiss3.3/diffusion/gausspoints_oned.m",
-		"/E/Dropbox/University/My_solvers/2dNS/plotting tools/cavityCenterPlot.m",
 		"/E/ifiss3.3/ifiss3.3/diffusion/femq1_diff.m",
 		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package 2d/fixmesh.m",
 		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package 2d/centroid_mesh.m",
@@ -780,23 +800,11 @@
 		"/E/ifiss3.3/ifiss3.3/navier_flow/it_solve_navier.m",
 		"/E/ifiss3.3/ifiss3.3/navier_flow/fpsetup_q2p1.m",
 		"/E/ifiss3.3/ifiss3.3/navier_flow/newton_q1.m",
-		"/E/Dropbox/University/My_solvers/2dNS/createRectMesh.m",
-		"/E/Dropbox/University/My_solvers/2dNS/referenceSols.mat",
-		"/E/Dropbox/University/My_solvers/2dNS/mainTest.m",
-		"/E/Dropbox/University/My_solvers/2dNS/navierStokesLidDrivenCavitySteady.m",
-		"/E/Dropbox/University/My_solvers/2dNS/plotSol.m",
-		"/E/Dropbox/University/My_solvers/2dNS/matrixSolve.m",
-		"/E/Dropbox/University/My_solvers/2dNS/newtonSolve.m",
-		"/E/Dropbox/University/My_solvers/2dNS/nonLinearAssembly1Standard.m",
-		"/E/Dropbox/University/My_solvers/2dNS/interpolantQ2.m",
-		"/E/KKT/KKTDirect0.5/kktsolve.m",
-		"/E/ilupackV2.4_GNU32_MUMPS/ilupackV2.4_GNU32_MUMPS/makefile",
-		"/E/KKT/KKTDirect0.5/README",
-		"/E/KKT/KKTDirect0.5/kktsolve_mex.cpp"
+		"/E/Dropbox/University/My_solvers/2dNS/createRectMesh.m"
 	],
 	"find":
 	{
-		"height": 27.0
+		"height": 38.0
 	},
 	"find_in_files":
 	{
@@ -811,6 +819,15 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"feMesh.stabC",
+			"stabC",
+			"stabc",
+			"on gamma",
+			"on gamma2",
+			"meshType",
+			"gamma",
+			"mma",
+			"save",
 			"2",
 			"5",
 			"1",
@@ -929,16 +946,7 @@
 			"Te",
 			"te",
 			"8",
-			"line",
-			"ine",
-			"c",
-			"font",
-			"8",
-			"okular",
-			"ref",
-			"mcdonough2004",
-			"latexmk",
-			"pdflate"
+			"line"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -964,7 +972,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -980,16 +988,16 @@
 						"selection":
 						[
 							[
-								2862,
-								2862
+								2029,
+								2175
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Matlab/Matlab.tmLanguage"
 						},
-						"translation.x": 0.0,
-						"translation.y": 1071.0,
+						"translation.x": 31.0,
+						"translation.y": 960.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -997,19 +1005,19 @@
 				},
 				{
 					"buffer": 1,
-					"file": "solvers/matrixSolve.m",
+					"file": "solvers/nonLinSolve.m",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 482,
+						"buffer_size": 2957,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								1587,
+								1587
 							]
 						],
 						"settings":
@@ -1018,57 +1026,55 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 161.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "problem definition/applyBdyCond.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1648,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1414,
+								1414
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 420.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "unused (old) files/createBasisQ1P0.m",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2580,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								342,
-								342
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Matlab/Matlab.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
 					"buffer": 3,
-					"file": "solveAxbTest.m",
+					"file": "problem definition/createStabC.m",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7453,
+						"buffer_size": 819,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								10,
-								10
+								751,
+								691
 							]
 						],
 						"settings":
@@ -1085,34 +1091,37 @@
 				},
 				{
 					"buffer": 4,
-					"file": "problem definition/createRectMesh.m",
+					"file": "user input/enterBdyCond.m",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5166,
+						"buffer_size": 241,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								582,
-								582
+								237,
+								237
 							]
 						],
 						"settings":
 						{
-							"auto_name": "",
-							"syntax": "Packages/Matlab/Matlab.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/Matlab/Matlab.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 200.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 2,
 					"type": "text"
 				}
+			]
+		},
+		{
+			"sheets":
+			[
 			]
 		}
 	],
@@ -1133,11 +1142,18 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.5,
 			1.0
 		],
 		"rows":

@@ -1,7 +1,12 @@
-function [x] = matrixSolve(A, b, symm)
+function [x] = matrixSolve(A, b, typeA)
+% solves system of linear equations of the form
+%
+% [A, B*; B, -C] [u, p] = [f, 0]
+%
+% where C may be zero (if no stabilization is needed). Moreover when solving
+% the stokes problem, A is symmetric. 
 
-% solve stokes system (upper left block is symmetric)
-if symm
+if strcmp(typeA, 'stokes')
 	x = A\b;
 	
 	
@@ -19,10 +24,9 @@ if symm
 
 	% PREC=AMGdelete(PREC);
 
-else
-	% solve system arrising from nonlinear solve (upper left block is unsymmetric)
+else 
+	% temporary: use standard solve
 	x = A\b;
 
-	% save('nonlinsystem', 'A', 'b')  % store for testing solve methods
 end
 end
