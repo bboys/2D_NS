@@ -8,7 +8,7 @@ for bdyPart = 1:nrParts
 		'Choose the type of boundary condition', 'Dirichlet', 'Neumann'}, 1);
 	if feMesh.boundary(bdyPart).type == 1
 		% ask user to enter name of a predefined function (2 inputs 2 outputs)
-		% or if default value is used > homogeneous dirichlet (no change)
+		% or if default value is used => homogeneous dirichlet (no change)
 		funcName = default('Name of Dirichlet function', 0, '', 'string');
 		if strcmp(class(funcName), 'char') == 1
 			feMesh.boundary(bdyPart).func =...

@@ -15,7 +15,6 @@ centerStokes = stokesArray(:,round(feMesh.problemSize(3)/2));
 
 yPoints = feMesh.node(2,1:feMesh.problemSize(4));
 
-figure 
 plot(yPoints,centerSol/lidVel,'r')
 hold on
 plot(yPoints,centerStokes/lidVel,'k')

@@ -1,4 +1,4 @@
-function [ localMatrix, basisOrder ] = createBasis()
+function [ localMatrix, basisOrder, basisType ] = createBasis(basisOrder)
 % ask user to give the order of the basis functions to be used
 
 if nargin == 0
@@ -9,6 +9,7 @@ if nargin == 0
 
 end
 
+basisType = 'Crouzeix-Raviart';
 [ localMatrix ] = createRectBasisCR(basisOrder);
 
 end

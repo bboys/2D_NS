@@ -12,13 +12,12 @@ L = 1 + [0:ln-1];
 
 lidVel = 1;
 % create local matrices
-[ localMatrix, basisOrder ] = createRectBasis();
+[ localMatrix, basisOrder ] = createBasis();
 nrPBasisF = size(localMatrix.pdivv.x,1);
 
 % create mesh 
-feMesh = createRectMesh(basisOrder);
+feMesh = createMesh(basisOrder);
 stabC = createStabC(feMesh, localMatrix);
-
 
 nrElts = feMesh.problemSize(1)*feMesh.problemSize(2);
 nrNodes = feMesh.problemSize(3)*feMesh.problemSize(4);
@@ -30,31 +29,21 @@ globalMatrix.L = PdivVAssembly( feMesh, localMatrix.pdivv); % "pressure mass" ma
 globalMatrix.D = laplaceAssembly( feMesh, localMatrix.stiff); % alternative (not using Sij)
 
 
-% determine free nodes (interior)
-% lidNodes = unique(feMesh.boundary.gamma2(:)); % requires regularisation
-lidNodes = feMesh.boundary.gamma2(:, 2:end-1);
-lidNodes = unique(lidNodes(:));
+% define bdys
+feMesh.boundary(1).type = 1; feMesh.boundary(1).func = [0; 0];
+feMesh.boundary(3).type = 1; feMesh.boundary(3).func = [0; 0];
+feMesh.boundary(4).type = 1; feMesh.boundary(4).func = [0; 0];
+feMesh.boundary(2).type = 1;
+feMesh.boundary(2).func = str2func('@(x,y) cavityLidDirichlet(x,y)');
 
-% homogeneous Dirichlet Nodes
-homDNodes = unique([feMesh.boundary.gamma1(:);feMesh.boundary.gamma3(:);...
-	feMesh.boundary.gamma4(:)]);
+% apply bdy conditions
+[nodeType, solVec] = applyBdyCond(feMesh, localMatrix.basisType);
 
-fixedVel = [lidNodes; lidNodes + nrNodes; homDNodes; homDNodes + nrNodes;];
-freeVel = setdiff(1:2*nrNodes, fixedVel);
-
-fixedPressure = [1];
-freePressure = setdiff(1:nrPBasisF*nrElts, fixedPressure);
-
-freeSol = [freeVel, 2*nrNodes + freePressure]; % include pressure DOF
-fixedSol = [fixedVel', 2*nrNodes + fixedPressure];
-
-nodeType = struct('freeVel', freeVel, 'freePressure', freePressure,...
-	'freeSol', freeSol, 'fixedVel', fixedVel, 'fixedPressure', fixedPressure);
-
-% fill in the boundary conditions
-solVec = zeros(2*nrNodes + nrPBasisF*nrElts,1);
-% solVec(lidNodes) = lidVel*(1 - feMesh.node(1, lidNodes).^4); % regularised
-solVec(lidNodes) = lidVel;
+freeSol = nodeType.freeSol;
+freePressure = nodeType.freePressure;
+freeVel = nodeType.freeVel;
+fixedVel = nodeType.fixedVel;
+fixedPressure = nodeType.fixedPressure;
 
 % solve corresponding stokes problem as initial guess
 M = [globalMatrix.D, -globalMatrix.L'; -globalMatrix.L -stabC];

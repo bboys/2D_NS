@@ -6,13 +6,12 @@ function [ feMesh ] = createRectMesh(basisOrder, nX, nY, uniformMesh)
 
 
 nrPBasisF = 1/2*(basisOrder)*(basisOrder + 1); % dim(P_k-1)
+meshType = 'quad';
 
 if uniformMesh == 1
-	meshType = 'quad, uniform';
 	xVal = linspace(0, 1, nX + 1);
 	yVal = linspace(0, 1, nY + 1);
 elseif uniformMesh == 2
-	meshType = 'quad, non uniform';
 	xVal = linspace(0,1,nX/2 + 1).^2; % more nodes at boundary
 	xVal = [xVal - 1, 1 - xVal(end-1:-1:1)];
 

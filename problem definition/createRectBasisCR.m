@@ -157,6 +157,7 @@ for i = 0:basisOrder-1
 end % vectorize?
 
 localMatrix.basisType = 'Crouzeix-Raviart';
+localMatrix.basisOrder = basisOrder;
 
 end
 

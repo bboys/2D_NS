@@ -1,7 +1,9 @@
 function [solVec] = nonLinSolve(feMesh, globalMatrix, localMatrix, solVec ,...
-	typesNodes, Re, tol, maxIt)
+	typesNodes, Re, iterPar)
 % hybrid method using both picard and newton (alternating)
 
+tol = iterPar.NLtol;
+maxIt = iterPar.NLmaxIt;
 
 nrNodes = feMesh.problemSize(3)*feMesh.problemSize(4);
 nrElts = feMesh.problemSize(1)*feMesh.problemSize(2);
@@ -15,12 +17,13 @@ fixedPressure = typesNodes.fixedPressure;
 
 stepsD = 2; % nr of diverging picard steps before breaking
 stepsC = 3; % nr of converging picard steps before switching to newton 
+initPicard = 3;
 errorEst = zeros(maxIt + 1,1);
 deltaSol = 0;
 iter = 0;
 method = 'picard'; % 1 = newton, 0 = picard (start)
 convList = ones(maxIt + 1, 1); % if 0, then errotEst(iter) < errorEst(iter + 1)
-initPicard = 3;
+
 % start with picard 
 % if 1 step divergence > switch to picard
 % if picard diverges for stepsD steps then break
@@ -45,8 +48,8 @@ while iter <= maxIt
 		% picard
 		velMatrix =  nonLin2 + 1/Re*globalMatrix.D;
 	end
-	A = [velMatrix, -globalMatrix.L'; -globalMatrix.L, ...
-		-globalMatrix.stabC];
+	% A = [velMatrix, -globalMatrix.L'; -globalMatrix.L, ...
+	% 	-globalMatrix.stabC];
 
 	% calculate residuals
 	momentumRes = nonLin2*solVec(1:2*nrNodes) -...
@@ -86,8 +89,11 @@ while iter <= maxIt
 	% while statement is useless .. but this is easier
 	if iter <= maxIt
 		% solve the updates
-		deltaSol = matrixSolve(A(freeSol, freeSol),...
-			rhsVec(freeSol),0);
+		deltaSol = matrixSolve(velMatrix(freeVel, freeVel),...
+			globalMatrix.L(freePressure, freeVel),... 
+			globalMatrix.stabC(freePressure, freePressure),...
+			rhsVec(freeSol), [], 'NS',...
+			globalMatrix.Q(freePressure, freePressure));
 
 		% update solution
 		solVec(freeSol) = solVec(freeSol) + deltaSol;

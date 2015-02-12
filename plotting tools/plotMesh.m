@@ -1,12 +1,11 @@
  function [] = plotMesh(feMesh)
-
-figure
+% plots the finite element mesh
 basisOrder = feMesh.basisOrder;
 if strcmp(feMesh.meshType, 'quad')
 
 	% only plot corners
 	cornerIdx = [1, basisOrder + 1, (basisOrder + 1)^2,...
-		(basisOrder + 1)*(basisOrder) + 1]
+		(basisOrder + 1)*(basisOrder) + 1];
 	patch('vertices', feMesh.node', 'faces', feMesh.elt(cornerIdx, :)',...
 		'facecolor', 'w', 'linewidth', 1)
 
