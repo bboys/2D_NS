@@ -1,4 +1,4 @@
-function [x, relres, resminres] = matrixSolve(A, L, C, f, iterPar, typeA, Q)
+function [x, relres, resminres] = matrixSolve(A, L, C, f, iterPar, typeA, typePrecon, Q)
 % 
 % solves system of linear equations of the form
 %
@@ -7,14 +7,17 @@ function [x, relres, resminres] = matrixSolve(A, L, C, f, iterPar, typeA, Q)
 % where C may be zero (if no stabilization is needed). Moreover when solving
 % the stokes problem, A is symmetric. 
 %
-% Q is the pressure mass matrix which is used as a preconditioner
+% Q is the pressure mass matrix which is used as a (block-) preconditioner
 
 [nrp, nrv] = size(L);
 M = [A, -L'; -L -C];
 
 % check input
-if nargin < 7
+if nargin < 8
 	Q = [];
+end
+if nargin < 7
+	typePrecon = 'ichol';
 end
 if nargin < 6
 	typeA = 'backslash';
@@ -28,14 +31,17 @@ else
 end
 
 if strcmp(typeA, 'stokes')
+	if strcmp(typeA, 'ichol')
+		% build preconditioner
+		setup.type = 'ict'; 
+		setup.droptol = 1e-4;
 
-	% build preconditioner
-	setup.type = 'ict'; 
-	setup.droptol = 1e-4;
+		P1 = ichol(A, setup);
+		P2 = sqrt(spdiags(diag(Q),0,nrp,nrp));
+		P = [P1 sparse(nrv, nrp); sparse(nrp, nrv) P2];
+	elseif strcmp(typeA, 'amg')
 
-	P1 = ichol(A, setup);
-	P2 = sqrt(spdiags(diag(Q),0,nrp,nrp));
-	P = [P1 sparse(nrv, nrp); sparse(nrp, nrv) P2];
+	end
 
 	[x, ~, relres, ~, resminres] = minres(M, f, tol, maxIt, P, P');
 

@@ -11,8 +11,8 @@ Todo
 - quadrature
 
 Problemen
--
-- geen
+- AMG interpolatie operator verbeteren
+
 
 
 

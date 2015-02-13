@@ -6,7 +6,7 @@ function [interpOp] = createInterpOp(Ah, setup)
 % setup.amg.theta is the connectivity threshold
 
 % temporary setup for testing
-% Ah = gallery('poisson', 2);
+% Ah = gallery('poisson', 5);
 % setup.amg.coarseMethod = 'RS';
 % setup.amg.interpMethod = 'classical';
 % setup.amg.theta = 0.6;
@@ -117,7 +117,7 @@ fNodeStrong = bsxfun(@and, auxStrength, fNodeLogical);
 % weakNeighbours: ith row gives neighbours which do not strongly influence i
 % (the left over neighbours) (D^w_i)
 zeroDiagAh = Ah - spdiags(diag(Ah), 0, nrVar, nrVar);
-weakNeighbours = logical(zeroDiagAh) - (coarseInterp | fNodeStrong);
+weakNeighbours = xor(logical(zeroDiagAh), (coarseInterp | fNodeStrong));
 
 % general interpolation rule:
 % (I^h_{2h}e)_i = e_i 							if i in cNodes, 
@@ -134,23 +134,52 @@ if strcmp(setup.amg.interpMethod, 'classical')
 	% for i = 1:nrVar, (result is a column vector)
 	denom = diag(Ah) + sum(Ah.*weakNeighbours,2);
 
+	% denom = diag(Ah);
+	% for i = 1:nrVar
+	% 	for n = 1:nrVar
+	% 		if weakNeighbours(i, n)
+	% 			denom(i) = denom(i) + Ah(i,n);
+	% 		end
+	% 	end
+	% end
+
 	% precompute denominator in numerator: denomNum(i,m) = sum_{k in C_i} a_{mk},
 	% for i,m = 1:nrVar (result is a matrix)
 	denomNum = coarseInterp*Ah';
 
+	% denomNum = zeros(nrVar);
+	% for i = 1:nrVar
+	% 	for m = 1:nrVar
+	% 		for k = 1:nrVar
+	% 			if coarseInterp(i, k)
+	% 				denomNum(i,m) = denomNum(i,m) + Ah(m,k); 
+	% 			end
+	% 		end
+	% 	end
+	% end
+
 	% compute numerator: 
 	% numer(i,j) = a_{ij} + sum_{m in D^s_i (a_im amj)/denomNum(i,m)} 
-	numer = Ah(:, cNodes) + fNodeStrong.*(fNodeStrong.*Ah./denomNum)*Ah(:, cNodes);
+	numer = Ah(:, :) + fNodeStrong.*(Ah./denomNum)*Ah(:, :);
+
+	% numer = Ah;
+	% for i = 1:nrVar
+	% 	for j = 1:nrVar
+	% 		for m = 1:nrVar
+	% 			if fNodeStrong(i, m)
+	% 				numer(i,j) = numer(i,j) + Ah(i, m)*Ah(m, j)/denomNum(i,m);
+	% 			end
+	% 		end
+	% 	end
+	% end
 
 	% resulting weights: interpWeights(i,j) = - (numer(i,j)/denom(i))
 	interpWeights = - bsxfun(@times, numer, 1./denom);
 
 	% coarse node is interpolated by itself
-	interpWeights(cNodes, :) =  speye(length(cNodes));
-
-	interpOp = interpWeights;
-	interpOp(isnan(interpOp)) = 0;
-
+	interpWeights(cNodes, cNodes) =  speye(length(cNodes));
+	interpOp = interpWeights(:,cNodes);
+	interpOp(isnan(interpOp)) = 0; % fix this!
 elseif strcmp(setup.amg.interpMethod, 'F-F')
 	% F-F interpolation 
 

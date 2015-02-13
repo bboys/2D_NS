@@ -1,4 +1,4 @@
-function [amgSystem] = createAmgSystem(A, levels, setup)
+function [amgSystem, setup] = createAmgSystem(A, setup)
 % creates struct amgSystem containing the matrices 
 % A^h, ..., A^(2^levels h), and corresponding interpolation
 % operators
@@ -15,8 +15,14 @@ function [amgSystem] = createAmgSystem(A, levels, setup)
 amgSystem.level(1).matrix = A;
 
 % apply same setup on each level
-for level = 1:levels
+for level = 1:setup.amg.levels
 	amgSystem.level(level).interp = createInterpOp(amgSystem.level(level).matrix, setup);
+	if size(amgSystem.level(level).interp,2) == 1
+		setup.amg.levels = level - 1;
+		tempStr = sprintf('Warning: AMG system stopped at level %d.',[level - 1]);
+		announce(tempStr)
+		break
+	end
 	amgSystem.level(level + 1).matrix =...
 		amgSystem.level(level).interp'*amgSystem.level(level).matrix*...
 		amgSystem.level(level).interp;
