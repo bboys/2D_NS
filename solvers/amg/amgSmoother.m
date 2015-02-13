@@ -1,5 +1,5 @@
 function u = amgSmoother(u, A, f, setup)
-if strcmp(setup.amg.smoothType, 'GS')
+if setup.amg.smoothType == 1
 	% one step of Gauss-Seidel
 	nrVar = size(A,1);
 	for row = 1:nrVar

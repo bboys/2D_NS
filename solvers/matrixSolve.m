@@ -1,4 +1,4 @@
-function [x, relres, resminres] = matrixSolve(A, L, C, f, iterPar, typeA, typePrecon, Q)
+function [x, relres, resminres] = matrixSolve(A, L, C, f, setup, typeA, Q)
 % 
 % solves system of linear equations of the form
 %
@@ -13,37 +13,29 @@ function [x, relres, resminres] = matrixSolve(A, L, C, f, iterPar, typeA, typePr
 M = [A, -L'; -L -C];
 
 % check input
-if nargin < 8
+if nargin < 7
 	Q = [];
 end
-if nargin < 7
-	typePrecon = 'ichol';
-end
-if nargin < 6
-	typeA = 'backslash';
-end
-if (nargin < 5) | (isempty(iterPar) == 1)
-	tol = 1e-11;
-	maxIt = floor(nrv/10);
-else
-	tol = iterPar.Ltol;
-	maxIt = iterPar.LmaxIt;
-end
+
 
 if strcmp(typeA, 'stokes')
-	if strcmp(typeA, 'ichol')
+	if setup.linsolve.stokesPrecon == 2	
 		% build preconditioner
-		setup.type = 'ict'; 
-		setup.droptol = 1e-4;
+		icholsetup.type = 'ict'; 
+		icholsetup.droptol = 1e-4;
 
-		P1 = ichol(A, setup);
+		P1 = ichol(A, icholsetup);
 		P2 = sqrt(spdiags(diag(Q),0,nrp,nrp));
-		P = [P1 sparse(nrv, nrp); sparse(nrp, nrv) P2];
-	elseif strcmp(typeA, 'amg')
+		precon = [P1 sparse(nrv, nrp); sparse(nrp, nrv) P2];
 
+	elseif setup.linsolve.stokesPrecon == 1
+		% AMG preconditioner
+		[precon, setup] = createAmgSystem(A, setup); % can be done more efficiently!
+		precon.nrv = nrv;
+		precon.nrp = nrp;
 	end
 
-	[x, ~, relres, ~, resminres] = minres(M, f, tol, maxIt, P, P');
+	[x, ~, relres, ~, resminres] = myMinres(M, f, zeros(size(f)), setup, precon, Q);
 
 elseif strcmp(typeA, 'NS')
 	% nonlinear system, hence nonsymmetric matrix A

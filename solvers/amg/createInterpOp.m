@@ -24,7 +24,7 @@ fNodes = find(measure == 0);
 fNodes = fNodes(:);
 cNodes = [];
 restNodes = setdiff(1:nrVar, fNodes);
-if strcmp(setup.amg.coarseMethod, 'RS')
+if setup.amg.coarseMethod == 1 
 	% classical Ruge-Stuben coarsening (satisfies F-F condition)
 
 	% first pass
@@ -61,7 +61,7 @@ if strcmp(setup.amg.coarseMethod, 'RS')
 	% F nodes share a common C node.
 
 
-elseif strcmp(setup.amg.coarseMethod, 'PMIS')
+elseif setup.amg.coarseMethod == 2
 	% standard PMIS coarsening (does not guarrantee F-F condition)
 
 	measure = measure + rand(1, nrVar);
@@ -124,7 +124,7 @@ weakNeighbours = xor(logical(zeroDiagAh), (coarseInterp | fNodeStrong));
 % 				= sum_{j in C_i} w_{ij} e_j 	if i in fNodes
 % here C_i is defined by coarseInterp(i, :)
 
-if strcmp(setup.amg.interpMethod, 'classical')
+if setup.amg.interpMethod == 1
 	% classical interpolation (requires strong F-F connections to have a common C-point)
 
 	% requires some attention (too much is calculated now, and divided by zero)

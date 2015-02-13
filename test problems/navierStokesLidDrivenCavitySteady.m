@@ -28,6 +28,12 @@ nrNodes = feMesh.problemSize(3)*feMesh.problemSize(4);
 
 % parameters for newton iteration
 [setup] = setupNonLin(setup, 'default');
+announce('',1,0)
+[setup] = setupLinSolve(setup);
+if setup.linsolve.stokesPrecon == 1
+	announce('',1,0)
+	[setup] = setupAMG(setup);
+end
 
 announce(['Problemsize: ', sprintf('%d elements and %d nodes',...
 	[nrElts,nrNodes]),'. Assembling global matrices...'], 1, 0)
@@ -58,7 +64,7 @@ rhsVec = -M(nodeType.freeSol, nodeType.fixedVel)*solVec(nodeType.fixedVel);
 	matrixSolve(M(nodeType.freeVel, nodeType.freeVel),...
 	globalMatrix.L(nodeType.freePressure, nodeType.freeVel),...
 	globalMatrix.stabC(nodeType.freePressure, nodeType.freePressure),...
-	rhsVec, [], 'stokes',...
+	rhsVec, setup, 'stokes',...
 	globalMatrix.Q(nodeType.freePressure, nodeType.freePressure));
 time.stokes = toc;
 
