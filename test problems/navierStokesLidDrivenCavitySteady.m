@@ -5,6 +5,8 @@
 
 cd('../') % go up one level
 addToPath();
+% initialize setup
+setup = [];
 
 lidVel = 1; % velocity of moving lid
 announce(sprintf(['Finite element implementation of the steady Navier Stokes equations',... 
@@ -25,10 +27,7 @@ nrElts = feMesh.problemSize(1)*feMesh.problemSize(2);
 nrNodes = feMesh.problemSize(3)*feMesh.problemSize(4);
 
 % parameters for newton iteration
-% iterPar.NLtol = default('Tolerance for nonlin iteration', 1e-7); 
-% iterPar.NLmaxIt = default('Maximum number of nonlin iterations', 15);
-iterPar.NLtol = 1e-7;
-iterPar.NLmaxIt = 15;
+[setup] = setupNonLin(setup, 'default');
 
 announce(['Problemsize: ', sprintf('%d elements and %d nodes',...
 	[nrElts,nrNodes]),'. Assembling global matrices...'], 1, 0)
@@ -73,7 +72,7 @@ stokesSol = solVec;
 tic;
 % solve nonlinear equation
 solVec = nonLinSolve(feMesh, globalMatrix, localMatrix, solVec, nodeType,...
-	Re, iterPar);
+	Re, setup);
 time.nonlin = toc;
 
 announce(sprintf(['Nonlinear problem solved in %4.2f seconds. '],...

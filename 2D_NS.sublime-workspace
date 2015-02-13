@@ -4,40 +4,152 @@
 		"selected_items":
 		[
 			[
-				"plot",
-				"plotOption"
-			],
-			[
-				"co",
-				"colorPerElt"
-			],
-			[
-				"corner",
-				"cornerIdx"
-			],
-			[
-				"corn",
-				"cornerIdx"
-			],
-			[
-				"cor",
-				"cornerIdx"
-			],
-			[
-				"color",
-				"colorPerElt"
+				"int",
+				"interpOp"
 			],
 			[
 				"inter",
-				"interpMagnitude"
+				"interpOp"
+			],
+			[
+				"amg",
+				"amgSystem"
+			],
+			[
+				"strong",
+				"strongFRest"
+			],
+			[
+				"rest",
+				"restNodes"
+			],
+			[
+				"str",
+				"strongFRest"
+			],
+			[
+				"denom",
+				"denomNum"
+			],
+			[
+				"dire",
+				"directDN"
+			],
+			[
+				"deno",
+				"denomNum"
+			],
+			[
+				"measure",
+				"measureTemp"
+			],
+			[
+				"meas",
+				"measure"
+			],
+			[
+				"fN",
+				"fNodes"
+			],
+			[
+				"fNo",
+				"fNodeLogical"
+			],
+			[
+				"zero",
+				"zeroDiagAh"
+			],
+			[
+				"cNo",
+				"cNodeLogical"
+			],
+			[
+				"fNode",
+				"fNodeStrong"
+			],
+			[
+				"cN",
+				"cNodeLogical"
+			],
+			[
+				"coar",
+				"coarseInterp"
+			],
+			[
+				"re",
+				"restStrength"
+			],
+			[
+				"cre",
+				"crestNodes"
+			],
+			[
+				"res",
+				"restStrength"
+			],
+			[
+				"mea",
+				"measureTemp"
+			],
+			[
+				"aux",
+				"auxStrength"
+			],
+			[
+				"se",
+				"setupType"
+			],
+			[
+				"set",
+				"setup"
+			],
+			[
+				"iter",
+				"iterPar"
+			],
+			[
+				"free",
+				"freePressure"
+			],
+			[
+				"fee",
+				"freeVel"
+			],
+			[
+				"fix",
+				"fixedPressure"
+			],
+			[
+				"node",
+				"nodeType"
+			],
+			[
+				"sol",
+				"solVec"
+			],
+			[
+				"globa",
+				"globalMatrix"
+			],
+			[
+				"basis",
+				"basisOrder"
+			],
+			[
+				"bassi",
+				"basisType"
+			],
+			[
+				"func",
+				"funcName"
+			],
+			[
+				"out",
+				"outputType"
 			],
 			[
 				"nr",
-				"nrPoints"
-			],
-			[
-				"grid",
-				"gridX"
+				"nrNodes"
 			],
 			[
 				"bd",
@@ -64,15 +176,7 @@
 				"minidrs"
 			],
 			[
-				"res",
-				"resminres"
-			],
-			[
 				"fre",
-				"freePressure"
-			],
-			[
-				"free",
 				"freePressure"
 			],
 			[
@@ -82,10 +186,6 @@
 			[
 				"P",
 				"Parray"
-			],
-			[
-				"node",
-				"nodeFuncT"
 			],
 			[
 				"nrP",
@@ -160,10 +260,6 @@
 				"mass1D"
 			],
 			[
-				"bassi",
-				"basisStr"
-			],
-			[
 				"so",
 				"solVec"
 			],
@@ -228,10 +324,6 @@
 				"inputSize"
 			],
 			[
-				"out",
-				"output"
-			],
-			[
 				"lid",
 				"lidVel"
 			],
@@ -254,10 +346,6 @@
 			[
 				"in",
 				"inputText"
-			],
-			[
-				"basis",
-				"basisOrder"
 			],
 			[
 				"fpr",
@@ -296,10 +384,6 @@
 				"fixedSol"
 			],
 			[
-				"fix",
-				"fixedSol"
-			],
-			[
 				"Af",
 				"Afree"
 			],
@@ -320,44 +404,56 @@
 	"buffers":
 	[
 		{
-			"file": "test problems/navierStokesLidDrivenCavitySteady.m",
+			"file": "solvers/amg/createInterpOp.m",
 			"settings":
 			{
-				"buffer_size": 3179,
-				"line_ending": "Windows"
+				"buffer_size": 5379,
+				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "plotting tools/plotMesh.m",
+			"file": "solvers/amg/amgVCycle.m",
 			"settings":
 			{
-				"buffer_size": 758,
-				"line_ending": "Windows"
+				"buffer_size": 905,
+				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "plotting tools/plotVel.m",
+			"file": "solvers/amg/amgSmoother.m",
 			"settings":
 			{
-				"buffer_size": 1375,
-				"line_ending": "Windows"
+				"buffer_size": 220,
+				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "test problems/cavityCenterPlot.m",
+			"file": "solvers/amg/createAmgSystem.m",
 			"settings":
 			{
-				"buffer_size": 1215,
-				"line_ending": "Windows"
+				"buffer_size": 776,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "solvers/amg/amgTest.m",
+			"settings":
+			{
+				"buffer_size": 374,
+				"line_ending": "Unix"
 			}
 		}
 	],
 	"build_system": "Packages/User/Matlab.sublime-build",
 	"command_palette":
 	{
-		"height": 400.0,
+		"height": 276.0,
 		"selected_items":
 		[
+			[
+				"thmr",
+				"Themr: List themes"
+			],
 			[
 				"plot",
 				"Build: With plot"
@@ -396,10 +492,6 @@
 			],
 			[
 				"thrm",
-				"Themr: List themes"
-			],
-			[
-				"thmr",
 				"Themr: List themes"
 			],
 			[
@@ -667,7 +759,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 424.0
+		"width": 467.0
 	},
 	"console":
 	{
@@ -689,35 +781,44 @@
 	},
 	"expanded_folders":
 	[
-		"/E/Dropbox/University/My_solvers/2dNS",
-		"/E/Dropbox/University/My_solvers/2dNS/matrix assembly",
-		"/E/Dropbox/University/My_solvers/2dNS/plotting tools",
-		"/E/Dropbox/University/My_solvers/2dNS/problem definition",
-		"/E/Dropbox/University/My_solvers/2dNS/solvers",
-		"/E/Dropbox/University/My_solvers/2dNS/test problems",
-		"/E/Dropbox/University/My_solvers/2dNS/user input",
-		"/E/Dropbox/University/My_solvers/2dNS/utils"
+		"/home/ronald/Dropbox/University/My_solvers/2dNS",
+		"/home/ronald/Dropbox/University/My_solvers/2dNS/solvers",
+		"/home/ronald/Dropbox/University/My_solvers/2dNS/solvers/amg"
 	],
 	"file_history":
 	[
-		"/E/Dropbox/University/My_solvers/2dNS/problem definition/createRectBasisCR.m",
-		"/E/Dropbox/University/My_solvers/2dNS/problem definition/createRectMesh.m",
-		"/E/Dropbox/University/My_solvers/2dNS/plotting tools/plotSol.m",
-		"/E/Dropbox/University/My_solvers/2dNS/solvers/nonLinSolve.m",
-		"/E/Dropbox/University/My_solvers/2dNS/plotting tools/plotMesh.m",
-		"/E/Dropbox/University/My_solvers/2dNS/problem definition/applyBdyCond.m",
-		"/E/Dropbox/University/My_solvers/2dNS/user input/enterBdyCond.m",
-		"/E/Dropbox/University/My_solvers/2dNS/user input/createBasis.m",
-		"/E/Dropbox/University/My_solvers/2dNS/problem definition/createStabC.m",
+		"/home/ronald/.cache/.fr-8mB66E/setup_AMG.m",
+		"/home/ronald/.cache/.fr-8OOVnA/setup_AMG.m",
+		"/home/ronald/.cache/.fr-7IER4T/restrict.m",
+		"/home/ronald/.cache/.fr-wRMLhS/strenght_matrix.m",
+		"/home/ronald/Dropbox/University/My_solvers/2dNS/solvers/matrixSolve.m",
+		"/home/ronald/Dropbox/University/My_solvers/2dNS/solvers/nonLinSolve.m",
+		"/home/ronald/Dropbox/University/My_solvers/2dNS/user input/setupNonLin.m",
+		"/home/ronald/Dropbox/University/My_solvers/2dNS/test problems/navierStokesLidDrivenCavitySteady.m",
+		"/home/ronald/Dropbox/University/My_solvers/2dNS/test problems/solveAxbTest.m",
+		"/home/s1895044/Dropbox/University/My_solvers/2dNS/problem definition/createRectBasisCR.m",
+		"/home/s1895044/Dropbox/University/My_solvers/2dNS/user input/createBasis.m",
+		"/home/s1895044/Dropbox/University/My_solvers/2dNS/user input/createMesh.m",
+		"/home/s1895044/Dropbox/University/My_solvers/2dNS/test problems/cavityLidDirichlet.m",
+		"/home/s1895044/Dropbox/University/My_solvers/2dNS/utils/default.m",
+		"/home/s1895044/Dropbox/University/My_solvers/2dNS/user input/enterBdyCond.m",
+		"/home/s1895044/Dropbox/University/My_solvers/2dNS/problem definition/applyBdyCond.m",
+		"/home/s1895044/Dropbox/University/My_solvers/2dNS/solvers/nonLinSolve.m",
+		"/home/s1895044/Dropbox/University/My_solvers/2dNS/problem definition/createStabC.m",
 		"/E/lamg/lamg-2.2.1/lin-solve/Solvers.m",
 		"/E/lamg/lamg-2.2.1/make.m",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/createRectMesh.m",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/createRectBasisCR.m",
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/createStabC.m",
 		"/E/Dropbox/University/My_solvers/2dNS/test problems/solveAxbTest.m",
 		"/E/Dropbox/University/My_solvers/2dNS/user input/createMesh.m",
+		"/E/Dropbox/University/My_solvers/2dNS/user input/createBasis.m",
 		"/E/Dropbox/University/My_solvers/2dNS/user input/createMesh",
 		"/E/Dropbox/University/My_solvers/2dNS/problem definition/createBasis.m",
 		"/E/Dropbox/University/My_solvers/2dNS/addToPath.m",
 		"/E/Dropbox/University/My_solvers/2dNS/unused (old) files/createBasisQ1P0.m",
 		"/E/Dropbox/University/My_solvers/2dNS/solvers/matrixSolve.m",
+		"/E/Dropbox/University/My_solvers/2dNS/solvers/nonLinSolve.m",
 		"/E/Dropbox/University/My_solvers/2dNS/solveAxbTest.m",
 		"/E/Dropbox/University/My_solvers/2dNS/plotting tools/cavityCenterPlot.m",
 		"/C/Users/Ronald R/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
@@ -761,6 +862,7 @@
 		"/E/Dropbox/University/My_solvers/2dNS/matrix assembly/diffusionAssembly.m",
 		"/E/Dropbox/University/My_solvers/2dNS/matrix assembly/pmassAssebly",
 		"/E/Dropbox/University/My_solvers/2dNS/unused (old) files/massAssemblyStandard.m",
+		"/E/Dropbox/University/My_solvers/2dNS/plotting tools/plotMesh.m",
 		"/E/Dropbox/University/My_solvers/2dNS/matrix assembly/laplaceAssembly.m",
 		"/E/Dropbox/University/My_solvers/2dNS/problem definition/createRectMeshOld.m",
 		"/E/Dropbox/University/My_solvers/2dNS/problem definition/createBasisQ1P0.m",
@@ -779,6 +881,7 @@
 		"/E/ifiss3.3/ifiss3.3/stokes_flow/box_stokes.m",
 		"/E/ifiss3.3/ifiss3.3/stokes_flow/xsolve_stokes.m",
 		"/E/ifiss3.3/ifiss3.3/default.m",
+		"/E/Dropbox/University/My_solvers/2dNS/plotting tools/plotSol.m",
 		"/E/ifiss3.3/ifiss3.3/solvers/idrs_r.m",
 		"/E/ifiss3.3/ifiss3.3/graphs/square_flowmovie.m",
 		"/E/ifiss3.3/ifiss3.3/grids/square_domain.m",
@@ -811,27 +914,11 @@
 		"/E/ifiss3.3/ifiss3.3/graphs/solplot.m",
 		"/E/Dropbox/University/My_solvers/2dNS/plotting tools/cavityCenterPlot.m/",
 		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package/meshfaces.m",
-		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package/mesh2d_to_xml.m",
-		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package/smoothmesh.m",
-		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package/displayMesh.m",
-		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package/mydelaunayn.m",
-		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package/refine.m",
-		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package/mesh2d.m",
-		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package/triarea.m",
-		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package/findedge.m",
-		"/E/Program Files/MATLAB/R2013a/bin/ZgotoLast",
-		"/E/Dropbox/University/My_solvers/2dNS/solvers/nonLinSolveOld.m",
-		"/E/Dropbox/University/My_solvers/2dNS/utils/printTable.m",
-		"/E/Dropbox/University/My_solvers/2dNS/utils/printTableSep.m",
-		"/E/Program Files/MATLAB/R2013a/bin/gotoUni.m",
-		"/E/Dropbox/University/My_solvers/2dNS/utils/iterAnnounce.m",
-		"/E/ifiss3.3/ifiss3.3/navier_flow/it_nstokes.m",
-		"/E/ifiss3.3/ifiss3.3/navier_flow/it_solve_navier.m",
-		"/E/ifiss3.3/ifiss3.3/navier_flow/fpsetup_q2p1.m"
+		"/E/Dropbox/University/My_solvers/2dNS/problem definition/triangulate package/mesh2d_to_xml.m"
 	],
 	"find":
 	{
-		"height": 38.0
+		"height": 40.0
 	},
 	"find_in_files":
 	{
@@ -846,6 +933,29 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"b",
+			"j",
+			"directNumer",
+			"c",
+			"theta",
+			"cNodeLogical",
+			"cNodeTrue",
+			"zeroDiagAh",
+			"crestNodes",
+			"alpha",
+			"typesNodes",
+			"matrixSolve",
+			"maxIt",
+			"b",
+			"A",
+			",",
+			"(",
+			"basisOrder",
+			"'dirichlet'",
+			"1",
+			"free",
+			"1",
+			"class",
 			"feMesh.stabC",
 			"stabC",
 			"stabc",
@@ -950,30 +1060,7 @@
 			"te",
 			"Te",
 			"te",
-			"Te",
-			"te",
-			"Te",
-			"te",
-			"Te",
-			"te",
-			"Te",
-			"te",
-			"Te",
-			"te",
-			"Te",
-			"te",
-			"Te",
-			"te",
-			"Te",
-			"te",
-			"Te",
-			"te",
-			"Te",
-			"te",
-			"Te",
-			"te",
-			"8",
-			"line"
+			"Te"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1004,27 +1091,31 @@
 			[
 				{
 					"buffer": 0,
-					"file": "test problems/navierStokesLidDrivenCavitySteady.m",
+					"file": "solvers/amg/createInterpOp.m",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3179,
+						"buffer_size": 5379,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3166,
-								3166
+								3507,
+								3507
 							]
 						],
 						"settings":
 						{
+							"rulers":
+							[
+								80
+							],
 							"syntax": "Packages/Matlab/Matlab.tmLanguage"
 						},
-						"translation.x": 0.0,
-						"translation.y": 1260.0,
+						"translation.x": -0.0,
+						"translation.y": 2508.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1032,48 +1123,75 @@
 				},
 				{
 					"buffer": 1,
-					"file": "plotting tools/plotMesh.m",
+					"file": "solvers/amg/amgVCycle.m",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 758,
+						"buffer_size": 905,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								63,
-								63
+								12,
+								12
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Matlab/Matlab.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/Matlab/Matlab.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "plotting tools/plotVel.m",
+					"file": "solvers/amg/amgSmoother.m",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1375,
+						"buffer_size": 220,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								937,
-								937
+								40,
+								40
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Matlab/Matlab.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "solvers/amg/createAmgSystem.m",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 776,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								579,
+								579
 							]
 						],
 						"settings":
@@ -1088,31 +1206,32 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "test problems/cavityCenterPlot.m",
+					"buffer": 4,
+					"file": "solvers/amg/amgTest.m",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1215,
+						"buffer_size": 374,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1037,
-								1037
+								370,
+								370
 							]
 						],
 						"settings":
 						{
+							"auto_name": "",
 							"syntax": "Packages/Matlab/Matlab.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]

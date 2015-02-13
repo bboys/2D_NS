@@ -1,9 +1,9 @@
 function [solVec] = nonLinSolve(feMesh, globalMatrix, localMatrix, solVec ,...
-	typesNodes, Re, iterPar)
+	typesNodes, Re, setup)
 % hybrid method using both picard and newton (alternating)
 
-tol = iterPar.NLtol;
-maxIt = iterPar.NLmaxIt;
+tol = setup.nonlin.tol;
+maxIt = setup.nonlin.maxIt;
 
 nrNodes = feMesh.problemSize(3)*feMesh.problemSize(4);
 nrElts = feMesh.problemSize(1)*feMesh.problemSize(2);
