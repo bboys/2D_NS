@@ -5,6 +5,9 @@ function [solVec] = nonLinSolve(feMesh, globalMatrix, localMatrix, solVec ,...
 tol = setup.nonlin.tol;
 maxIt = setup.nonlin.maxIt;
 
+setup.linsolve.solver = 0; % backslash (option is changed only inside this function)
+% setup.linsolve.precon = 1; % amg
+
 nrNodes = feMesh.problemSize(3)*feMesh.problemSize(4);
 nrElts = feMesh.problemSize(1)*feMesh.problemSize(2);
 nrPBasisF = size(localMatrix.pdivv.x,1);
@@ -88,12 +91,13 @@ while iter <= maxIt
 
 	% while statement is useless .. but this is easier
 	if iter <= maxIt
+		
 		% solve the updates
 		deltaSol = matrixSolve(velMatrix(freeVel, freeVel),...
 			globalMatrix.L(freePressure, freeVel),... 
 			globalMatrix.stabC(freePressure, freePressure),...
-			rhsVec(freeSol), [], 'NS',...
-			globalMatrix.Q(freePressure, freePressure));
+			rhsVec(freeSol), setup,...
+			globalMatrix.Q(freePressure, freePressure),2);
 
 		% update solution
 		solVec(freeSol) = solVec(freeSol) + deltaSol;

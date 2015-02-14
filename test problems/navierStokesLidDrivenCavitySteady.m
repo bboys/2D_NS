@@ -14,29 +14,33 @@ announce(sprintf(['Finite element implementation of the steady Navier Stokes equ
 	' Please enter parameters.'], lidVel), 1, 1)
 
 % create local matrices
-localMatrix = createBasis();
+localMatrix = createBasis(2);
 nrPBasisF = size(localMatrix.pdivv.x,1);
 
 % create mesh 
-feMesh = createMesh(localMatrix.basisOrder);
+feMesh = createMesh(localMatrix.basisOrder, 16, 16, 2);
 globalMatrix.stabC = createStabC(feMesh, localMatrix);
 
-Re = default('Reynolds number', 1000); % reynolds number
+Re = 500; % default('Reynolds number', 500); % reynolds number
 
 nrElts = feMesh.problemSize(1)*feMesh.problemSize(2);
 nrNodes = feMesh.problemSize(3)*feMesh.problemSize(4);
 
-% parameters for newton iteration
-[setup] = setupNonLin(setup, 'default');
-announce('',1,0)
+announce(['Problemsize: ', sprintf('%d elements and %d nodes',...
+	[nrElts,nrNodes]),'. Assembling global matrices...'], 0, 1)
+
+% parameters
 [setup] = setupLinSolve(setup);
-if setup.linsolve.stokesPrecon == 1
+announce('',1,0)
+
+[setup] = setupNonLin(setup);
+
+if setup.linsolve.precon == 1 | setup.nonlin.precon == 1
 	announce('',1,0)
 	[setup] = setupAMG(setup);
 end
 
-announce(['Problemsize: ', sprintf('%d elements and %d nodes',...
-	[nrElts,nrNodes]),'. Assembling global matrices...'], 1, 0)
+
 
 tic;
 % assemble matrices
@@ -64,8 +68,8 @@ rhsVec = -M(nodeType.freeSol, nodeType.fixedVel)*solVec(nodeType.fixedVel);
 	matrixSolve(M(nodeType.freeVel, nodeType.freeVel),...
 	globalMatrix.L(nodeType.freePressure, nodeType.freeVel),...
 	globalMatrix.stabC(nodeType.freePressure, nodeType.freePressure),...
-	rhsVec, setup, 'stokes',...
-	globalMatrix.Q(nodeType.freePressure, nodeType.freePressure));
+	rhsVec, setup,...
+	globalMatrix.Q(nodeType.freePressure, nodeType.freePressure), 1);
 time.stokes = toc;
 
 announce(sprintf(['Corresponding Stokes problem solved in %4.2f seconds,',...

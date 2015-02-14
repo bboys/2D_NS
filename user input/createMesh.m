@@ -7,7 +7,7 @@ if nargin < 3
 		sizeQuery = 'Number of elements in each direction';
 	end
 	% nr of elements/patches in each direction (for Q1P0 defines the 2x2 patches)
-	nX = default(sizeQuery, 2^5);
+	nX = default(sizeQuery, 2^4);
 	nX = ceil(nX/2)*2; % make sure nX is even for nonuniform mesh
 	nY = nX; 
 end

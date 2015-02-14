@@ -1,4 +1,4 @@
-function [x, relres, resminres] = matrixSolve(A, L, C, f, setup, typeA, Q)
+function [x, relres, resvec, precon] = matrixSolve(A, L, C, f, setup, Q, typeSolve)
 % 
 % solves system of linear equations of the form
 %
@@ -12,14 +12,28 @@ function [x, relres, resminres] = matrixSolve(A, L, C, f, setup, typeA, Q)
 [nrp, nrv] = size(L);
 M = [A, -L'; -L -C];
 
-% check input
-if nargin < 7
-	Q = [];
-end
+if typeSolve == 2 % non symmetric system coming from nonlinear NS eqns
 
+	if setup.nonlin.precon == 1 % amg
+		% AMG preconditioner
+		[precon, setup] = createAmgSystem(A, setup); % can be done more efficiently!
+		precon.nrv = nrv;
+		precon.nrp = nrp;
+	end
 
-if strcmp(typeA, 'stokes')
-	if setup.linsolve.stokesPrecon == 2	
+	if setup.nonlin.solver == 1 
+		% backslash
+		x = M\f;
+	elseif setup.nonlin.solver == 2 
+		% gmres
+		[x, resvec] = gmresPrecon(M, f, zeros(size(f)), setup, precon, Q,typeSolve);
+		relres = 0;
+		relres = norm(f - M*x)/norm(f);
+	end
+
+elseif typeSolve == 1
+
+	if setup.linsolve.precon == 2 
 		% build preconditioner
 		icholsetup.type = 'ict'; 
 		icholsetup.droptol = 1e-4;
@@ -27,42 +41,29 @@ if strcmp(typeA, 'stokes')
 		P1 = ichol(A, icholsetup);
 		P2 = sqrt(spdiags(diag(Q),0,nrp,nrp));
 		precon = [P1 sparse(nrv, nrp); sparse(nrp, nrv) P2];
-
-	elseif setup.linsolve.stokesPrecon == 1
+	elseif setup.linsolve.precon == 1
 		% AMG preconditioner
 		[precon, setup] = createAmgSystem(A, setup); % can be done more efficiently!
 		precon.nrv = nrv;
 		precon.nrp = nrp;
+	else
+		precon = [];
 	end
 
-	[x, ~, relres, ~, resminres] = myMinres(M, f, zeros(size(f)), setup, precon, Q);
+	
 
-elseif strcmp(typeA, 'NS')
-	% nonlinear system, hence nonsymmetric matrix A
-	x = M\f;
-	relres = 0;
-	resminres = 0;
-
-
-else  % strcmp(typeA, 'backslash')
-
-	% nonlinear system, hence nonsymmetric matrix A
-	x = M\f;
-	relres = 0;
-	resminres = 0;
-end
+	if setup.linsolve.solver == 1
+		% minres
+		 [x, ~, relres, ~, resvec] = minresPrecon(M, f, zeros(size(f)), setup,...
+		  precon, Q, typeSolve);
+	elseif setup.linsolve.solver == 2
+		% gmres
+		[x, resvec] = gmresPrecon(M, f, zeros(size(f)), setup, precon, Q,typeSolve);
+		relres = 0;
+		relres = norm(f - M*x)/norm(f);
+	end
 end
 
-% using ILUPack
 
-% options = AMGinit(M);
+end
 
-% tic
-% [PREC,options] = AMGfactor(M, options);
-% toc
-
-% tic
-% [x, options] = AMGsolver(M, PREC, options, f);
-% toc
-
-% PREC=AMGdelete(PREC);

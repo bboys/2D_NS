@@ -9,6 +9,8 @@ Todo
 - time stepping
 - inexact newton solver
 - quadrature
+- amg
+-- residual check toevoegen (zonder extra MV)
 
 Problemen
 - AMG interpolatie operator verbeteren
@@ -17,7 +19,7 @@ Problemen
 
 
 Verbeteringen
--
+- vervang setdiff in createInterpOp met logical indexing
 - nonlin1 is voor 2e term, nonlin2 voor 1e term? omdraaien?
 - newton: als residu groter wordt, oplossing niet updaten als newton gebruikt wordt
 - other nodal points

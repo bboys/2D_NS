@@ -1,4 +1,4 @@
-function [x,flag,relres,iter,resvec,resveccg] = minres(A,b,x0,setup,precon,Q)
+function [x,flag,relres,iter,resvec,resveccg] = minresPrecon(A,b,x0,setup,precon,Q,typeSolve)
 %MINRES   Minimum Residual Method.
 %   X = MINRES(A,B) attempts to find a minimum norm residual solution X to
 %   the system of linear equations A*X=B. The N-by-N coefficient matrix A
@@ -78,11 +78,19 @@ if (nargin < 2)
     error(message('MATLAB:minres:NotEnoughInputs'));
 end
 
+if typeSolve == 1 % stokes
+    preconType = setup.linsolve.precon;
+
+elseif typeSolve == 2 % NS
+    preconType = setup.nonlin.precon;
+
+end
+maxit = setup.linsolve.maxIt;
+tol = setup.linsolve.tol;
 [ma,n] = size(A);
 
 existM = 1;
-maxit = setup.linsolve.maxIt;
-tol = setup.linsolve.tol;
+
 
 x = x0;
 n2b = norm(b);
@@ -106,7 +114,7 @@ normrmin = normr;                  % Norm of minimum residual
 
 vold = r;
 
-v = preconFunc(vold, setup, precon, Q);
+v = preconFunc(vold, setup, precon, Q,preconType);
 
 beta1 = vold' * v;
 if (beta1 <= 0)
@@ -131,7 +139,7 @@ v = v - (numer/denom) * vv;
 volder = vold;
 vold = v;
 
-v = preconFunc(vold, setup, precon, Q);
+v = preconFunc(vold, setup, precon, Q,preconType);
 
 betaold = beta1;
 beta = vold' * v;
@@ -208,7 +216,7 @@ for ii = 2 : maxit
     volder = vold;
     vold = v;
 
-    v = preconFunc(vold, setup, precon, Q);
+    v = preconFunc(vold, setup, precon, Q,preconType);
 
     betaold = beta;
     beta = vold' * v;

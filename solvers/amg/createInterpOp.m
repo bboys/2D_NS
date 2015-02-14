@@ -55,7 +55,7 @@ if setup.amg.coarseMethod == 1
 	end
 
 	% second pass (enforce F-F condition)
-	connFF = auxStrength(fNodes, fNodes);
+	% connFF = auxStrength(fNodes, fNodes);
 
 	% for each off-diagonal nonzero element, we must check if the corresponding
 	% F nodes share a common C node.
