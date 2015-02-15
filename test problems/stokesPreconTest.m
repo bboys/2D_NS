@@ -4,7 +4,7 @@ warning off
 [ localMatrix, basisOrder, basisType ] = createBasis(2);
 
 % create mesh 
-nX = 2^4;
+nX = 2^5;
 feMesh = createMesh(localMatrix.basisOrder, nX, nX, 2);
 globalMatrix.stabC = createStabC(feMesh, localMatrix);
 

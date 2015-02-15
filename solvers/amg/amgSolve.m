@@ -20,18 +20,23 @@ if nargin < 3
 	u = zeros(size(b));
 end
 
-if nargout > 1
-	relres = zeros(setup.amg.maxIt + 1, 1);
-	normb = norm(b);
-	relres = norm(b - A*u)/normb;
-end
+
+relres = zeros(setup.amg.maxIt, 1);
+normb = norm(b);
+
 
 % main loop
 for iter = 1:setup.amg.maxIt
-	u = amgVCycle(u, b, 1, setup.amg.levels, amgSystem, setup);
-	if nargout > 1
+	[u, res] = amgVCycle(u, b, 1, setup.amg.levels, amgSystem, setup);
+	relres(iter) = norm(res)/normb;
+
+	% check convergence
+	if (relres(iter) < setup.amg.tol)
 		relres(iter + 1) = norm(b - A*u)/normb;
+		relres(iter + 2:end) = [];
+		break
 	end
 end
+
 
 end

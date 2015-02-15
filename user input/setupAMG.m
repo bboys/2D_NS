@@ -5,6 +5,7 @@ end
 if nargin < 2
 	setup.amg.levels = default('Number of levels for V-cycle AMG', 4);
 	setup.amg.maxIt = default('Maximum number of V-cycles', 2);
+	setup.amg.tol = default('Relative tolerance', 1e-8);
 
 	setup.amg.nrPreSmooth = default('Number of pre-smoothing steps', 1);
 	setup.amg.nrPostSmooth = default('Number of post-smoothing steps', 1);
@@ -16,6 +17,7 @@ if nargin < 2
 elseif strcmp(setupType, 'default')
 	setup.amg.levels = 4;
 	setup.amg.maxIt = 15;
+	setup.amg.tol = 1e-8;
 
 	setup.amg.nrPreSmooth = 1;
 	setup.amg.nrPostSmooth = 1;
@@ -27,7 +29,8 @@ elseif strcmp(setupType, 'default')
 elseif strcmp(setupType, 'defaultPrecon')
 	setup.amg.levels = 4;
 	setup.amg.maxIt = 2;
-
+	setup.amg.tol = 1e-8;
+	
 	setup.amg.nrPreSmooth = 1;
 	setup.amg.nrPostSmooth = 1;
 	setup.amg.smoothType = 1;

@@ -1,18 +1,15 @@
-function u = amgSmoother(u, A, f, setup)
-if setup.amg.smoothType == 1
+function [u, amgSystem] = amgSmoother(u, level, f, setup, amgSystem)
+if setup.amg.smoothType == 1 % GS
 
-	% % one step of Gauss-Seidel
-	% nrVar = size(A,1);
-	% for row = 1:nrVar
-	% 	u(row) = (f(row) - A(row,row + 1:end)*u(row + 1:end) -...
-	% 		A(row,1:row-1)*u(1:row-1 ))/A(row,row);
-	% end
+	if ~isfield(amgSystem.level(level), 'L') | isempty(amgSystem.level(level).L)
+		% make sure this is done only once
+		amgSystem.level(level).L = tril(amgSystem.level(level).matrix);
+		amgSystem.level(level).U = triu(amgSystem.level(level).matrix,1);
+	end
 
-	% vectorized
-	L = tril(A);
-	U = triu(A,1);
+	u = amgSystem.level(level).L\(f - amgSystem.level(level).U*u);
 
-	u = L\(f - U*u);
 end
+
 
 end
