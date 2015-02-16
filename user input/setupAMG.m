@@ -11,9 +11,9 @@ if nargin < 2
 	setup.amg.nrPostSmooth = default('Number of post-smoothing steps', 1);
 	setup.amg.smoothType = default({'Type of smoother', 'GS', 'SOR'},1);
 
-	setup.amg.coarseMethod = default({'Type of coarsener', 'Ruge-Stuben', 'PMIS', 'CJLP'},1);
-	setup.amg.interpMethod = default({'Type of interpolation', 'Classical', 'F-F'},1);
-	setup.amg.theta = default('Connectivity threshold, theta', 0.8);
+	setup.amg.coarseMethod = default({'Type of coarsener', 'Ruge-Stuben', 'PMIS', 'CJLP'},2);
+	setup.amg.interpMethod = default({'Type of interpolation', 'Classical', 'F-F'},2);
+	setup.amg.theta = default('Connectivity threshold, theta', 0.7);
 elseif strcmp(setupType, 'default')
 	setup.amg.levels = 4;
 	setup.amg.maxIt = 15;
@@ -25,7 +25,7 @@ elseif strcmp(setupType, 'default')
 
 	setup.amg.coarseMethod = 1;
 	setup.amg.interpMethod = 1;
-	setup.amg.theta = 0.8;
+	setup.amg.theta = 0.7;
 elseif strcmp(setupType, 'defaultPrecon')
 	setup.amg.levels = 4;
 	setup.amg.maxIt = 2;
@@ -35,8 +35,8 @@ elseif strcmp(setupType, 'defaultPrecon')
 	setup.amg.nrPostSmooth = 1;
 	setup.amg.smoothType = 1;
 
-	setup.amg.coarseMethod = 1;
-	setup.amg.interpMethod = 1;
-	setup.amg.theta = 0.8;
+	setup.amg.coarseMethod = 2;
+	setup.amg.interpMethod = 2;
+	setup.amg.theta = 0.7;
 end
 end

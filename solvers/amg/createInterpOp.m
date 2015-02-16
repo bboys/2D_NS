@@ -177,6 +177,10 @@ if setup.amg.interpMethod == 1 | setup.amg.interpMethod == 2
 	temp1 = sparse(nrVar, nrVar);
 	temp1(fNodeStrong) = Ah(fNodeStrong)./denomNum(fNodeStrong);
 
+	% ttt = temp1(fNodes, :); % useful values are never nan!
+	% isnan(ttt)
+
+	% fix
 	temp1(isnan(temp1)) = 0;
 	temp1(isinf(temp1)) = 0;
 

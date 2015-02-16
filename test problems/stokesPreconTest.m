@@ -4,14 +4,14 @@ warning off
 [ localMatrix, basisOrder, basisType ] = createBasis(2);
 
 % create mesh 
-nX = 2^5;
+nX = 2^4;
 feMesh = createMesh(localMatrix.basisOrder, nX, nX, 2);
 globalMatrix.stabC = createStabC(feMesh, localMatrix);
 
 % parameters for linsolve
-setup.linsolve.solver = 1;
+setup.linsolve.solver = 1; 
 setup.linsolve.precon = 1; % 1 = amg, 2 = ichol
-setup.linsolve.tol  = 1e-8;
+setup.linsolve.tol  = 1e-9;
 setup.linsolve.maxIt = 200;
 
 % parameters for amg
@@ -22,9 +22,10 @@ setup.amg.nrPreSmooth = 1;
 setup.amg.nrPostSmooth = 1;
 setup.amg.smoothType = 1;
 
-setup.amg.coarseMethod = 1;
-setup.amg.interpMethod = 1;
-setup.amg.theta = 0.9;
+setup.amg.coarseMethod = 2;
+setup.amg.interpMethod = 2;
+setup.amg.theta = 0.6;
+setup.amg.tol = 1e-11;
 
 % assemble matrices
 globalMatrix.L = PdivVAssembly( feMesh, localMatrix.pdivv); % "pressure mass" matrix
@@ -44,18 +45,20 @@ feMesh.boundary(2).func = str2func('@(x,y) cavityLidDirichlet(x,y)');
 M = [globalMatrix.D, -globalMatrix.L'; -globalMatrix.L -globalMatrix.stabC];
 rhsVec = -M(nodeType.freeSol, nodeType.fixedVel)*solVec(nodeType.fixedVel);
 
-preconVals = [2 1 2]; % 1 = amg, 2 = ichol
-preconName = {'amg', 'ichol'};
-solverVals = [1 2 2]; % 1 = minres, 2 = gmres
+preconVals = [2 2 2 2]; % 1 = amg, 2 = ichol
+preconName = {'amg', 'ichol', 'none'};
+solverVals = [2 2 2 2]; % 1 = minres, 2 = gmres
+gmresRestarts = [16 20 24 28];
 solverName = {'minres','gmres'};
 nrTests = length(preconVals);
 timeArray = zeros(nrTests,1);
-colors = {'b', 'r', 'k', 'g'};
+colors = {'b', 'r', 'k', 'g', 'c'};
 legendStr = {};
 
 for test = 1:nrTests
 	setup.linsolve.solver = solverVals(test);
 	setup.linsolve.precon = preconVals(test);
+	setup.linsolve.gmresRestart = gmresRestarts(test);
 	tic
 	[solVec(nodeType.freeSol), relres, resVecs{test}, precon{test}] =...
 		matrixSolve(M(nodeType.freeVel, nodeType.freeVel),...
@@ -83,8 +86,8 @@ figure
 semilogy(resVecs{1}, colors{1})
 hold on
 for test = 2:nrTests
-	semilogy(resVecs{test}, colors{test})
+	semilogy(resVecs{test}/norm(rhsVec), colors{test})
 end
 hold off
 legend(legendStr)
-title(['nX = nY = ', num2str(nX)])
+title(['nX = nY = ', num2str(nX),', relative residual'])

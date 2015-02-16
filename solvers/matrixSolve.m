@@ -19,6 +19,8 @@ if typeSolve == 2 % non symmetric system coming from nonlinear NS eqns
 		[precon, setup] = createAmgSystem(A, setup); % can be done more efficiently!
 		precon.nrv = nrv;
 		precon.nrp = nrp;
+		precon.Q = Q;
+		precon.type = setup.nonlin.precon;
 	end
 
 	if setup.nonlin.solver == 1 
@@ -26,9 +28,8 @@ if typeSolve == 2 % non symmetric system coming from nonlinear NS eqns
 		x = M\f;
 	elseif setup.nonlin.solver == 2 
 		% gmres
-		[x, resvec] = gmresPrecon(M, f, zeros(size(f)), setup, precon, Q,typeSolve);
-		relres = 0;
-		relres = norm(f - M*x)/norm(f);
+		[x, resvec] = gmresPrecon(M, f, zeros(size(f)), setup, precon);
+		relres = resvec(end);
 	end
 
 elseif typeSolve == 1
@@ -40,12 +41,16 @@ elseif typeSolve == 1
 
 		P1 = ichol(A, icholsetup);
 		P2 = sqrt(spdiags(diag(Q),0,nrp,nrp));
-		precon = [P1 sparse(nrv, nrp); sparse(nrp, nrv) P2];
+		precon.P = [P1 sparse(nrv, nrp); sparse(nrp, nrv) P2];
+		precon.Q = Q;
+		precon.type = setup.linsolve.precon;
 	elseif setup.linsolve.precon == 1
 		% AMG preconditioner
 		[precon, setup] = createAmgSystem(A, setup); % can be done more efficiently!
 		precon.nrv = nrv;
 		precon.nrp = nrp;
+		precon.Q = Q;
+		precon.type = setup.linsolve.precon;
 	else
 		precon = [];
 	end
@@ -55,12 +60,12 @@ elseif typeSolve == 1
 	if setup.linsolve.solver == 1
 		% minres
 		 [x, ~, relres, ~, resvec] = minresPrecon(M, f, zeros(size(f)), setup,...
-		  precon, Q, typeSolve);
+		  precon);
 	elseif setup.linsolve.solver == 2
 		% gmres
-		[x, resvec] = gmresPrecon(M, f, zeros(size(f)), setup, precon, Q,typeSolve);
-		relres = 0;
-		relres = norm(f - M*x)/norm(f);
+		[x, resvec] = gmresPrecon(M, f, zeros(size(f)), setup, precon);
+		relres = resvec(end);
+
 	end
 end
 

@@ -7,8 +7,8 @@ b = ones(N^2,1);
 
 [setup] = setupAMG([], 'default');
 setup.amg.maxIt = 30;
-setup.amg.coarseMethod = 2; % RS, PMIS
-setup.amg.interpMethod = 2; % classical, F-F
+setup.amg.coarseMethod = 1; % RS, PMIS
+setup.amg.interpMethod = 1; % classical, F-F
 setup.amg.smoothType = 1;
 setup.amg.levels = 5;
 setup.amg.theta = 0.7;

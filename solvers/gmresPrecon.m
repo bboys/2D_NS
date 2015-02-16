@@ -1,68 +1,83 @@
-function [x,hist,t]=gmresPrecon(A,b,x,setup,precon,Q,typeSolve)
+function [x,hist]=gmresPrecon(A,b,x,setup,precon)
+	maxMV = setup.linsolve.maxIt; % max nr of MVs
+	tol = setup.linsolve.tol;
 
-  if typeSolve == 1 % stokes
-    preconType = setup.linsolve.precon;
+    restart = setup.linsolve.gmresRestart;
+    restart = min(restart, maxMV);
 
-  elseif typeSolve == 2 % NS
-    preconType = setup.nonlin.precon;
+    kmax = ceil(maxMV/restart); % max nr of outer iterations
 
-  end
-  
-  kmax = setup.linsolve.maxIt;
-  tol = setup.linsolve.tol;
- 
-  FOM=strcmp(lower(flag),'fom');
+	FOM= 0;
 
-  t0=clock; 
-  %%%
-  [n,m]=size(b); 
+    stopCrit= 0; % equals one if converged
 
-  r=b-A*preconFunc(x, setup, precon, Q,preconType);
-  rho0=norm(r); rho=rho0; hist=rho;
-  %%% scale tol for relative residual reduction
-  tol=rho*tol;
-  
-  V=zeros(n,kmax); H=zeros(kmax+1,kmax); gamma=zeros(1,kmax);
-  V(:,1)=r/rho; gamma(1,1)=1; nu=1;
-  for k=1:kmax
-     if rho<tol, break, end
-     [V,H]=ArnStep(A,V,H,k,-1, setup, precon, Q,preconType);
-     %%% compute the nul vector of H'
-     gk=(gamma(1,1:k)*H(1:k,k))/H(k+1,k); gamma(1,k+1)=-gk;
-     %%% Compute the residual norm
-     if FOM
-        rho=rho0/abs(gk);
-     else
-        nu=nu+gk'*gk; rho=rho0/sqrt(nu);
-     end
-     hist=[hist,rho];
-  end
-  %%% solve the low dimensional system
-  k=size(H,2); e=zeros(k,1); e(1,1)=1;
-  if FOM
-     y=H(1:k,1:k)\e;
-  else
-     e=[e;0]; y=H(1:k+1,1:k)\e;
-  end
-  %%% compute the approximate solution 
-  x=V(:,1:k)*(rho0*y);
+	%%%
+	[n,m]=size(b); 
+    r=b-A*x; 
+    nrMV = 1;
 
-  x = preconFunc(x, setup, precon, Q,preconType);
 
-  t=etime(clock,t0);
+	%%% scale tol for relative residual reduction
+    rho0=norm(r); rho=rho0; hist=rho;
+	tol=rho*tol;
 
-return
+	V=zeros(n,restart); H=zeros(restart+1,restart); gamma=zeros(1,restart);
 
-function [V,H]=ArnStep(A,V,H,k,kappa, setup, precon, Q,preconType)
+    for outerk = 1:kmax
+    	V(:,1)=r/rho; gamma(1,1)=1; nu=1;
+    	for k=1:restart
+            if rho<tol, stopCrit= 1; break, end % converged
+            [V,H]=ArnStep(A,V,H,k,1, setup, precon);
+            nrMV = nrMV + 1;
+            %%% compute the nul vector of H'
+            gk=(gamma(1,1:k)*H(1:k,k))/H(k+1,k); gamma(1,k+1)=-gk;
+            %%% Compute the residual norm
+            if FOM
+                rho=rho0/abs(gk);
+            else
+                nu=nu+gk'*gk; rho=rho0/sqrt(nu);
+            end
+            hist=[hist,rho];
+            if nrMV >= maxMV, stopCrit= 1; break, end
+    	end % end inner loop
+        %%% solve the low dimensional system
+        k=size(H,2); e=zeros(k,1); e(1,1)=1;
+        if FOM
+         y=H(1:k,1:k)\e;
+        else
+         e=[e;0]; y=H(1:k+1,1:k)\e;
+        end
+
+        %%% compute the approximate solution 
+        t=  V(:,1:k)*(rho0*y);
+        x = x + preconFunc(t, setup, precon);
+        % check convergence in inner loop
+        if stopCrit| nrMV == maxMV - 1
+            break
+        else
+            % restart
+            % r = r - rho0*V(:,1:k)*(H(1:k+1,1:k)*y); % other way of computing b-A*x
+            r=b-A*x;  
+            nrMV = nrMV + 1;
+            rho0 = norm(r); rho=rho0; hist=[hist,rho];
+            % tol=rho*tol;
+        end
+
+    end % end outer loop
+
+
+end
+
+function [V,H]=ArnStep(A,V,H,k,kappa, setup, precon)
 
    if nargin<4, kappa=0.2; end
 
-   w=A*preconFunc(V(:,k), setup, precon, Q,preconType);
+   w=A*preconFunc(V(:,k), setup, precon);
    [v,h]=Orth(V(:,1:k),w,kappa);
    V(:,k+1)=v;
    H(1:k+1,k)=h;
 
-return
+end
 
 function [v,h]=Orth(V,w,kappa)
 %  w=[V,v]*h; with v such that v'*V=0;
@@ -112,4 +127,4 @@ global REPEATED
       h=[h;rho];
       v=v/rho;
    end
-return
+end
