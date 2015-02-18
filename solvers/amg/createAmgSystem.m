@@ -26,6 +26,29 @@ for level = 1:setup.amg.levels
 	amgSystem.level(level + 1).matrix =...
 		amgSystem.level(level).interp'*amgSystem.level(level).matrix*...
 		amgSystem.level(level).interp;
+
+	% precompute smoothing matrices
+	if setup.amg.smoothType == 1 % GS
+		if ~isfield(amgSystem.level(level), 'Ls') | isempty(amgSystem.level(level).Ls)
+			% make sure this is done only once
+			amgSystem.level(level).Ls = tril(amgSystem.level(level).matrix);
+			amgSystem.level(level).U = triu(amgSystem.level(level).matrix,1);
+		end
+	elseif setup.amg.smoothType == 2 % symmetric GS
+		if ~isfield(amgSystem.level(level), 'D') | isempty(amgSystem.level(level).D)
+			% make sure this is done only once
+			n = size(amgSystem.level(level).matrix,1);
+			amgSystem.level(level).D = spdiags(diag(...
+				amgSystem.level(level).matrix), 0, n,n);
+			amgSystem.level(level).U = triu(amgSystem.level(level).matrix,1);
+			amgSystem.level(level).L = tril(amgSystem.level(level).matrix,-1);
+
+			amgSystem.level(level).Us = amgSystem.level(level).U + amgSystem.level(level).D;
+			amgSystem.level(level).Ls = amgSystem.level(level).L + amgSystem.level(level).D;
+		end	
+	end
 end
+
+
 
 end

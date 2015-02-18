@@ -21,11 +21,17 @@ if typeSolve == 2 % non symmetric system coming from nonlinear NS eqns
 		precon.nrp = nrp;
 		precon.Q = Q;
 		precon.type = setup.nonlin.precon;
+	elseif setup.nonlin.precon == 2 % ilu
+
+	else
+		% no preconditioner
+		precon = [];
 	end
 
 	if setup.nonlin.solver == 1 
 		% backslash
 		x = M\f;
+		relres = 0;
 	elseif setup.nonlin.solver == 2 
 		% gmres
 		[x, resvec] = gmresPrecon(M, f, zeros(size(f)), setup, precon);
@@ -34,14 +40,20 @@ if typeSolve == 2 % non symmetric system coming from nonlinear NS eqns
 
 elseif typeSolve == 1
 
-	if setup.linsolve.precon == 2 
+	if setup.linsolve.precon == 2 % ichol
 		% build preconditioner
 		icholsetup.type = 'ict'; 
-		icholsetup.droptol = 1e-4;
+		try
+			icholsetup.droptol = 1e-4;
+			P1 = ichol(A, icholsetup);
+		catch
+			icholsetup.droptol = 1e-6;
+			P1 = ichol(A, icholsetup);
+		end
 
-		P1 = ichol(A, icholsetup);
 		P2 = sqrt(spdiags(diag(Q),0,nrp,nrp));
-		precon.P = [P1 sparse(nrv, nrp); sparse(nrp, nrv) P2];
+		precon.L = [P1 sparse(nrv, nrp); sparse(nrp, nrv) P2];
+		precon.U = precon.L';
 		precon.Q = Q;
 		precon.type = setup.linsolve.precon;
 	elseif setup.linsolve.precon == 1
@@ -55,8 +67,6 @@ elseif typeSolve == 1
 		precon = [];
 	end
 
-	
-
 	if setup.linsolve.solver == 1
 		% minres
 		 [x, ~, relres, ~, resvec] = minresPrecon(M, f, zeros(size(f)), setup,...
@@ -65,7 +75,6 @@ elseif typeSolve == 1
 		% gmres
 		[x, resvec] = gmresPrecon(M, f, zeros(size(f)), setup, precon);
 		relres = resvec(end);
-
 	end
 end
 

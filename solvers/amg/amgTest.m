@@ -1,16 +1,16 @@
 
-% profile on
+profile on
 
-N = 2^5;
+N = 16;
 A = gallery('poisson', N);
 b = ones(N^2,1);
 
 [setup] = setupAMG([], 'default');
 setup.amg.maxIt = 30;
-setup.amg.coarseMethod = 1; % RS, PMIS
-setup.amg.interpMethod = 1; % classical, F-F
-setup.amg.smoothType = 1;
-setup.amg.levels = 5;
+setup.amg.coarseMethod = 2; % RS, PMIS
+setup.amg.interpMethod = 2; % classical, F-F
+setup.amg.smoothType = 1; % GS, symmetric GS
+setup.amg.levels = 7;
 setup.amg.theta = 0.7;
 
 tic
@@ -22,7 +22,7 @@ tic
 [u, relres] = amgSolve(A, b, u, setup, amgSystem);
 fprintf('Solving system done in %d seconds\n',toc)
 
-% profile viewer
+profile viewer
 
 figure
 subplot(1,2,1)

@@ -5,22 +5,27 @@ function [interpOp] = createInterpOp(Ah, setup)
 % setup.amg.interpMethod ... interpolation ...
 % setup.amg.theta is the connectivity threshold
 
-% temporary setup for testing
-% Ah = gallery('poisson', 5);
-% setup.amg.coarseMethod = 'RS';
-% setup.amg.interpMethod = 'classical';
-% setup.amg.theta = 0.6;
+%%%%%%%%%%%%%%%%%%%%% TEMP %%%%%%%%%%%%%%%%%%%%%
+% rng('default')								  %%
+%%%%%%%%%%%%%%%%%%%%% TEMP %%%%%%%%%%%%%%%%%%%%%
 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% rng('default') 	  % temporary % 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % auxiliary strength matrix, u_i strongly depends on u_j (u_j strongly influences u_i)
 nrVar = size(Ah,1);
+
 noDiagAh = Ah + spdiags(Inf*ones(nrVar, 1), 0, nrVar, nrVar);
 
 rowMax = max(-noDiagAh, [], 2);
-auxStrength = bsxfun(@ge, -Ah, setup.amg.theta*rowMax);
+
+
+% auxStrengthOld = bsxfun(@ge, -Ah, setup.amg.theta*rowMax);
+
+logNZ = (Ah~=0);
+tempFind = find(Ah);
+[row, col] = ind2sub([nrVar, nrVar],tempFind);
+temp = (-Ah(logNZ) >= setup.amg.theta*rowMax(row));
+auxStrength = logical(sparse(row,col,temp,nrVar, nrVar));
+
 measure = full(sum(auxStrength)); % for selecting initial fine nodes
 measure = measure(:);
 
@@ -77,9 +82,12 @@ elseif setup.amg.coarseMethod == 2
 	while any(restNodes)
 
 		% select those nodes which have measure larger than all neighbours
-		cRestNodes = all(bsxfun(@gt, measure(restNodes),...
-			strength(restNodes, restNodes)), 2);
-		
+		% cRestNodes = all(bsxfun(@gt, measure(restNodes),...
+		% 	strength(restNodes, restNodes)), 2);
+
+		cRestNodes = max(strength(restNodes, restNodes),[],2);
+		cRestNodes = (measure(restNodes) > cRestNodes);
+
 		% convert indices
 		restNodesN = tempLTN(restNodes);
 		cRestNodes = restNodesN(cRestNodes);
@@ -173,17 +181,26 @@ if setup.amg.interpMethod == 1 | setup.amg.interpMethod == 2
 	% compute numerator: 
 	% numer(i,j) = a_{ij} + sum_{m in D^s_i (a_im a_mj)/denomNum(i,m)} 
 
-	numer = Ah;
-	temp1 = sparse(nrVar, nrVar);
-	temp1(fNodeStrong) = Ah(fNodeStrong)./denomNum(fNodeStrong);
+	
+	% temp1 = sparse(nrVar, nrVar);
+	% temp1(fNodeStrong) = Ah(fNodeStrong)./denomNum(fNodeStrong);
+
+
+	temp = find(fNodeStrong);
+	[row, col] = ind2sub([nrVar, nrVar], temp);
+	temp1 = sparse(row, col, Ah(fNodeStrong)./denomNum(fNodeStrong), nrVar, nrVar);
+
 
 	% ttt = temp1(fNodes, :); % useful values are never nan!
 	% isnan(ttt)
+
+
 
 	% fix
 	temp1(isnan(temp1)) = 0;
 	temp1(isinf(temp1)) = 0;
 
+	numer = Ah;
 	numer = numer + temp1*Ah;
 
 	% numer = Ah;
@@ -201,7 +218,12 @@ if setup.amg.interpMethod == 1 | setup.amg.interpMethod == 2
 
 
 	% resulting weights: interpOp(i,j) = - (numer(i,j)/denom(i))
-	interpOp = - bsxfun(@times, numer(:, cNodes), 1./denom);
+	% interpOp = - bsxfun(@times, numer(:, cNodes), 1./denom);
+
+	numerPart = numer(:, cNodes);
+	linIdx = find(numerPart);
+	[row, col] = ind2sub([nrVar, nrcNodes], linIdx);
+	interpOp = sparse(row, col, -numerPart(linIdx)./denom(row), nrVar, nrcNodes);
 
 	% coarse node is interpolated by itself
 	interpOp(cNodes, :) =  speye(nrcNodes);

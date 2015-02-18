@@ -1,13 +1,15 @@
-function [u, amgSystem] = amgSmoother(u, level, f, setup, amgSystem)
+function [u, amgSystem] = amgSmoother(u, level, f, setup, amgSystem, repeat)
 if setup.amg.smoothType == 1 % GS
 
-	if ~isfield(amgSystem.level(level), 'L') | isempty(amgSystem.level(level).L)
-		% make sure this is done only once
-		amgSystem.level(level).L = tril(amgSystem.level(level).matrix);
-		amgSystem.level(level).U = triu(amgSystem.level(level).matrix,1);
+	for rep = 1:repeat
+		u = amgSystem.level(level).Ls\(f - amgSystem.level(level).U*u);
 	end
+elseif setup.amg.smoothType == 2 % symmetric GS
 
-	u = amgSystem.level(level).L\(f - amgSystem.level(level).U*u);
+	for rep = 1:repeat
+		u = amgSystem.level(level).Ls\(f - amgSystem.level(level).U*u);
+		u = amgSystem.level(level).Us\(f - amgSystem.level(level).L*u);
+	end
 
 end
 

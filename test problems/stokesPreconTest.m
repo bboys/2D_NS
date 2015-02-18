@@ -1,30 +1,32 @@
 warning off
 
+profile on
+
 % create local matrices
 [ localMatrix, basisOrder, basisType ] = createBasis(2);
 
 % create mesh 
-nX = 2^4;
+nX = 2^7;
 feMesh = createMesh(localMatrix.basisOrder, nX, nX, 2);
 globalMatrix.stabC = createStabC(feMesh, localMatrix);
 
 % parameters for linsolve
-setup.linsolve.solver = 1; 
+setup.linsolve.solver = 3; 
 setup.linsolve.precon = 1; % 1 = amg, 2 = ichol
-setup.linsolve.tol  = 1e-9;
-setup.linsolve.maxIt = 200;
+setup.linsolve.tol  = 1e-7;
+setup.linsolve.maxIt = 300;
 
 % parameters for amg
 setup.amg.levels = 5;
-setup.amg.maxIt = 2;
+setup.amg.maxIt = 1; % nr of precon steps by amg
 
 setup.amg.nrPreSmooth = 1;
 setup.amg.nrPostSmooth = 1;
-setup.amg.smoothType = 1;
+setup.amg.smoothType = 2; % GS, symmetric GS
 
-setup.amg.coarseMethod = 2;
-setup.amg.interpMethod = 2;
-setup.amg.theta = 0.6;
+setup.amg.coarseMethod = 2; % RS, PMIS
+setup.amg.interpMethod = 2;	% classical, F-F
+setup.amg.theta = 0.8;
 setup.amg.tol = 1e-11;
 
 % assemble matrices
@@ -45,10 +47,10 @@ feMesh.boundary(2).func = str2func('@(x,y) cavityLidDirichlet(x,y)');
 M = [globalMatrix.D, -globalMatrix.L'; -globalMatrix.L -globalMatrix.stabC];
 rhsVec = -M(nodeType.freeSol, nodeType.fixedVel)*solVec(nodeType.fixedVel);
 
-preconVals = [2 2 2 2]; % 1 = amg, 2 = ichol
+preconVals = [1 2]; % 1 = amg, 2 = ichol
 preconName = {'amg', 'ichol', 'none'};
-solverVals = [2 2 2 2]; % 1 = minres, 2 = gmres
-gmresRestarts = [16 20 24 28];
+solverVals = [1 1]; % 1 = minres, 2 = gmres
+gmresRestarts = [200 200];
 solverName = {'minres','gmres'};
 nrTests = length(preconVals);
 timeArray = zeros(nrTests,1);
@@ -69,21 +71,22 @@ for test = 1:nrTests
 	timeArray(test) = toc;
 	legendStr = [legendStr, [preconName{preconVals(test)},', ' ,...
 		solverName{solverVals(test)},sprintf(': %4.2f seconds', timeArray(test))]];
-
 end
 
-% figure
-% for level = 1:setup.amg.levels + 1
-% 	subplot(2,3,level)
-% 	spy(precon{2}.level(level).matrix)
-% 	title(sprintf('Theta = %3.2f, fill = %4.2f %%', [setup.amg.theta,...
-% 		100*nnz(precon{2}.level(level).matrix)/...
-% 		prod(size(precon{2}.level(level).matrix))]))
+% if preconVals(1) == 1
+% 	figure
+% 	for level = 1:setup.amg.levels + 1
+% 		subplot(2,3,level)
+% 		spy(precon{1}.level(level).matrix)
+% 		title(sprintf('Theta = %3.2f, fill = %4.2f %%', [setup.amg.theta,...
+% 			100*nnz(precon{1}.level(level).matrix)/...
+% 			prod(size(precon{1}.level(level).matrix))]))
+% 	end
 % end
 
 
 figure
-semilogy(resVecs{1}, colors{1})
+semilogy(resVecs{1}/norm(rhsVec), colors{1})
 hold on
 for test = 2:nrTests
 	semilogy(resVecs{test}/norm(rhsVec), colors{test})
@@ -91,3 +94,5 @@ end
 hold off
 legend(legendStr)
 title(['nX = nY = ', num2str(nX),', relative residual'])
+
+profile viewer
